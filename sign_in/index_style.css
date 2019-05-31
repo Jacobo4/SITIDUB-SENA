@@ -1,15 +1,60 @@
+body{
+  margin:0;
+  padding 0;
 
+}
+
+div#encabezado{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  background-color:;
+  border: 2px solid black;
+
+
+}
 div#login {
 
   width: 400px;
-  height: 400px;
-  background-color:;
-
-  border: 2px solid black;
+  height: 300px;
+  background-color:#EEEEEE;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px 8px 8px 8px;
 
 }
-#.cajitas{
-align-items: center;
+#usuCon{
+margin-left: 50px;
 
+}
+.contenedor{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  height: 100vh;
+  background: url(imagenes/fondo_total.jpg) no-repeat center top;
+}
+.center{
+  text-align: center;
 
+}
+.cajitas{
+
+  border: 1px solid #DDDDDD;
+  border-radius: 8px 8px 8px 8px;
+
+}
+.botonIngresar{
+
+  background: none repeat scroll 0 0 #669900;
+  border: 1px solid #29691D !important;
+  color: #FFFFFF ;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+}
+.letratodo{
+
+  font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }

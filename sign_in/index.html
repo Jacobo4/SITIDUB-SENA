@@ -6,50 +6,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link rel="stylesheet" type= "text/css" href="index_style.css">
     <style type="text/css">
-      body{
-        margin:0;
-        padding 0;
-
-      }
-      .contenedor{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #FFFFFF;
-        height: 100vh;
-      }
-      .center{
-        text-align: center;
-
-      }
 
       </style>
   </head>
   <body>
+    <div id="encabezado"><h1>el encabezado mas melo caramelo</h1>
+    </div>
     <div class="contenedor">
+
       <div id="login"> <!-- El contenedor central-->
-        <h1 align="center" ><font size="5" color="black">Sign in </font> </h1><hr><br>
+
+        <h3 class="letratodo" align="center" >Log In </h3><hr><br>
+        <div id="usuCon">
+          <select name="tipoUsuario" size="1" color="blue" onchange="javascript:alert('prueba');"><!-- barra de opciones de ususario -->
+            <option value="linkEstudiante">Estudiante</option>
+            <option value="linkAcudiente">Acudiente</option>
+            <option value="linkAdministrador">Administrador</option>
+            <option value="linkCoordinador">Coordinador</option>
+            <option value="LinkTesorero">Tesorero</option>
+          </select>
+          <h4 class="letratodo"> Usuario: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="cajitas" name="nombreUsuario"> </h4>
+          <h4 class="letratodo"> contraseña: <input type="text" class="cajitas" name="contraseñaUsuario"> </h4>
+        </div>
 
         <div class="center">
-        <select name="tipoUsuario" size="1" color="blue" onchange="javascript:alert('prueba');"><!-- barra de opciones de ususario -->
-          <option value="linkEstudiante">Estudiante</option>
-          <option value="linkAcudiente">Acudiente</option>
-          <option value="linkAdministrador">Administrador</option>
-          <option value="linkCoordinador">Coordinador</option>
-          <option value="LinkTesorero">Tesorero</option>
-        </select><br><br>
+        <button  class="botonIngresar" name="botonIngresar" >Ingresar</button><br><br>
+        <font size="2" color="blue" face="arial"><a href= “link”>Olvidaste tu contraseña?</a></font>
         </div>
 
     </div>
   </div>
-
-
-
-
-
-
-
-
 
   </body>
 </html>
