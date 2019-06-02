@@ -4,36 +4,40 @@ body {
 }
 
 div#login {
-  width: 600px ;
+  width: 500px;
   height: 300px;
   background-color: #EEEEEE;
   border: 1px solid #DDDDDD;
   border-radius: 8px 8px 8px 8px;
   margin-top: 25vh;
-
-  position: absolute;
 }
-#usuCon {
-  margin-left: 50px;
+
+div#usuCon {
+  width: 70%;
+  float: left;
 }
-.logo{
 
-margin-top: 55px ;
+.logo {
+
+margin-top: 10px;
+margin-right: 40px;
 
 
 }
+
 .contenedor {
   display: flex;
   justify-content: center;
-
   background: #FFFFFF;
   height: 100vh;
   background: url(imagenes/fondo_total.jpg) no-repeat center top;
   background-size: cover;
   background-position: center center;
 }
+
 .letratodo {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
 }
 
 .center {
@@ -46,41 +50,23 @@ margin-top: 55px ;
 }
 
 .botonIngresar {
-  height: 25px;
 
-  margin:auto;
-  display: block;
+
+padding: 10px 15px;
   cursor: pointer;
   border-radius: 8px 8px 8px 8px;
-  border: 1px solid #29691D !important;
-  background: none repeat scroll 0 0 #669900;
-  color: #FFFFFF;
+  border: 1px solid #FFFFFF !important;
+  background: none repeat scroll 0 0 #008CBA;
+  color: white;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-
-}
-.botonIngresar span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-
 }
 
-.botonIngresar span:after {/* Es para mover el contenido que esta a la derecha*/
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+.botonIngresar {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 
-.botonIngresar:hover span {/* Es para mover el boton de por si*/
-  padding-right: 10px;
-
-}
-
-.botonIngresar:hover span:after {
-  opacity: 1;
-  right: 0;
+.botonIngresar:hover {
+  background-color: #FFFFFF; /* Green */
+  color: black;
 }
