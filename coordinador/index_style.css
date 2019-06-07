@@ -29,37 +29,50 @@ div#admin {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-.center {
-  text-align: center;
-}
-
-.cajitas {
-  border: 1px solid #DDDDDD;
-  border-radius: 8px 8px 8px 8px;
-}
-
 #banner {
   width: 98%;
   height: 20%;
   margin-left: 1%;
   margin-right: 1%;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px 8px 8px 8px;
+  margin-top: 10px;
+  background: url(imagenes/bg.jpg) no-repeat center top;
+  background-size: cover;
+  background-position: center center;
+}
+
+.botonesa {
+  width: 50%;
+  height: 20%;
 }
 
 #buscadores {
   width: 98%;
-  height: 20%;
+  height: 200px;
   margin-left: 1%;
   margin-right: 1%;
 }
 
-.buscar-caja {
-  position: absolute;
+.tabla {
+  width: 98%;
+  height: 56%;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px 8px 8px 8px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.buscar-box {
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
   transform: translate(-50%, -50%);
-  background: #2f3640;
+  background: #008CBA;
   height: 20px;
   border-radius: 40px;
   padding: 10px;
-  margin-left: 200px;
+  margin-bottom: 40px;
 }
 
 .buscar-btn {
@@ -67,7 +80,6 @@ div#admin {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #2f3640;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,11 +102,60 @@ div#admin {
   font-weight: bold;
 }
 
-.buscar-caja:hover>.buscar-txt {
+.buscar-box:hover>.buscar-txt {
   width: 140px;
 }
 
-.buscar-caja:hover>.buscar-btn {
-  background: white;
+.buscar-box:hover>.buscar-btn {
   color: black;
+}
+
+.opcion-box {
+  position: relative;
+  display: inline-block;
+  margin-top: 25px;
+  transform: translate(-50%, -50%);
+  background: #008CBA;
+  height: 20px;
+  border-radius: 40px;
+  padding: 10px;
+  margin-left: 30px;
+}
+
+.opcion-button {
+  font-size: 16px;
+  transition: 0.4s;
+  width: 20px;
+}
+
+.opcion-box:hover>.opcion-button {
+  width: 130px;
+}
+
+td, th {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px 8px 8px 8px;
+}
+
+::-webkit-input-placeholder {
+  color: white;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+}
+
+:-ms-input-placeholder {
+  color: white;
+}
+
+::-webkit-input-placeholder {
+  color: white;
 }
