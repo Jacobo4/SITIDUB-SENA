@@ -69,7 +69,28 @@ align-items: center;
 justify-content: center;
 
 }
+.botonIngresar {
 
+
+padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 8px 8px 8px 8px;
+  border: 1px solid #FFFFFF !important;
+  background: none repeat scroll 0 0 #008CBA;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin-bottom: 2px;
+}
+
+.botonIngresar {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.botonIngresar:hover {
+  background-color: #FFFFFF; /* Green */
+  color: black;
+}
 
 #buscadores {
   width: 98%;
@@ -160,6 +181,10 @@ td, th {
     font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   border: 1px solid #DDDDDD;
   border-radius: 8px 8px 8px 8px;
+}
+p{
+font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
 }
 
 ::-webkit-input-placeholder {
