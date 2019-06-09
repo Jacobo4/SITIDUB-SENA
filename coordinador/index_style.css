@@ -25,9 +25,6 @@ div#admin {
   margin-bottom:
 }
 
-.letratodo {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-}
 
 #banner {
   width: 98%;
@@ -41,7 +38,7 @@ div#admin {
   background-size: cover;
   background-position: center center;
 }
-.logo{
+div#logo{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,46 +46,72 @@ div#admin {
 }
 
 .botonesa {
-  width: 30%;
+  width: 60%;
   height: 20%;
   float: left;
 }
 
 .usuario{
 float: left;
-width: 70%;
+width: 40%;
 height: 20%;
 
 }
-.foto_usu{
+div#foto_usu{
 float: left;
-width: 200px;
+width: 30%;
 height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
+
 
 }
-.botonIngresar {
+.datos_usuario{
+  float: left;
+width: 69%;
+margin-left: 1%;
 
+}
+.botonCerrarses {
 
-padding: 5px 10px;
+  float: left;
+  padding: 5px 10px;
   cursor: pointer;
   border-radius: 8px 8px 8px 8px;
-  border: 1px solid #FFFFFF !important;
-  background: none repeat scroll 0 0 #008CBA;
+  border: 1px solid #FFFFFF;
+  background:  #008CBA;
   color: white;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin-bottom: 2px;
 }
 
-.botonIngresar {
+.botonCerrarses {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
 
-.botonIngresar:hover {
-  background-color: #FFFFFF; /* Green */
+.botonCerrarses:hover {
+  background-color: #FFFFFF;
+  color: black;
+}
+.botonEditar {
+
+  float: left;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 8px 8px 8px 8px;
+  border: 1px solid #FFFFFF;
+  background: #008CBA;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin-bottom: 2px;
+}
+
+.botonEditar {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.botonEditar:hover {
+  background-color: #FFFFFF;
   color: black;
 }
 
@@ -145,6 +168,7 @@ padding: 5px 10px;
   line-height: 20px;
   width: 0px;
   font-weight: bold;
+  
 }
 
 .buscar-box:hover>.buscar-txt {
@@ -178,16 +202,22 @@ padding: 5px 10px;
 }
 
 td, th {
-    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   border: 1px solid #DDDDDD;
   border-radius: 8px 8px 8px 8px;
 }
+th{
+  background: #117b9e;
+  color: white;
+
+}
 p{
-font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;<!-- Para cambiarel el tipo de letra a todos los parrafos -->
 
 }
 
-::-webkit-input-placeholder {
+::-webkit-input-placeholder {<!-- Esto es un "truco" para cambiarle el color -->
+                             <!-- de letra de la palabra busqueda... -->
   color: white;
 }
 
