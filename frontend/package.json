@@ -1,0 +1,22 @@
+{
+  "name": "sitidob",
+  "version": "1.0.0",
+  "description": "Sistema para el registro de matriculas y pensiones de una institución educativa",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Jacobo Izquierdo - Camila Camacho - Aracely Marentes - Felipe Carranza - Jan algo",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-sass": "^4.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "slick-carousel": "^1.8.1",
+    "wowjs": "^1.1.3"
+  }
+}
