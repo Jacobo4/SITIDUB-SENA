@@ -1,51 +1,51 @@
-// ........................................{ Global } #
-*:focus, button:focus
-  outline: none
-
-h1, h3
-  font-family: $f2
-  text-transform: uppercase
-  letter-spacing: 5px
-  margin-bottom: .8rem
-h1
-  font-size: 1.8em
-h2
-  font-family: $f1
-  font-size: 1.8em
-  letter-spacing: 5px
-h3
-  font-size: 3em
-  color: white
-  line-height: 1
-  font-family: $f1
-h6
-  font-size: 1.2rem
-  color: $cp2
-  font-weight: 500
-.text-orange
-  color: $cp2
-.flex
-  &-sm,&-md,&-lg
-    align-items: center
-    justify-content: center
-  &-vertical
-    flex-direction: column
-  &-item
-    &--top
-      align-self: flex-start
-    &--bottom
-      align-self: flex-end
-  @include sm
-    &-sm
-      display: flex
-  @include md
-    &-md
-      display: flex
-  @include lg
-    &-lg
-      display: flex
-.justify-content
-  &-between
-    -webkit-box-pack: justify!important
-    -ms-flex-pack: justify!important
-    justify-content: space-between!important
+// // ........................................{ Global } #
+// *:focus, button:focus
+//   outline: none
+//
+// h1, h3
+//   font-family: $f2
+//   text-transform: uppercase
+//   letter-spacing: 5px
+//   margin-bottom: .8rem
+// h1
+//   font-size: 1.8em
+// h2
+//   font-family: $f1
+//   font-size: 1.8em
+//   letter-spacing: 5px
+// h3
+//   font-size: 3em
+//   color: white
+//   line-height: 1
+//   font-family: $f1
+// h6
+//   font-size: 1.2rem
+//   color: $cp2
+//   font-weight: 500
+// .text-orange
+//   color: $cp2
+// .flex
+//   &-sm,&-md,&-lg
+//     align-items: center
+//     justify-content: center
+//   &-vertical
+//     flex-direction: column
+//   &-item
+//     &--top
+//       align-self: flex-start
+//     &--bottom
+//       align-self: flex-end
+//   @include sm
+//     &-sm
+//       display: flex
+//   @include md
+//     &-md
+//       display: flex
+//   @include lg
+//     &-lg
+//       display: flex
+// .justify-content
+//   &-between
+//     -webkit-box-pack: justify!important
+//     -ms-flex-pack: justify!important
+//     justify-content: space-between!important
