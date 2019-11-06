@@ -1,0 +1,76 @@
+$filter1: brightness(1.2);
+$filter2: brightness(0.9);
+
+input{
+  border-radius: 20px;
+  border:none;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited{
+    border-radius: 20px;
+    outline:none;
+  }
+}
+button{
+  border: none;
+  border-radius: 4px;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited{
+    filter: $filter1;
+    outline:none;
+  }
+}
+
+.ctn-normal{
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input-login{
+  width: 100%;
+  max-width: 300px;
+  height: 60px;
+  padding-left: 50px;
+
+  background: #f8f6fc;
+  border-radius: 20px;
+
+}
+
+[class^='input']{
+  box-shadow: -4px 4px 0px #c4a9fe;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited{
+    border: 1px solid #9639ff;
+    box-sizing: border-box;
+    box-shadow: -5px 5px 0px #dfd0ff;
+    border-radius: 20px;
+  }
+}
+
+.error {
+   border: 1px solid #FB8A8A !important;
+   box-sizing: border-box;
+   box-shadow: -5px 5px 0 #ff6161;
+   background: white !important;
+}
+
+.correcto {
+   border: 1px solid #8AFBC3 !important;
+   box-sizing: border-box;
+   box-shadow: -5px 5px 0 #b0ffd8;
+   background: white !important;
+}
+
+.alert {
+   border: 1px solid #faf45b !important;
+   box-sizing: border-box;
+   box-shadow: -5px 5px 0 #fdffb0;
+   background: white !important;
+
+}

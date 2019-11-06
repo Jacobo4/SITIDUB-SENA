@@ -1,16 +1,12 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-var autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync').create();
-var concat = require('gulp-concat');
-// var clean = require('gulp-clean');
-// var pug = require('gulp-pug');
-// var sourcemaps = require('gulp-sourcemaps');
-// var postcss = require('gulp-postcss');
-// var $             = require('gulp-load-plugins')();
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+const postcss = require('gulp-postcss');
+const terser = require('gulp-terser');
 
-// var mq4HoverShim = require('mq4-hover-shim');
-// var rimraf = require('rimraf').sync;
 
 
 var paths = {
@@ -18,45 +14,70 @@ var paths = {
   dev: './dev/',
   sass: './dev/styles/',
   css: './dist/assets/css/',
-  data: './dev/markup/_data/',
   node: './node_modules/'
+};
+
+var config = {
+  sass: {
+    outputStyle: 'compressed',
+  },
+  terser: {
+    ecma: 6,
+    keep_fnames: false,
+    mangle: {
+      toplevel: true,
+    },
+  },
+  autoprefixer: {
+    Browserslist: [
+      "Chrome >= 45",
+      "Firefox ESR",
+      "Edge >= 12",
+      "Explorer >= 10",
+      "iOS >= 9",
+      "Safari >= 9",
+      "Android >= 4.4",
+      "Opera >= 30"
+    ]
+  }
+};
+
+function compile_scss(done) {
+
+  var processors = [
+    autoprefixer(config.autoprefixer)
+  ];
+  return gulp.src(paths.sass + '*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass(config.sass).on('error', sass.logError))
+    .pipe(postcss(processors))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.public + 'assets/css/'))
+    .pipe(browserSync.stream());
+  done();
 };
 
 
 // Watch files for changes
 
-function compile_scss(done) {
-  //1. Where is my scss file
-  return gulp.src(paths.sass + '*.scss')
-
-    //2. pass what file through sass compiler
-    .pipe(sass({
-      // outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(autoprefixer({
-      cascade: true
-    }))
-
-    //3. Where do i save the compiled css?
-    .pipe(gulp.dest(paths.public + 'assets/css/'))
-    .pipe(browserSync.stream());
-  done();
-}
-
-function watch(done) {
+function server() {
   browserSync.init({
     server: {
       baseDir: paths.public
     }
   });
+};
+
+function watch(done) {
+
 
   gulp.watch(paths.sass + '**/*.scss', compile_scss); //callback para ejecutar compile_scss()
   gulp.watch(paths.public + '*.html').on('change', browserSync.reload);
-  gulp.watch(paths.public + 'assets/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(paths.dev + 'scripts/*.js', copy_js).on('change', browserSync.reload);
   done();
-}
+};
 
-function compile_js(done) {
+function compile_vendors_js(done) {
   return gulp.src([
       paths.node + 'jquery/dist/jquery.min.js',
       paths.node + 'bootstrap/dist/js/bootstrap.min.js'
@@ -66,13 +87,7 @@ function compile_js(done) {
   done();
 };
 
-function setupBootstrap(done) {
-  return gulp.src([
-      paths.node + 'bootstrap/scss/**/*.scss',
-    ])
-    .pipe(gulp.dest(paths.sass + 'core/'));
-  done();
-};
+
 
 function copyAll(done) {
   //Copy other external css assets
@@ -84,11 +99,30 @@ function copyAll(done) {
   //Copy other external files
   gulp.src([paths.dev + 'assets/images/**/*']).pipe(gulp.dest(paths.public + 'assets/images/'));
   gulp.src([paths.dev + 'assets/files/**/*']).pipe(gulp.dest(paths.public + 'assets/files/'));
-
   done();
 };
 
+function copy_js(done) {
 
-const build = gulp.parallel(copyAll, compile_js)
-const all = gulp.series(build, watch);
-gulp.task(':)', all)
+  return gulp.src(paths.dev + 'scripts/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(concat('app.js'))
+    .pipe(terser(config.terser))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.public + 'assets/js/'))
+
+  done();
+};
+// function setupBootstrap(done) {
+//   return gulp.src([
+//       paths.node + 'bootstrap/scss/**/*.scss',
+//     ])
+//     .pipe(gulp.dest(paths.sass + 'core/'));
+//   done();
+// };
+// const setBootstrap = gulp.parallel(setupBootstrap);
+// gulp.task('bootstrap',setBootstrap);
+
+const build = gulp.parallel(copyAll, compile_vendors_js, copy_js)
+const all = gulp.series(build, gulp.parallel(server, watch));
+gulp.task(':)', all);
