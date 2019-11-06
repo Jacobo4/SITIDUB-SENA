@@ -26,22 +26,24 @@ add foreign key(fk_tbl_observaciones_tipoObservacion) references tbl_observacion
 
 create table tbl_persona_has_tbl_telefono
 (
-    pk_fk_tbl_persona_numeroDocumento varchar (12),
-    pk_fk_tbl_persona_tbl_tipoDocumento_des_tipoDocumento varchar (5),
-    pk_fk_tbl_telefono_clase varchar (15),
+    pk_fk_tbl_persona_numeroDocumento varchar (12) not null,
+    pk_fk_tbl_persona_tbl_tipoDocumento_des_tipoDocumento varchar (5) not null,
+    pk_fk_tbl_telefono_clase varchar (15) not null,
     numero int (5) not null,
     primary key (pk_fk_tbl_persona_numeroDocumento,pk_fk_tbl_persona_tbl_tipoDocumento_des_tipoDocumento,pk_fk_tbl_telefono_clase)
 );
 
 alter table tbl_persona_has_tbl_telefono
 add constraint const_numeroDocumento_tbl_persona_has_tbl_telefono
-foreign key (pk_fk_tbl_persona_numeroDocumento) references tbl_personas(numeroDocumento);
+foreign key (pk_fk_tbl_persona_numeroDocumento,pk_fk_tbl_persona_tbl_tipoDocumento_des_tipoDocumento) references tbl_personas(numeroDocumento,pk_fk_tbl_tipoDocumento_des_tipoDocumento);
 
 alter table tbl_persona_has_tbl_telefono
-add constraint const_desTipoDoc_tbl_persona_has_tbl_telefono
-foreign key (pk_fk_tbl_persona_tbl_tipoDocumento_des_tipoDocumento) references tbl_personas(pk_fk_tbl_tipoDocumento_des_tipoDocumento);
+add constraint const_clase_tbl_persona_has_tbl_telefono
+foreign key (pk_fk_tbl_telefono_clase) references tbl_telefono(tel_clase);
 
-alter table tbl_persona_has_tbl_telefono
+
+
+
 add constraint const_clase_tbl_persona_has_tbl_telefono
 foreign key (pk_fk_tbl_telefono_clase) references tbl_telefono(tel_clase);
 
@@ -91,11 +93,8 @@ add foreign key(fk_tbl_matricula_id_matricula) references tbl_matricula(id_matri
 
 alter table tbl_estudiante
 add constraint const_numeroDocumento_tbl_persona
-foreign key (pk_fk_tbl_persona_numeroDocumento) references tbl_personas(numeroDocumento);
+foreign key (pk_fk_tbl_persona_numeroDocumento,pk_fk_tbl_persona_numeroDocumento_des_tipoDocumento) references tbl_personas(numeroDocumento,pk_fk_tbl_tipoDocumento_des_tipoDocumento);
 
-alter table tbl_estudiante
-add constraint const_tipoDocumento_tbl_persona
-foreign key (pk_fk_tbl_persona_numeroDocumento_des_tipoDocumento) references tbl_personas(pk_fk_tbl_tipoDocumento_des_tipoDocumento);
 
 create table tbl_eps
 (
@@ -119,7 +118,36 @@ create table tbl_matricula
     grado varchar (15),
     primary key (id_matricula)
 );
---
+
+create table tbl_matricula_has_tbl_pagoMes
+(
+    pk_fk_tbl_matricula_id_matricula int not null,
+    pk_fk_tbl_pagoMes_numeroComprobante varchar (30) not null,
+    mes varchar (15) not null,
+    valorCancelado float not null,
+    saldo float not null,
+    primary key (tbl_matricula_id_matricula,tbl_pagoMes_numeroComprobante)
+
+);
+
+alter table tbl_matricula_has_tbl_pagoMes
+add constraint const_idDocumento_tbl_persona
+foreign key (pk_fk_tbl_matricula_id_matricula) references tbl_matricula(id_matricula);
+
+alter table tbl_matricula_has_tbl_pagoMes
+add constraint const_numeroComprobante_tbl_persona
+foreign key (pk_fk_tbl_pagoMes_numeroComprobante) references tbl_pagoMes(numeroComprobante);
+
+create table tbl_pagoMes
+(
+    numeroComprobante varchar (30) not null,
+    formaPago varchar (15) not null,
+    fechaPago date not null,
+    mesCancelado varchar (15) not null,
+    responsableColegio varchar (30) not null,
+    primary key (numeroComprobante)
+);
+
 
 
 --
@@ -152,21 +180,3 @@ create table tbl_matricula
 --
 
 --
--- create table tbl_pagoMes
--- (
---     numeroComprobante varchar (30) not null,
---     formaPago varchar (15) not null,
---     fechaPago date not null,
---     mesCancelado varchar (15) not null,
---     responsableColegio varchar (30) not null,
---     primary key (numeroComprobante)
--- );
---
--- create table tbl_matricula_has_tbl_pagoMes
--- (
---     tbl_matricula_id_matricula int,
---     tbl_pagoMes_numeroComprobante varchar (30),
---     mes varchar (15) not null,
---     valorCancelado float not null,
---     saldo float
--- );
