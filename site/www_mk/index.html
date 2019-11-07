@@ -6,8 +6,11 @@
     <meta name="title" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <!--{ styles generales } ...............................-->
+
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/vendors.css">
+
+
   </head>
   <body>
     <section id="login">
@@ -15,13 +18,18 @@
         <div class="login-container ctn-normal">
            <h1>Sign In</h1>
             <form class="" action="index.html" method="post">
-              <input class="input-login" type="text">
-              <input class="input-login" type="text">
+              <div class="icon-user">
+                <input class="input-login" placeholder="user" type="text">
+              </div>
+              <div class="icon-key2">
+                <input class="input-login" placeholder="password" type="text">
+              </div>
 
-              <button class="btn" type="submit" name="button">Login</button>
+
+              <button class="btn wow shake" data-wow-duration="1.5s" data-wow-delay="3s" type="submit" name="button">GO!</button>
               <div class="checkbox-container">
-                <label><input id="rememberMe"type="checkbox" name="" value=""></label>
-                <span for="rememberMe">Remember me</span>
+                <label>a<input type="checkbox" name="" value=""></label>
+                <span>Remember me</span>
               </div>
               <a href="#">Forgot your password?</a>
             </form>

@@ -80,7 +80,8 @@ function watch(done) {
 function compile_vendors_js(done) {
   return gulp.src([
       paths.node + 'jquery/dist/jquery.min.js',
-      paths.node + 'bootstrap/dist/js/bootstrap.min.js'
+      paths.node + 'bootstrap/dist/js/bootstrap.min.js',
+      paths.node + 'wowjs/dist/wow.min.js'
     ])
     .pipe(concat('vendors.js'))
     .pipe(gulp.dest(paths.public + 'assets/js/'));
@@ -91,7 +92,9 @@ function compile_vendors_js(done) {
 
 function copyAll(done) {
   //Copy other external css assets
-  gulp.src([paths.dev + 'assets/css/*.css']).pipe(gulp.dest(paths.public + 'assets/css/'));
+  gulp.src([paths.dev + 'assets/css/*.css'])
+  .pipe(concat('vendors.css'))
+  .pipe(gulp.dest(paths.public + 'assets/css/'));
   //Copy other external font assets
   gulp.src([paths.dev + 'assets/fonts/*']).pipe(gulp.dest(paths.public + 'assets/fonts/'));
   //Copy other external vendors
