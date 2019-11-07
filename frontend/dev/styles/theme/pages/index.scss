@@ -60,35 +60,25 @@ section#login {
 
       .checkbox-container {
         margin-top: 40px;
-        text-align: left;
         display: inline-block;
-        font-size: 14px;
-        line-height: 17px;
 
         label {
-          margin-right: 10px;
-
-          input[type="checkbox"] {}
-
-          span {
-            @include sm() {
-              margin-right: 50px;
-              margin-bottom: 0;
-            }
+          @include sm() {
+            margin-right: 50px;
           }
         }
+      }
 
-        a {
-          margin-top: 10px;
-          display: block;
-          color: rgb(88, 45, 149);
-          text-decoration: none;
-          font-size: 14px;
-          line-height: 17px;
-          @include sm() {
-            margin-top: 0;
-            display: inline-block;
-          }
+      a {
+        margin-top: 10px;
+        display: block;
+        color: rgb(88, 45, 149);
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 17px;
+        @include sm() {
+          margin-top: 0;
+          display: inline-block;
         }
       }
     }
