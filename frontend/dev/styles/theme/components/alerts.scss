@@ -1,0 +1,27 @@
+div.alert-container{
+  width: 250px;
+  text-align: center;
+  height: 50px;
+  display: none;
+  position: fixed;
+  bottom:0;
+  left:0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: white;
+  .alert-content{
+    padding: 13px;
+  }
+
+
+}
+.alertCheck{
+  background: $verdeOscuro;
+}
+
+.alertError{
+  background: $rojo;
+}

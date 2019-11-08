@@ -12,15 +12,13 @@ section#login {
   .login-container {
     margin: auto;
     width: 90%;
-    max-width: 650px;
+    max-width: 460px;
     height: 600px;
     padding: 10px;
     @include sm() {
       padding: 50px;
     }
-    @include lg() {
-      padding: 60px 110px;
-    }
+
 
     h1 {
       margin-bottom: 65px;
@@ -50,7 +48,7 @@ section#login {
         max-width: 220px;
         height: 50px;
         margin: 35px auto 0;
-        background: rgb(88, 45, 149);
+        background: $moradoOscuro;
         color: white;
         font-weight: 300;
         font-size: 30px;
@@ -59,27 +57,16 @@ section#login {
       }
 
       .checkbox-container {
-        margin-top: 40px;
-        display: inline-block;
-
         label {
-          @include sm() {
-            margin-right: 50px;
-          }
+          margin: auto;
         }
       }
-
       a {
-        margin-top: 10px;
-        display: block;
-        color: rgb(88, 45, 149);
+        margin-top: 20px;
+        color: $moradoOscuro;
         text-decoration: none;
         font-size: 14px;
         line-height: 17px;
-        @include sm() {
-          margin-top: 0;
-          display: inline-block;
-        }
       }
     }
   }

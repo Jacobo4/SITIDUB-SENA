@@ -24,7 +24,7 @@ button{
 }
 
 .ctn-normal{
-  background: #FFFFFF;
+  background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -33,10 +33,8 @@ button{
   max-width: 300px;
   height: 60px;
   padding-left: 50px;
-
   background: #f8f6fc;
   border-radius: 20px;
-
 }
 
 [class^='input']{
@@ -45,62 +43,64 @@ button{
   &:focus,
   &:active,
   &:visited{
-    border: 1px solid #9639ff;
+    border: 1px solid $morado;
     box-sizing: border-box;
-    box-shadow: -5px 5px 0px #dfd0ff;
+    box-shadow: -5px 5px 0px $moradoClaro;
     border-radius: 20px;
   }
 }
 
 .error {
-   border: 1px solid #FB8A8A !important;
+   border: 1px solid $rojoClaro !important;
    box-sizing: border-box;
-   box-shadow: -5px 5px 0 #ff6161;
+   box-shadow: -5px 5px 0 $rojoClaro;
    background: white !important;
 }
 
 .correcto {
-   border: 1px solid #8AFBC3 !important;
+   border: 1px solid $verde !important;
    box-sizing: border-box;
-   box-shadow: -5px 5px 0 #b0ffd8;
+   box-shadow: -5px 5px 0 $verdeClaro;
    background: white !important;
 }
 
 .alert {
-   border: 1px solid #faf45b !important;
+   border: 1px solid $amarillo !important;
    box-sizing: border-box;
-   box-shadow: -5px 5px 0 #fdffb0;
+   box-shadow: -5px 5px 0 $amarilloClaro;
    background: white !important;
 
 }
 .checkbox-container{
-  position: relative;
-  font-size: 14px;
-  input[type="checkbox"]{
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-  }
   label{
-    line-height: 22px;
-    margin-left: 5px;
-  }
-  &:before{
-    background: white;
-    border: 1px solid #9639ff;
-    border-radius: 4px;
-    width: 20px;
-    height: 20px;
-    z-index: 100;
-    content: '';
-    position: absolute;
-    pointer-events: none;
-
-  }
-}
-
-.checked{
-  &:before{
-    content: '✔';
+    width: 120px;
+    height: 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    input[type="checkbox"]{
+      width: 20px;
+      height: 20px;
+    }
+    div.custom-checkbox{
+      font-size: 13px;
+      background: white;
+      border: 1px solid $morado;
+      border-radius: 4px;
+      width: 20px;
+      height: 20px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto 0;
+      z-index: 100;
+      position: absolute;
+      pointer-events: none;
+    }
+    span{
+      font-size: 14px;
+      margin-left: 5px;
+    }
   }
 }
