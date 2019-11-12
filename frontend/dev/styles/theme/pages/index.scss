@@ -56,18 +56,19 @@ section#login {
         display: block;
       }
 
-      .checkbox-container {
-        label {
-          margin: auto;
-        }
+
+    }
+    .checkbox-container {
+      label {
+        margin: auto;
       }
-      a {
-        margin-top: 20px;
-        color: $moradoOscuro;
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 17px;
-      }
+    }
+    a {
+      margin-top: 20px;
+      color: $moradoOscuro;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 17px;
     }
   }
 }

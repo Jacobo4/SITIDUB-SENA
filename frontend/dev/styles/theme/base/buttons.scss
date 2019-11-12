@@ -1,6 +1,20 @@
 $filter1: brightness(1.2);
 $filter2: brightness(0.9);
 
+// NOTE: Styles cuando se autocompleta
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: -5px 5px 0px $moradoClaro;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 input{
   border-radius: 20px;
   border:none;
@@ -36,7 +50,9 @@ button{
   background: #f8f6fc;
   border-radius: 20px;
 }
-
+.input-form{
+  padding: 10px 15px;
+}
 [class^='input']{
   box-shadow: -4px 4px 0px #c4a9fe;
   &:hover,

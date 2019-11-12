@@ -1,0 +1,38 @@
+section#studentForm{
+  h1,h2{
+    color: $moradoOscuro;
+  }
+  h1{
+    text-align: center;
+    font-size: 15vw;
+    @include sm(){
+      font-size: 64px;
+    }
+  }
+  h2{
+    margin: 20px 0;
+    line-height: 20px;
+    font-family: 'Arial'
+  }
+
+  form{
+    padding: 30px 10px;
+    @include sm(){
+      padding: 30px 50px;
+    }
+    input,label{
+      width: 100%;
+      max-width: 400px;
+
+    }
+    label{
+      font-size: 3vw;
+      @include sm(){
+        font-size: 1rem
+      }
+    }
+    input[type="date"]{
+      max-width: 280px;
+    }
+  }
+}

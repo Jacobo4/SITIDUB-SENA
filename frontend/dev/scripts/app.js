@@ -108,7 +108,7 @@ function showAlert(cumple,timeIn,timeOut){
       setTimeout(function(){
          divAlert.fadeOut().animate({'bottom': '0%'}, {duration: 'slow', queue: false});
       }, timeOut);
-   }).animate({'bottom': '15%'}, {duration: 'slow', queue: false});
+   }).animate({'bottom': '20%'}, {duration: 'slow', queue: false});
 
 }
 
