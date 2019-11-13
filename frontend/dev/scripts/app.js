@@ -135,5 +135,9 @@ $(document).ready(function() {
     let customCheck = $(this).parent().find('div.custom-checkbox');
     $(this).prop('checked') ? customCheck.text('✔') : customCheck.text('');
   });
+  $('div.icon-menu').click(function(){
+    if($('div.menu-container').hasClass('d-none')).fadeIn();
+
+  });
 
 });
