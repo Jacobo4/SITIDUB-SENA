@@ -97,18 +97,18 @@ function showAlert(cumple,timeIn,timeOut){
 
 
    if(cumple){
-      divAlert.removeClass('alertError');
-      divAlert.addClass('alertCheck').find(contentAlert).text('Nice !');
+      divAlert.removeClass('alert-error');
+      divAlert.addClass('alert-check').find(contentAlert).text('Nice !');
    }else{
-      divAlert.removeClass('alertCheck');
-      divAlert.addClass('alertError').find(contentAlert).text('Hmm, something went wrong');
+      divAlert.removeClass('alert-check');
+      divAlert.addClass('alert-error').find(contentAlert).text('Hmm, something went wrong');
    }
 
    divAlert.fadeIn(timeIn,"linear",function(){
       setTimeout(function(){
          divAlert.fadeOut().animate({'bottom': '0%'}, {duration: 'slow', queue: false});
       }, timeOut);
-   }).animate({'bottom': '20%'}, {duration: 'slow', queue: false});
+   }).animate({'bottom': '20vh'}, {duration: 'slow', queue: false});
 
 }
 
@@ -124,20 +124,57 @@ function validarLength(valor, minLength, maxLength) {
 
 
 $(document).ready(function() {
-  $('section#login').hide();
-  setTimeout(function() {
-    $('section#login').fadeIn(2000);
-  }, 500);
+//Fade in de la página Login al iniciar el navegador
 
+  setTimeout(function() {
+    $('section#login').fadeIn(1500).css({"display": "flex"});
+  }, 500);
+//Inicializar las animaciones de la libreria WOW (animaciones)
   var wow = new WOW().init();
 
+// Hacer que los checkbox con estilos funcionen
   $('input[type="checkbox"]').click(function() {
     let customCheck = $(this).parent().find('div.custom-checkbox');
     $(this).prop('checked') ? customCheck.text('✔') : customCheck.text('');
   });
+
+// Efectos menu burguer
   $('div.icon-menu').click(function(){
-    if($('div.menu-container').hasClass('d-none')).fadeIn();
+    let menu = $('div.menu-container');
+    if(menu.css('display') == "none"){
+      menu.slideDown();
+    }else{
+      menu.slideUp();
+    }
+  });
+
+  $('#acountbtn').click(function(){
+    let acountContainer = $('.account-container');
+    if(acountContainer.css('display') == "none"){
+      acountContainer.slideDown();
+    }else{
+      acountContainer.slideUp();
+    }
+  });
+
+  //Modales
+
+
+  $('#btn-nuevo').click(function(){
+    $('#modalNuevo').fadeIn().css({"display": "flex"});
+  });
+  $('.btn-cerrarModal').click(function(){
+    $(this).closest('.modal').fadeOut();
+
 
   });
+
+  //Tablas
+  $(window).resize(function(){
+    if(window.innerWidth <= 520){
+      $('table').css({"overflow-x": "scroll"});
+    }
+  });
+
 
 });

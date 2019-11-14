@@ -1,17 +1,16 @@
-nav{
+nav {
   width: 100%;
   background: $moradoOscuro !important;
+  position: relative;
 
-  h1{
+  h1 {
     color: white;
     font-size: 40px;
     line-height: normal;
-    margin: 0;
-    margin-left: 15px;
-
+    margin: 0 0 0 15px;
   }
-  div.icon-menu{
 
+  div.icon-menu {
     width: 40px;
     text-align: center;
     border: 1px solid $morado;
@@ -23,48 +22,88 @@ nav{
     margin-top: 4px;
     padding: 3px;
     cursor: pointer;
-
+    @include lg() {
+      display: none;
+    }
   }
-  div.menu-content{
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: white;
 
-    ul{
+  div.menu-container {
+    display: none;
+    @include lg() {
+      display: block !important;
+      position: absolute;
+      right: 50px;
+      top: -36px;
+      margin: 0;
       padding: 0;
-      list-style: none;
-      text-align: center;
-      li{
-        padding: 10px;
-        a{
-          color: #212529;
-          text-decoration: none;
+    }
+
+    div.menu-content {
+      width: 100%;
+      height: 100%;
+      background: white;
+      @include lg(){
+        background: none;
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+
+        li {
+          padding: 10px;
+          @include lg() {
+            display: inline;
+          }
+
+          a {
+            color: #212529;
+            text-decoration: none;
+            @include lg(){
+              color: white;
+            }
+          }
+
+          button#acountbtn {
+            color: white;
+            background: $morado;
+          }
         }
       }
     }
-  }
-}
 
-div.account-container{
-  background: white;
-  text-align: center;
-  width: 100%;
-  h4{
-    margin-bottom: 0;
-    color: #212529;
-    font-weight: normal;
-  }
-  img{
-    width: 150px;
-    border-radius: 100%;
-    margin: 20px 0;
-  }
+    div.account-container {
+      display: none;
+      background: white;
+      text-align: center;
+      width: 100%;
 
-  button{
-    margin-top: 20px;
-    margin-bottom: 30px;
+      @include lg(){
+        background: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        margin-top: 5px;
+        max-width: 275px;
+        margin-left: auto;
+      }
+
+      h4 {
+        margin-bottom: 0;
+        color: #212529;
+        font-weight: normal;
+      }
+
+      img {
+        width: 150px;
+        border-radius: 100%;
+        margin: 20px 0;
+      }
+
+      button {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+    }
   }
-
-
 }

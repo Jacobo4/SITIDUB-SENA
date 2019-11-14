@@ -24,13 +24,13 @@
         <div class="icon-menu"></div>
       </div>
       <div class="col-12">
-        <div class="menu-container d-none">
+        <div class="menu-container">
           <div class="menu-content">
             <ul>
               <li><a href="">Home</a></li>
               <li><a href="">Pagina 2</a></li>
               <li><a href="">Pagina 3</a></li>
-              <li><a href="">Acount</a></li>
+              <li><button id="acountbtn">Acount</button></li>
             </ul>
           </div>
 
@@ -58,88 +58,144 @@
 
       <div class="container">
 
-
-
-
-
-
-        <form class="studentForm ctn-normal d-none" action="index.html" method="post">
-
-          <div class="row justify-content-center">
-            <div class="col-6">
-              <label for="numMatri">Número de matrícula</label>
-              <input id="numMatri" class="input-form" type="text" name="" value="" placeholder="ej: ASAD-01">
-            </div>
-            <div class="col-6">
-              <label for="fechaInialMatri">Fecha inicial</label>
-              <input id="fechaInialMatri" class="input-form" type="date" name="" value="">
-            </div>
-
-            <div class="col-12">
-              <h2>Datos del estudiante</h2>
-            </div>
-
-
-            <div class="col-6">
-              <label for="nombresEstu">Nombres</label>
-              <input id="nombresEstu" class="input-form" type="text" name="" value="" placeholder="Alvaro Paraco">
-            </div>
-            <div class="col-6">
-              <label for="apellidosEstu">Apellidos</label>
-              <input id="apellidosEstu" class="input-form" type="text" name="" value="" placeholder="Uribe Velez">
-            </div>
-            <div class="col-6">
-              <label for="numIdent">Número de identidad</label>
-              <input id="numIdent" class="input-form" type="number" name="" value="" placeholder="1001065497">
-            </div>
-            <div class="col-1">
-              <label for="numIdent">Tipo de documento</label>
-              <select class="" name="" >
-                <option value="">TI</option>
-                <option value="">CC</option>
-                <option value="">CE</option>
-
-              </select>
-            </div>
-            <div class="col">
-              <label for="numIdent">Tipo de documento</label>
-              <input type="date" name="" value="" placeholder="Fecha de nacimiento">
-            </div>
-
-
-
-
-
-<!--
-            <label for="lugarNaciEstu">Lugar de nacimiento</label>
-            <input id="lugarNaciEstu" type="text" name="" value="" placeholder="Selva">
-
-            <input type="text" name="" value="" placeholder="EPS">
-            <input type="text" name="" value="" placeholder="Dirección">
-
-            <input type="text" name="" value="" placeholder="Lugar de expedición">
-
-            <select class="" name=""placeholder="RH">
-              <option value="">A</option>
-              <option value="">C</option>
-              <option value="">B</option>
-            </select>
-            <select class="" name="">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
-              <option value="">5</option>
-              <option value="">6</option>
-            </select>
-            <input type="text" name="" value="" placeholder="Teléfono residencia">
-            <input type="email" name="" value="" placeholder="ej: jamespapasito@gmail.com"> -->
-
-
+        <div class="options-container ctn-normal">
+          <button id="btn-nuevo" class="alerta" type="button" name="button">Nuevo</button>
+          <button class="alerta" type="button" name="button">Eliminar</button>
+          <button class="alerta" type="button" name="button">Editar</button>
+          <div class="search-container icon-search">
+            <input class="input-form " type="text" name="" value="" placeholder="">
           </div>
-        </form>
+        </div>
+
+        <div class="table-container ctn-normal">
+          <table class="">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Curso</th>
+                <th>Acudiente</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td class="table-options">123</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td class="table-options">123</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td class="table-options"><span class="icon-search"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
+
     </section>
+  </div>
+
+  <div class="modal" id="modalNuevo">
+    <div class="modal-container">
+      <form class="studentForm ctn-normal" action="index.html" method="post">
+        <h1>Matricula</h1>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <label for="numMatri">Número de matrícula</label>
+            <input id="numMatri" class="input-form" type="text" name="" value="" placeholder="ej: ASAD-01">
+          </div>
+          <div class="col-6">
+            <label for="fechaInialMatri">Fecha inicial</label>
+            <input id="fechaInialMatri" class="input-form" type="date" name="" value="">
+          </div>
+
+          <div class="col-12">
+            <h2>Datos del estudiante</h2>
+          </div>
+
+
+          <div class="col-6">
+            <label for="nombresEstu">Nombres</label>
+            <input id="nombresEstu" class="input-form" type="text" name="" value="" placeholder="Alvaro Paraco">
+          </div>
+          <div class="col-6">
+            <label for="apellidosEstu">Apellidos</label>
+            <input id="apellidosEstu" class="input-form" type="text" name="" value="" placeholder="Uribe Velez">
+          </div>
+          <!-- <div class="col-6">
+            <label for="numIdent">Número de identidad</label>
+            <input id="numIdent" class="input-form" type="number" name="" value="" placeholder="1001065497">
+          </div>
+          <div class="col-1">
+            <label for="numIdent">Tipo de documento</label>
+            <select class="" name="">
+              <option value="">TI</option>
+              <option value="">CC</option>
+              <option value="">CE</option>
+
+            </select>
+          </div>
+          <div class="col-1">
+            <label for="numIdent">Tipo de documento</label>
+            <input type="date" name="" value="" placeholder="Fecha de nacimiento">
+          </div> -->
+
+
+
+
+
+          <!--
+        <label for="lugarNaciEstu">Lugar de nacimiento</label>
+        <input id="lugarNaciEstu" type="text" name="" value="" placeholder="Selva">
+
+        <input type="text" name="" value="" placeholder="EPS">
+        <input type="text" name="" value="" placeholder="Dirección">
+
+        <input type="text" name="" value="" placeholder="Lugar de expedición">
+
+        <select class="" name=""placeholder="RH">
+          <option value="">A</option>
+          <option value="">C</option>
+          <option value="">B</option>
+        </select>
+        <select class="" name="">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+          <option value="">5</option>
+          <option value="">6</option>
+        </select>
+        <input type="text" name="" value="" placeholder="Teléfono residencia">
+        <input type="email" name="" value="" placeholder="ej: jamespapasito@gmail.com"> -->
+
+          <button class="btn-cerrarModal" type="button" name="button">Cerrar</button>
+        </div>
+      </form>
+
+    </div>
   </div>
 
 

@@ -1,0 +1,22 @@
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container{
+  position: relative;
+  width: 90%;
+  @include sm(){
+    max-width: 650px;
+  }
+  @include lg(){
+    max-width: 900px;
+  }
+}

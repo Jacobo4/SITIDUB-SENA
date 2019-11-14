@@ -14,7 +14,9 @@ var paths = {
   dev: './dev/',
   sass: './dev/styles/',
   css: './dist/assets/css/',
-  node: './node_modules/'
+  node: './node_modules/',
+  images:'./dev/assets/images/',
+  fonts:'./dev/assets/fonts/'
 };
 
 var config = {
@@ -70,7 +72,7 @@ function server() {
 
 function watch(done) {
 
-
+  gulp.watch(paths.images + '*', copyAll).on('change', browserSync.reload);
   gulp.watch(paths.sass + '**/*.scss', compile_scss); //callback para ejecutar compile_scss()
   gulp.watch(paths.public + '*.html').on('change', browserSync.reload);
   gulp.watch(paths.dev + 'scripts/*.js', copy_js).on('change', browserSync.reload);
