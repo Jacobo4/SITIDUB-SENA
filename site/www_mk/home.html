@@ -58,14 +58,18 @@
 
       <div class="container">
 
-        <div class="options-container ctn-normal">
-          <button id="btn-nuevo" class="alerta" type="button" name="button">Nuevo</button>
-          <button class="alerta" type="button" name="button">Eliminar</button>
-          <button class="alerta" type="button" name="button">Editar</button>
+        <div class="ctn-normal options-container">
+          <div class="options-content">
+            <button id="btn-nuevo" class="alerta" type="button" name="button">Nuevo</button>
+            <button class="alerta" type="button" name="button">Eliminar</button>
+            <button class="alerta" type="button" name="button">Editar</button>
+
+          </div>
           <div class="search-container icon-search">
             <input class="input-form " type="text" name="" value="" placeholder="">
           </div>
         </div>
+
 
         <div class="table-container ctn-normal">
           <table class="">
@@ -121,12 +125,12 @@
     <div class="modal-container">
       <form class="studentForm ctn-normal" action="index.html" method="post">
         <h1>Matricula</h1>
-        <div class="row justify-content-center">
-          <div class="col-6">
+        <div class="row">
+          <div class="col-12 col-sm-6">
             <label for="numMatri">Número de matrícula</label>
             <input id="numMatri" class="input-form" type="text" name="" value="" placeholder="ej: ASAD-01">
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="fechaInialMatri">Fecha inicial</label>
             <input id="fechaInialMatri" class="input-form" type="date" name="" value="">
           </div>
@@ -136,19 +140,19 @@
           </div>
 
 
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="nombresEstu">Nombres</label>
             <input id="nombresEstu" class="input-form" type="text" name="" value="" placeholder="Alvaro Paraco">
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="apellidosEstu">Apellidos</label>
             <input id="apellidosEstu" class="input-form" type="text" name="" value="" placeholder="Uribe Velez">
           </div>
-          <!-- <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="numIdent">Número de identidad</label>
             <input id="numIdent" class="input-form" type="number" name="" value="" placeholder="1001065497">
           </div>
-          <div class="col-1">
+          <div class="col-12 col-sm-6 col-lg-3">
             <label for="numIdent">Tipo de documento</label>
             <select class="" name="">
               <option value="">TI</option>
@@ -157,10 +161,10 @@
 
             </select>
           </div>
-          <div class="col-1">
+          <div class="col-12 col-sm-6 col-lg-3">
             <label for="numIdent">Tipo de documento</label>
-            <input type="date" name="" value="" placeholder="Fecha de nacimiento">
-          </div> -->
+            <input class="input-form" type="date" name="" value="" placeholder="Fecha de nacimiento">
+          </div>
 
 
 
@@ -191,7 +195,8 @@
         <input type="text" name="" value="" placeholder="Teléfono residencia">
         <input type="email" name="" value="" placeholder="ej: jamespapasito@gmail.com"> -->
 
-          <button class="btn-cerrarModal" type="button" name="button">Cerrar</button>
+        <button class="btn-submitModal" type="submit" name="button">Submit</button>
+        <button class="btn-cerrarModal" type="button" name="button">Cerrar</button>
         </div>
       </form>
 

@@ -1,23 +1,39 @@
-form{
-  h1{
-    color: $moradoOscuro;
+form {
+  padding: 30px;
+  padding-bottom: 50px;
+  position: relative;
+  @include sm() {
+    padding: 30px 50px 50px;
   }
-  padding: 30px 10px;
-  @include sm(){
-    padding: 30px 50px;
-  }
-  input,label{
-    width: 100%;
-    max-width: 400px;
 
-  }
-  label{
-    font-size: 3vw;
+  h1 {
+    color: $moradoOscuro;
+    text-align: center;
+    font-size: 15vw;
     @include sm(){
-      font-size: 1rem
+      font-size: 64px;
     }
   }
-  input[type="date"]{
+
+  h2 {
+    margin-top: 20px;
+    line-height: 20px;
+    font-family: 'Arial'
+  }
+
+  input,
+  label {
+    width: 100%;
+    @include sm() {
+      max-width: 400px;
+    }
+  }
+
+  label {
+    margin-top: 20px;
+  }
+
+  input[type="date"] {
     max-width: 280px;
   }
 }

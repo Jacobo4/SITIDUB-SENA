@@ -54,17 +54,25 @@ input{
 
 .input{
   &-login{
-    max-width: 300px;
+
     height: 60px;
     padding-left: 50px;
     background: #f8f6fc;
     border-radius: 20px;
+    @include sm(){
+      max-width: 300px;
+
+    }
   }
   &-form{
     padding: 10px 15px;
     padding-right: 30px;
 
-    max-width: 250px;
+    @include sm(){
+      max-width: 300px;
+
+    }
+
 
   }
 }
@@ -89,6 +97,14 @@ button{
     position: absolute;
     bottom: 15px;
     right: 15px;
+
+  }
+  &-submitModal{
+
+    position: absolute;
+    bottom: 15px;
+    right: 80px;
+
   }
 }
 

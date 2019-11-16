@@ -1,51 +1,70 @@
-section#home{
-  h1,h2{
+section#home {
+  h1,
+  h2 {
     color: $moradoOscuro;
   }
-  h1{
-    text-align: center;
-    font-size: 15vw;
-    @include sm(){
-      font-size: 64px;
-    }
-  }
-  h2{
-    margin: 20px 0;
-    line-height: 20px;
-    font-family: 'Arial'
-  }
-  div.options-container{
-    margin: 0;
-    margin-top: 40px;
+
+  div.options-container {
+    margin: 40px 0 0;
     padding: 20px;
-    div.search-container{
+    display: block;
+    text-align: center;
+    @include sm(){
+      display: flex;
+
+    }
+
+    div.options-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      margin-bottom: 10px;
+      @include sm(){
+        justify-content: flex-start;
+        margin-bottom: 0px;
+      }
+      button{
+        margin-right: 10px;
+      }
+
+    }
+
+    div.search-container {
       position: relative;
-      display: inline;
+      display: inline-block;
       margin-left: auto;
-      &::before{
+
+      &::before {
         position: absolute;
-        top: 0;
+        top: 10px;
         right: 10px;
       }
-    }
 
+      input {
+        max-width: 270px;
+      }
+    }
   }
-  div.table-container{
+
+  div.table-container {
     margin-top: 40px;
     overflow: auto;
-    table{
+
+    table {
       width: 100%;
-      th{
-        background: rgb(230, 230, 230)
+
+      th {
+        background: rgb(230, 230, 230);
       }
-      td:nth-child(1){
+
+      td:nth-child(1) {
         font-weight: bold;
       }
-      td{
-        padding:4px;
+
+      td {
+        padding: 4px;
       }
     }
   }
-
-
 }

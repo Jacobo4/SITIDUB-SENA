@@ -163,11 +163,15 @@ $(document).ready(function() {
   $('#btn-nuevo').click(function(){
     $('#modalNuevo').fadeIn().css({"display": "flex"});
   });
+
+
   $('.btn-cerrarModal').click(function(){
     $(this).closest('.modal').fadeOut();
 
 
   });
+
+
 
   //Tablas
   $(window).resize(function(){
