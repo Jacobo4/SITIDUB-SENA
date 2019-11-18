@@ -3,15 +3,17 @@ form {
   padding-bottom: 50px;
   position: relative;
   @include sm() {
-    padding: 30px 50px 50px;
+    padding: 30px 50px 70px;
   }
 
   h1 {
     color: $moradoOscuro;
     text-align: center;
     font-size: 15vw;
+    display: none;
     @include sm(){
       font-size: 64px;
+
     }
   }
 
@@ -32,8 +34,9 @@ form {
   label {
     margin-top: 20px;
   }
-
-  input[type="date"] {
-    max-width: 280px;
+  select#tipoIdent{
+    padding-left: 0px;
   }
+
+
 }
