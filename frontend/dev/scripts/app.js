@@ -93,6 +93,31 @@ function submitAjax(form) {
   var estudiante = form.serialize();
   console.log('lo que envio' + estudiante);
 
+  $.post( "example.php", function() {
+    alert( "success" );
+  })
+  .done(function() {
+    insertCliet(insertDocument())
+  })
+
+  function insertCliet(onSuccess){
+    $.post( "example.php", function() {
+      alert( "success" );
+    })
+    .done(function() {
+      onSuccess();
+    })
+  }
+
+  function insertDocument(onSuccess){
+    $.post( "example.php", function() {
+      alert( "success" );
+    })
+    .done(function() {
+      alert('completo!')
+    })
+  }
+
   $.ajax({
     type: 'POST',
     url: 'procesar.php',
@@ -113,7 +138,7 @@ function submitAjax(form) {
     }
 
 
-  });
+  }).
 }
 
 //////////// Pinta estilos de error y valido
