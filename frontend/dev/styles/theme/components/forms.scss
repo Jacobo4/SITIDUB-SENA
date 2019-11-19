@@ -1,6 +1,5 @@
 form {
-  padding: 30px;
-  padding-bottom: 50px;
+  padding: 30px 30px 70px;
   position: relative;
   @include sm() {
     padding: 30px 50px 70px;
@@ -11,16 +10,15 @@ form {
     text-align: center;
     font-size: 15vw;
     display: none;
-    @include sm(){
+    @include sm() {
       font-size: 64px;
-
     }
   }
 
   h2 {
     margin-top: 20px;
     line-height: 20px;
-    font-family: 'Arial'
+    font-family: 'Arial';
   }
 
   input,
@@ -34,9 +32,42 @@ form {
   label {
     margin-top: 20px;
   }
-  select#tipoIdent{
-    padding-left: 0px;
+
+  input#numIdentEstu,
+  input#numIdentAcu {
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited{
+      &+select#tipoIdentEstu,
+      &+select#tipoIdentAcu {
+        border: 1px solid $morado;
+      }
+    }
   }
 
+  select#tipoIdentEstu,
+        #tipoIdentAcu {
+    padding-left: 0;
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    box-shadow: 4px 4px 0 #c4a9fe;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 46px;
+    @include lg() {
+      right: 100px;
+    }
+  }
+}
 
+form#estudiante{
+  display: none;
+}
+form#clinic{
+  display: none;
+}
+form#acudiente{
+  display: none;
 }

@@ -121,110 +121,233 @@
     </section>
   </div>
 
+
+
   <div class="modal" id="modalNuevo">
+
     <div class="modal-container">
-      <form class="studentForm ctn-normal" action="index.html" method="post">
+
+      <div class="modal-tittle ctn-normal">
         <h1>Matricula</h1>
-        <div class="row">
-          <!-- <div class="col-12 col-sm-6">
-            <label for="numMatri">Número de matrícula</label>
-            <input id="numMatri" class="input-form" type="text"  value="" placeholder="ej: ASAD-01">
-          </div>
-          <div class="col-12 col-sm-6">
-            <label for="fechaInialMatri">Fecha inicial</label>
-            <input id="fechaInialMatri" class="input-form" type="date"  value="">
-          </div> -->
+      </div>
 
-          <div class="col-12">
-            <h2>Datos del estudiante</h2>
-          </div>
+      <div class="modal-body">
 
-
-          <div class="col-12 col-sm-6">
-            <label for="nombresEstu">Nombres</label>
-            <input id="nombresEstu" class="input-form" type="text"  value="" placeholder="Alvaro Paraco">
-          </div>
-          <div class="col-12 col-sm-6">
-            <label for="apellidosEstu">Apellidos</label>
-            <input id="apellidosEstu" class="input-form" type="text"  value="" placeholder="Uribe Velez">
-          </div>
-          <div class="col-12 col-sm-6">
-            <label for="numIdent">Número de identidad</label>
-            <input id="numIdent" class="input-form" type="number"  value="" placeholder="1001065497">
-            <select id="tipoIdent" class="select-form" type="select">
-              <option value="">TI</option>
-              <option value="">CC</option>
-              <option value="">CE</option>
-            </select>
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="lugarExpedicion">Lugar de expedición</label>
-            <input id="lugarExpedicion" class="input-form" type="text"  value="" placeholder="Lugar de expedición">
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="fechaNaci">Fecha de nacimiento</label>
-            <input id="fechaNaci" class="input-form" type="date"  value="" >
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="lugarNaciEstu">Lugar de nacimiento</label>
-            <input id="lugarNaciEstu" class="input-form" type="text"  value="" placeholder="Selva">
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="direccion">Direccion</label>
-            <input id="direccion" class="input-form" type="text"  value="" placeholder="Calle A">
-          </div>
-<!--
-          <div class="col-12 col-sm-6">
-            <label for="eps">EPS</label>
-            <input id="eps" class="input-form" type="text"  value="" placeholder="EPS">
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="rh">RH</label>
-            <select id="rh" class="select-form" placeholder="RH">
-              <option value="">A</option>
-              <option value="">C</option>
-              <option value="">B</option>
-            </select>
-
-          </div>
-
-          <div class="col-12 col-sm-6">
-            <label for="estrato">Estrato</label>
-            <select id="estrato" class="select-form">
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
-              <option value="">5</option>
-              <option value="">6</option>
-            </select>
-          </div> -->
-
-          <!-- <div class="col-12 col-sm-6">
-            <label for="tel">Teléfono residencia</label>
-            <input id="tel" class="input-form" type="text"  value="" placeholder="Teléfono residencia">
-          </div> -->
-
-          <div class="col-12 col-sm-6">
-            <label for="email">Correo electrónico</label>
-            <input id="email" class="input-form" type="emailCustom"  value="" placeholder="ej: jamespapasito@gmail.com">
-          </div>
-
-
-        <button class="btn-submitModal" type="submit" name="button">Submit</button>
-        <button class="btn-cerrarModal" type="button" name="button">Cerrar</button>
+        <div class="loading">
+          <img src="assets/images/loader.gif" alt="loading..">
         </div>
-      </form>
+
+        <form id="matricula" class="ctn-normal" action="index.html" method="post">
+
+          <div class="row">
+            <div class="col-12">
+              <h2>Datos matrícula</h2>
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="numMatri">Número de matrícula</label>
+              <input id="numMatri" class="input-form" type="text" value="" placeholder="ej: ASAD-01">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="fechaInialMatri">Fecha inicial</label>
+              <input id="fechaInialMatri" class="input-form" type="date" value="">
+            </div>
+          </div>
+
+          <button class="btn-submitModal" type="submit" name="button">Next</button>
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
+        </form>
+
+        <form id="estudiante" class="ctn-normal" action="index.html" method="post">
+
+          <div class="row">
+
+
+            <div class="col-12">
+              <h2>Datos del estudiante</h2>
+            </div>
+
+
+            <div class="col-12 col-sm-6">
+              <label for="nombresEstu">Nombres</label>
+              <input id="nombresEstu" class="input-form" type="text" value="" placeholder="Alvaro Paraco">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="apellidosEstu">Apellidos</label>
+              <input id="apellidosEstu" class="input-form" type="text" value="" placeholder="Uribe Velez">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="numIdentEstu">Número de identidad</label>
+              <input id="numIdentEstu" class="input-form" type="identification" value="" placeholder="1001065497">
+              <select id="tipoIdentEstu" class="select-form" type="select">
+                <option value="">TI</option>
+                <option value="">CC</option>
+                <option value="">CE</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="lugarExpedicionEstu">Lugar de expedición</label>
+              <input id="lugarExpedicionEstu" class="input-form" type="text" value="" placeholder="Lugar de expedición">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="fechaNaciEstu">Fecha de nacimiento</label>
+              <input id="fechaNaciEstu" class="input-form" type="date" value="">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="lugarNaciEstu">Lugar de nacimiento</label>
+              <input id="lugarNaciEstu" class="input-form" type="text" value="" placeholder="Selva">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="direccionEstu">Direccion</label>
+              <input id="direccionEstu" class="input-form" type="text" value="" placeholder="Calle A">
+            </div>
+
+
+
+
+            <div class="col-12 col-sm-6">
+              <label for="emailEstu">Correo electrónico</label>
+              <input id="emailEstu" class="input-form" type="emailCustom" value="" placeholder="ej: jamespapasito@gmail.com">
+            </div>
+
+
+
+          </div>
+          <button class="btn-submitModal" type="submit" name="button">Next</button>
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
+        </form>
+
+        <form id="clinic" class="ctn-normal" action="index.html" method="post">
+          <div class="row">
+
+            <div class="col-12">
+              <h2>Datos Clinicos</h2>
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="eps">EPS</label>
+              <input id="eps" class="input-form" type="text" value="" placeholder="EPS">
+            </div>
+
+            <div class="col-6 col-sm-2">
+              <label for="rh">RH</label>
+              <select id="rh" class="select-form" placeholder="RH">
+                <option value="">A</option>
+                <option value="">C</option>
+                <option value="">B</option>
+              </select>
+
+            </div>
+
+            <div class="col-6 col-sm-2">
+              <label for="estrato">Estrato</label>
+              <select id="estrato" class="select-form">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+                <option value="">6</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-submitModal" type="submit" name="button">Next</button>
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
+        </form>
+
+        <form id="acudiente" class="ctn-normal" action="index.html" method="post">
+
+          <div class="row">
+
+
+            <div class="col-12">
+              <h2>Datos del acudiente</h2>
+            </div>
+
+
+            <div class="col-12 col-sm-6">
+              <label for="nombresAcu">Nombres</label>
+              <input id="nombresAcu" class="input-form" type="text" value="" placeholder="Alvaro Paraco">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="apellidosAcu">Apellidos</label>
+              <input id="apellidosAcu" class="input-form" type="text" value="" placeholder="Uribe Velez">
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="numIdent">Número de identidad</label>
+              <input id="numIdentAcu" class="input-form" type="identification" value="" placeholder="1001065497">
+              <select id="tipoIdentAcu" class="select-form" type="select">
+                <option value="">TI</option>
+                <option value="">CC</option>
+                <option value="">CE</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="lugarExpedicionAcu">Lugar de expedición</label>
+              <input id="lugarExpedicionAcu" class="input-form" type="text" value="" placeholder="Lugar de expedición">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="fechaNaciAcu">Fecha de nacimiento</label>
+              <input id="fechaNaciAcu" class="input-form" type="date" value="">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="lugarNaciAcu">Lugar de nacimiento</label>
+              <input id="lugarNaciAcu" class="input-form" type="text" value="" placeholder="Selva">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="direccionAcu">Direccion</label>
+              <input id="direccionAcu" class="input-form" type="text" value="" placeholder="Calle A">
+            </div>
+
+
+
+
+            <div class="col-12 col-sm-6">
+              <label for="emailAcu">Correo electrónico</label>
+              <input id="emailAcu" class="input-form" type="emailCustom" value="" placeholder="ej: jamespapasito@gmail.com">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="ocupacion">Ocupación</label>
+              <input id="ocupacion" class="input-form" type="text" value="" placeholder="Zapatero">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="profesion">Profesión</label>
+              <input id="profesion" class="input-form" type="text" value="" placeholder="Ingeniero Industrial">
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label for="parentesco">Parentesco</label>
+              <input id="parentesco" class="input-form" type="text" value="" placeholder="Papá">
+            </div>
+
+
+
+          </div>
+          <button class="btn-submitModal" type="submit" name="button">Next</button>
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
+        </form>
+
+      </div>
+
+
 
     </div>
   </div>
 
-
+  <!-- <div class="col-12 col-sm-6">
+    <label for="tel">Teléfono residencia</label>
+    <input id="tel" class="input-form" type="text"  value="" placeholder="Teléfono residencia">
+  </div> -->
 
   <div class="alert-container">
     <div class="alert-content">
