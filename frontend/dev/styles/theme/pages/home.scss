@@ -2,7 +2,7 @@ section#home {
   h1,
   h2 {
     color: $moradoOscuro;
-    
+
   }
 
   div.options-container {
@@ -57,6 +57,7 @@ section#home {
 
       th {
         background: rgb(230, 230, 230);
+        text-align: center;
       }
 
       td:nth-child(1) {
@@ -65,6 +66,16 @@ section#home {
 
       td {
         padding: 4px;
+        text-align: center;
+      }
+      td.table-options{
+        width: 90px;
+        text-align: center;
+
+        span{
+          cursor: pointer;
+          padding: 0px 4px;
+        }
       }
     }
   }

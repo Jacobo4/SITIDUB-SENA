@@ -37,9 +37,6 @@ $(document).ready(function() {
 
   //Modales
 
-  $('#modalNuevo').fadeIn().css({
-    "display": "flex"
-  });
 
   $('#btn-nuevo').click(function() {
 
@@ -51,10 +48,15 @@ $(document).ready(function() {
 
   $('.btn-cancel').click(function() {
     $(this).closest('.modal,.modal-tittle').fadeOut();
+    // $('.loading').fadeOut();
     $('.alert-container').fadeOut();
   });
 
-
+$('span.icon-bin').click(function(){
+  $('#modalElminar').fadeIn().css({
+    "display": "flex"
+  });
+})
 
 
 

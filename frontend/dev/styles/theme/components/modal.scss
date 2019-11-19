@@ -33,9 +33,13 @@
       text-align: center;
       color: $moradoOscuro
     }
+
   }
   .modal-body{
     position: relative;
+    h2{
+      text-align: center;
+    }
     .loading{
       display: none;
       position: absolute;
@@ -57,5 +61,28 @@
   }
 
 
+
+}
+
+#modalElminar{
+
+  .modal-container{
+
+    @include lg(){
+      max-width: 650px;;
+    }
+
+    h2{
+      padding-top: 20px;
+    }
+
+    form{
+      padding-top: 0px;
+      label{
+      margin-top: 0px;
+      }
+    }
+
+  }
 
 }

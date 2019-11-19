@@ -14,6 +14,7 @@ function pintarStilos(elem, tipo) {
 
 }
 
+//////////// Muestra alerta de los formularios
 function showAlert(cumple, timeIn, timeOut) {
 
   const divAlert = $('div.alert-container');
@@ -69,13 +70,7 @@ function validateForm(form) {
   var camposObliga = $(form).find('input,select').length;
   var botonSubmit = $(form).find('button[type="submit"]');
 
-  // // Desabilitar el boton submit
-  // if (camposObliga != null) {
-  //   botonSubmit.attr('disabled', true);
-  //   setTimeout(() => {
-  //     botonSubmit.attr('disabled', false);
-  //   }, 3000);
-  // }
+
 
 
   var total = 0;
@@ -158,27 +153,59 @@ $.ajaxSetup({
   }
 });
 
+$('form#login').submit(function(event) {
+  var formulario = $(this);
+  if(validateForm(this)) window.location.href = 'home.html';
+});
+
+$('form#eliminar').submit(function(event) {
+
+  var formulario = $(this);
+
+  if (validateForm(this)) {
+
+    // Data que se envia a la base de datos
+    var data = $(this).serialize();
+
+    $.ajax({
+      data: data,
+      success: function(response) {
+        formulario.parent().find('.loading').fadeOut(1000);
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "1") {
+          formulario.closest('.modal').fadeOut();
+          showAlert(1, 1000, 3000);
+
+        } else {
+          showAlert(2, 1000, 3000);
+        }
+      },
+    });
+  }
+
+});
 
 
 $('form#matricula').submit(function(event) {
   var formulario = $(this);
 
   if (validateForm(this)) {
+
     //Data que se envia a la base de datos
     var data = $(this).serialize();
+
     $.ajax({
       data: data,
       success: function(response) {
-
+        formulario.parent().find('.loading').fadeOut(1000);
+        
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
           formulario.hide();
           $('form#clinic').show();
-          formulario.parent().find('.loading').fadeOut(1000);
 
         } else {
           showAlert(2, 1000, 3000);
-          clinic
         }
       },
     });
@@ -191,17 +218,19 @@ $('form#clinic').submit(function(event) {
   var formulario = $(this);
 
   if (validateForm(this)) {
+
     // Data que se envia a la base de datos
     var data = $(this).serialize();
+
     $.ajax({
       data: data,
       success: function(response) {
-
+        formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
           formulario.hide();
           $('form#estudiante').show();
-          formulario.parent().find('.loading').fadeOut(1000);
+
         } else {
           showAlert(2, 1000, 3000);
         }
@@ -218,18 +247,16 @@ $('form#estudiante').submit(function(event) {
 
   if (validateForm(this)) {
     // Data que se envia a la base de datos
+
     var data = $(this).serialize();
     $.ajax({
       data: data,
       success: function(response) {
-
+        formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
-          formulario.closest('.modal').fadeOut();
-          formulario.closest('.modal').find('form').hide();
-          formulario.closest('.modal').find('form#matricula').show();
-          formulario.parent().find('.loading').fadeOut(1000);
-          showAlert(1, 1000, 3000);
+          formulario.hide();
+          $('form#acudiente').show();
         } else {
           showAlert(2, 1000, 3000);
         }
@@ -239,37 +266,33 @@ $('form#estudiante').submit(function(event) {
 
 });
 
+$('form#acudiente').submit(function(event) {
 
-//
-// function submitAjax(form) {
-//
-//   var estudiante = form.serialize();
-//   console.log('lo que envio' + estudiante);
-//
-//   $.post("example.php", function() {
-//     alert("success");
-//   })
-//   // .done(function() {
-//   //   insertCliet(insertDocument())
-//   // })
-//   //
-//   // function insertCliet(onSuccess){
-//   //   $.post( "example.php", function() {
-//   //     alert( "success" );
-//   //   })
-//   //   .done(function() {
-//   //     onSuccess();
-//   //   })
-//   // }
-//   //
-//   // function insertDocument(onSuccess){
-//   //   $.post( "example.php", function() {
-//   //     alert( "success" );
-//   //   })
-//   //   .done(function() {
-//   //     alert('completo!')
-//   //   })
-//   // }
-//
-//
-// }
+  var formulario = $(this);
+
+  if (validateForm(this)) {
+
+    // Data que se envia a la base de datos
+    var data = $(this).serialize();
+
+    $.ajax({
+      data: data,
+      success: function(response) {
+        formulario.parent().find('.loading').fadeOut(1000);
+
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "1") {
+
+          formulario.closest('.modal').fadeOut();
+          formulario.closest('.modal').find('form').hide();
+          formulario.closest('.modal').find('form#matricula').show();
+          showAlert(1, 1000, 3000);
+
+        } else {
+          showAlert(2, 1000, 3000);
+        }
+      },
+    });
+  }
+
+});
