@@ -1,5 +1,8 @@
-
 $(document).ready(function() {
+  //VAlidar si el navegador es IE. Si lo es, direccionarlo a otra pagina
+  if (navigator.userAgent.indexOf("Trident/") > -1) {
+    window.location.href = 'https://www.google.com.mx/chrome/?brand=CHBF&ds_kid=43700034632748694&utm_source=bing&utm_medium=cpc&utm_campaign=1005992%20%7C%20Chrome%20Win10%20%7C%20DR%20%7C%20ESS01%20%7C%20NA%20%7C%20NA%20%7C%20es%20%7C%20Desk%20%7C%20BING%20SEM%20%7C%20BKWS%20~%20Top%20KWDS%20-%20Exact&utm_term=descargar%20chrome&utm_content=Download%20Chrome%20-%20Exact&gclid=CO70m6TT-eUCFUTCDQodmiwDRQ&gclsrc=ds'
+  }
   //Fade in de la página Login al iniciar el navegador
 
   setTimeout(function() {
@@ -52,12 +55,35 @@ $(document).ready(function() {
     $('.alert-container').fadeOut();
   });
 
-$('span.icon-bin').click(function(){
-  $('#modalElminar').fadeIn().css({
-    "display": "flex"
+  $('span.icon-bin').click(function() {
+    $('#modalElminar').fadeIn().css({
+      "display": "flex"
+    });
   });
-})
 
+  $('span.icon-pencil').click(function() {
+
+    let modalEdit = $('#modalEditMostrar');
+    let botonEdit = modalEdit.find('button[type="submit"]')
+    let inputs = modalEdit.find('input,select');
+    modalEdit.fadeIn().css({
+      "display": "flex"
+    });
+    botonEdit.show();
+    inputs.attr('disabled',false);
+  });
+
+  $('span.icon-eye').click(function() {
+
+    let modalEdit = $('#modalEditMostrar');
+    let botonEdit = modalEdit.find('button[type="submit"]')
+    let inputs = modalEdit.find('input,select');
+    modalEdit.fadeIn().css({
+      "display": "flex"
+    });
+    botonEdit.hide();
+    inputs.attr('disabled',true);
+  });
 
 
   //Tablas
@@ -68,6 +94,8 @@ $('span.icon-bin').click(function(){
       });
     }
   });
+
+
 
 
 });

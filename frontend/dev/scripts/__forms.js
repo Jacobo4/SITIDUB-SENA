@@ -70,11 +70,8 @@ function validateForm(form) {
   var camposObliga = $(form).find('input,select').length;
   var botonSubmit = $(form).find('button[type="submit"]');
 
-
-
-
+  //Variable para comprar los inputs que estan bien con la cantidad de inputs del formulario
   var total = 0;
-  //Arreglo donde almacenará cada campo
   //expresiones Regulares
   const regExpEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
   const regExpNumber = /^\d+$/;
@@ -139,25 +136,55 @@ function validateForm(form) {
   }
 
 }
-
+// NOTE: CONFIG CONSULTAS
 $.ajaxSetup({
   url: 'procesar.php',
   type: 'POST',
   async: true,
-  beforeSend: function() {
-    $('.loading').show();
-  },
   error: function(response) {
-    console.log(response);
+    console.log('response', response);
     showAlert(3, 1000, 3000);
   }
 });
 
-$('form#login').submit(function(event) {
+// NOTE: CONSULTA EDIT
+$('form.edit').submit(function(event) {
+
   var formulario = $(this);
-  if(validateForm(this)) window.location.href = 'home.html';
+
+  if (validateForm(this)) {
+
+    // Data que se envia a la base de datos
+    var data = $(this).serialize();
+
+    $.post("procesar.php", data, function(response) {
+        formulario.parent().find('.loading').show();
+        console.log(data);
+      })
+      .done(function(response) {
+
+        formulario.parent().find('.loading').fadeOut(1000);
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "1") {
+          showAlert(1, 1000, 3000);
+
+        } else {
+          showAlert(2, 1000, 3000);
+        }
+      });
+
+  }
+
 });
 
+
+// NOTE: CONSULTA LOGIN
+$('form#login').submit(function(event) {
+  var formulario = $(this);
+  if (validateForm(this)) window.location.href = 'home.html';
+});
+
+// NOTE: CONSULTA ELIMINAR
 $('form#eliminar').submit(function(event) {
 
   var formulario = $(this);
@@ -169,6 +196,9 @@ $('form#eliminar').submit(function(event) {
 
     $.ajax({
       data: data,
+      beforeSend: function() {
+        formulario.parent().find('.loading').show();
+      },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
@@ -185,7 +215,7 @@ $('form#eliminar').submit(function(event) {
 
 });
 
-
+// NOTE: CONSULTAS NUEVA MATRICULA
 $('form#matricula').submit(function(event) {
   var formulario = $(this);
 
@@ -196,9 +226,12 @@ $('form#matricula').submit(function(event) {
 
     $.ajax({
       data: data,
+      beforeSend: function() {
+        formulario.parent().find('.loading').show();
+      },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
-        
+
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
           formulario.hide();
@@ -224,6 +257,9 @@ $('form#clinic').submit(function(event) {
 
     $.ajax({
       data: data,
+      beforeSend: function() {
+        formulario.parent().find('.loading').show();
+      },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
@@ -251,6 +287,9 @@ $('form#estudiante').submit(function(event) {
     var data = $(this).serialize();
     $.ajax({
       data: data,
+      beforeSend: function() {
+        formulario.parent().find('.loading').show();
+      },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
@@ -277,6 +316,9 @@ $('form#acudiente').submit(function(event) {
 
     $.ajax({
       data: data,
+      beforeSend: function() {
+        formulario.parent().find('.loading').show();
+      },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
 

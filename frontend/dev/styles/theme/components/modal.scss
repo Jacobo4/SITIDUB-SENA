@@ -42,10 +42,13 @@
     }
     .loading{
       display: none;
+      background: #836AFF;
+      box-sizing: border-box;
+      overflow: hidden;
       position: absolute;
       width: 100%;
       height: 100%;
-      background: white;
+
       z-index: 100;
 
       img{
@@ -55,6 +58,9 @@
         left: 0;
         right: 0;
         margin: auto;
+        max-width: 100%;
+
+
       }
 
     }
@@ -80,6 +86,23 @@
       padding-top: 0px;
       label{
       margin-top: 0px;
+      }
+    }
+
+  }
+
+}
+
+#modalEditMostrar{
+  .modal-body{
+    form{
+      button[type="submit"]{
+        right: 30px;
+      }
+    }
+    form:nth-last-child(2){
+      button[type="submit"]{
+        right: 90px;
       }
     }
 

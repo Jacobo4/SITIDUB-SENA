@@ -21,6 +21,15 @@ $filter2: brightness(0.9);
   box-shadow: -5px 5px 0 $amarilloClaro;
   background: white !important;
 }
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+// 
+// input[type=date]::-webkit-calendar-picker-indicator {
+//     -webkit-appearance: none;
+//     display: none;
+// }
 
 // NOTE: Styles cuando se autocompleta
 input:-webkit-autofill,
