@@ -147,15 +147,23 @@ $.ajaxSetup({
   }
 });
 
+// NOTE: CONSULTA LOGIN
+$('form#login').submit(function(event) {
+  var formulario = $(this);
+  if (validateForm(this)) window.location.href = 'home.html';
+});
+
 // NOTE: CONSULTA EDIT
 $('form.edit').submit(function(event) {
 
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
 
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = $(this).serialize();
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
     $.post("procesar.php", data, function(response) {
         formulario.parent().find('.loading').show();
@@ -178,21 +186,19 @@ $('form.edit').submit(function(event) {
 });
 
 
-// NOTE: CONSULTA LOGIN
-$('form#login').submit(function(event) {
-  var formulario = $(this);
-  if (validateForm(this)) window.location.href = 'home.html';
-});
+
 
 // NOTE: CONSULTA ELIMINAR
 $('form#eliminar').submit(function(event) {
 
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
 
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = $(this).serialize();
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
     $.ajax({
       data: data,
@@ -218,11 +224,14 @@ $('form#eliminar').submit(function(event) {
 // NOTE: CONSULTAS NUEVA MATRICULA
 $('form#matricula').submit(function(event) {
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
+  console.log(idFormulario);
 
   if (validateForm(this)) {
 
     //Data que se envia a la base de datos
-    var data = $(this).serialize();
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
     $.ajax({
       data: data,
@@ -249,11 +258,13 @@ $('form#matricula').submit(function(event) {
 $('form#clinic').submit(function(event) {
 
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
 
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = $(this).serialize();
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
     $.ajax({
       data: data,
@@ -280,11 +291,13 @@ $('form#clinic').submit(function(event) {
 $('form#estudiante').submit(function(event) {
 
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
 
   if (validateForm(this)) {
     // Data que se envia a la base de datos
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
-    var data = $(this).serialize();
     $.ajax({
       data: data,
       beforeSend: function() {
@@ -308,11 +321,13 @@ $('form#estudiante').submit(function(event) {
 $('form#acudiente').submit(function(event) {
 
   var formulario = $(this);
+  var idFormulario  = formulario.attr('id');
 
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = $(this).serialize();
+    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    console.log(data);
 
     $.ajax({
       data: data,
