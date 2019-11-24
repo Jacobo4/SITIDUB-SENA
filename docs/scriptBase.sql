@@ -2,154 +2,170 @@
 -- -----------------------------------------------------
 -- Schema proyecto
 -- -----------------------------------------------------
-drop database if exists proyecto;
+DROP DATABASE IF EXISTS proyecto;
 CREATE SCHEMA IF NOT EXISTS proyecto ;
 USE proyecto ;
 
 -- -----------------------------------------------------
--- Table `proyecto`.`tipos_documentos`
+-- Table proyecto.tipos_documentos
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`tipos_documentos` (
-  `des_tipoDocumento` VARCHAR(5) NOT NULL,
-  PRIMARY KEY (`des_tipoDocumento`));
+CREATE TABLE IF NOT EXISTS tipos_documentos (
+  des_tipoDocumento VARCHAR(5) NOT NULL,
+  PRIMARY KEY (des_tipoDocumento));
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`observaciones`
+-- Table observaciones
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`observaciones` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `des_observacion` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`id`));
+CREATE TABLE IF NOT EXISTS observaciones (
+  id INT NOT NULL AUTO_INCREMENT,
+  des_observacion VARCHAR(200) NOT NULL,
+  PRIMARY KEY (id));
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`eps`
+-- Table eps
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`eps` (
-  `des_eps` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`des_eps`));
+CREATE TABLE IF NOT EXISTS eps (
+  des_eps VARCHAR(30) NOT NULL,
+  PRIMARY KEY (des_eps));
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`personas`
+-- Table personas
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`personas` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ndoc` VARCHAR(12) NOT NULL,
-  `tdoc_persona` VARCHAR(5) NOT NULL,
-  `tipo_persona` VARCHAR(45) NOT NULL,
-  `nombre1` VARCHAR(30) NOT NULL,
-  `nombre2` VARCHAR(30) NULL DEFAULT NULL,
-  `apellido1` VARCHAR(30) NOT NULL,
-  `apellido2` VARCHAR(30) NULL DEFAULT NULL,
-  `lugar_expedicion` VARCHAR(45) NOT NULL,
-  `lugar_nacimiento` VARCHAR(45) NOT NULL,
-  `fecha_nacimiento` DATE NOT NULL,
-  `direccion` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(50) NOT NULL,
-  `id_observacion` INT NULL DEFAULT NULL,
-  `tel1` VARCHAR(12) NOT NULL,
-  `tel2` VARCHAR(12) NULL DEFAULT NULL,
-  `tel3` VARCHAR(12) NULL DEFAULT NULL,
-  `ocupacion` VARCHAR(35) NULL DEFAULT NULL,
-  `profesion` VARCHAR(35) NULL DEFAULT NULL,
-  `rh` VARCHAR(5) NOT NULL,
-  `estrato` INT NOT NULL,
-  `eps_des_eps` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `ndoc_UNIQUE` (`ndoc` ASC),
-  CONSTRAINT `fk_tbl_persona_tbl_tipoDocumento1`
-    FOREIGN KEY (`tdoc_persona`)
-    REFERENCES `proyecto`.`tipos_documentos` (`des_tipoDocumento`)
+CREATE TABLE IF NOT EXISTS personas (
+  id INT NOT NULL AUTO_INCREMENT,
+  ndoc VARCHAR(12) NOT NULL,
+  tdoc_persona VARCHAR(5) NOT NULL,
+  tipo_persona VARCHAR(45) NOT NULL,
+  nombre1 VARCHAR(30) NOT NULL,
+  nombre2 VARCHAR(30) NULL DEFAULT NULL,
+  apellido1 VARCHAR(30) NOT NULL,
+  apellido2 VARCHAR(30) NULL DEFAULT NULL,
+  lugar_expedicion VARCHAR(45) NOT NULL,
+  lugar_nacimiento VARCHAR(45) NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
+  direccion VARCHAR(45) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  id_observacion INT NULL DEFAULT NULL,
+  tel1 VARCHAR(12) NOT NULL,
+  tel2 VARCHAR(12) NULL DEFAULT NULL,
+  tel3 VARCHAR(12) NULL DEFAULT NULL,
+  ocupacion VARCHAR(35) NULL DEFAULT NULL,
+  profesion VARCHAR(35) NULL DEFAULT NULL,
+  rh VARCHAR(5) NOT NULL,
+  estrato INT NOT NULL,
+  eps_des_eps VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE INDEX ndoc_UNIQUE (ndoc ASC));
+
+  ALTER TABLE personas
+  ADD CONSTRAINT fk_tbl_persona_tbl_tipoDocumento1
+    FOREIGN KEY (tdoc_persona)
+    REFERENCES tipos_documentos (des_tipoDocumento)
     ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_tbl_persona_tbl_observaciones1`
-    FOREIGN KEY (`id_observacion`)
-    REFERENCES `proyecto`.`observaciones` (`id`)
+    ON UPDATE CASCADE;
+
+  ALTER TABLE personas
+  ADD CONSTRAINT fk_tbl_persona_tbl_observaciones1
+    FOREIGN KEY (id_observacion)
+    REFERENCES observaciones (id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_personas_eps1`
-    FOREIGN KEY (`eps_des_eps`)
-    REFERENCES `proyecto`.`eps` (`des_eps`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE CASCADE;
+
+  ALTER TABLE personas
+  ADD CONSTRAINT fk_personas_eps1
+    FOREIGN KEY (eps_des_eps)
+    REFERENCES eps (des_eps)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`matriculas`
+-- Table matriculas
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`matriculas` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `fecha_inicial` DATE NOT NULL,
-  `fecha_final` DATE NULL DEFAULT NULL,
-  `estado` TINYINT NOT NULL,
-  `grado` VARCHAR(15) NULL DEFAULT NULL,
-  `personas_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_matriculas_personas1`
-    FOREIGN KEY (`personas_id`)
-    REFERENCES `proyecto`.`personas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE IF NOT EXISTS matriculas (
+  id INT NOT NULL AUTO_INCREMENT,
+  fecha_inicial DATE NOT NULL,
+  fecha_final DATE NULL DEFAULT NULL,
+  estado TINYINT NOT NULL,
+  grado VARCHAR(15) NULL DEFAULT NULL,
+  personas_id INT NOT NULL,
+  PRIMARY KEY (id));
+
+  ALTER TABLE matriculas
+  ADD CONSTRAINT fk_matriculas_personas1
+    FOREIGN KEY (personas_id)
+    REFERENCES personas (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`cuotas`
+-- Table cuotas
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`cuotas` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `mes` VARCHAR(15) NOT NULL,
-  `valor` FLOAT NOT NULL,
-  `saldo` FLOAT NOT NULL,
-  `id_matricula` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_cuotas_matriculas1`
-    FOREIGN KEY (`id_matricula`)
-    REFERENCES `proyecto`.`matriculas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE IF NOT EXISTS cuotas (
+  id INT NOT NULL AUTO_INCREMENT,
+  mes VARCHAR(15) NOT NULL,
+  valor FLOAT NOT NULL,
+  saldo FLOAT NOT NULL,
+  id_matricula INT NOT NULL,
+  PRIMARY KEY (id));
+
+  ALTER TABLE cuotas
+  ADD CONSTRAINT fk_cuotas_matriculas1
+    FOREIGN KEY (id_matricula)
+    REFERENCES matriculas (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`pagos`
+-- Table pagos
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`pagos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `consecutivo` VARCHAR(30) NOT NULL,
-  `fecha_pago` DATE NOT NULL,
-  `periodo_inicial` DATE NOT NULL,
-  `periodo_final` DATE NOT NULL,
-  `valor_cancelado` FLOAT NOT NULL,
-  `rector` VARCHAR(30) NOT NULL,
-  `id_cuota` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `consecutivo_UNIQUE` (`consecutivo` ASC),
-  CONSTRAINT `fk_pagos_cuotas1`
-    FOREIGN KEY (`id_cuota`)
-    REFERENCES `proyecto`.`cuotas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE IF NOT EXISTS pagos (
+  id INT NOT NULL AUTO_INCREMENT,
+  consecutivo VARCHAR(30) NOT NULL,
+  fecha_pago DATE NOT NULL,
+  periodo_inicial DATE NOT NULL,
+  periodo_final DATE NOT NULL,
+  valor_cancelado FLOAT NOT NULL,
+  rector VARCHAR(30) NOT NULL,
+  id_cuota INT NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE INDEX consecutivo_UNIQUE (consecutivo ASC));
+
+  ALTER TABLE pagos
+  ADD CONSTRAINT fk_pagos_cuotas1
+    FOREIGN KEY (id_cuota)
+    REFERENCES cuotas (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 
 -- -----------------------------------------------------
--- Table `proyecto`.`parentescos`
+-- Table parentescos
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto`.`parentescos` (
-  `parentesco` VARCHAR(35) NOT NULL,
-  `id_estudiante` INT NOT NULL,
-  `id_acudiente` INT NOT NULL,
-  PRIMARY KEY (`id_estudiante`, `id_acudiente`),
-  CONSTRAINT `fk_parentescos_personas1`
-    FOREIGN KEY (`id_estudiante`)
-    REFERENCES `proyecto`.`personas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_parentescos_personas2`
-    FOREIGN KEY (`id_acudiente`)
-    REFERENCES `proyecto`.`personas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE IF NOT EXISTS parentescos (
+  parentesco VARCHAR(35) NOT NULL,
+  id_estudiante INT NOT NULL,
+  id_acudiente INT NOT NULL,
+  PRIMARY KEY (id_estudiante, id_acudiente));
+
+  ALTER TABLE  parentescos
+  ADD CONSTRAINT fk_parentescos_personas1
+    FOREIGN KEY (id_estudiante)
+    REFERENCES personas (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+
+  ALTER TABLE  parentescos
+  ADD CONSTRAINT fk_parentescos_personas2
+    FOREIGN KEY (id_acudiente)
+    REFERENCES personas (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 INSERT INTO tipos_documentos (des_tipoDocumento) VALUES
 ('CC'),
@@ -201,7 +217,7 @@ INSERT INTO cuotas (id, mes, valor, saldo, id_matricula) VALUES
 (null, 'noviembre', '300000', '300000', '2');
 
 
-INSERT INTO pagos (id, consecutivo, fecha_pago, periodo_inicial, periodo_final, valor_cancelado, rector, id_cuota) VALUES 
+INSERT INTO pagos (id, consecutivo, fecha_pago, periodo_inicial, periodo_final, valor_cancelado, rector, id_cuota) VALUES
 (null, '1234', '2018-03-02', '2018-02-02', '2018-03-02', '300000', 'Pereson', '1'),
 (null, '12345', '2018-03-05', '2018-02-02', '2018-03-02', '200000', 'Pereson', '1'),
 (null, '45645', '2018-04-02', '2018-02-02', '2018-03-02', '500000', 'Pereson', '11'),
