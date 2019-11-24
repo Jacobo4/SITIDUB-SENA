@@ -76,8 +76,12 @@ $(document).ready(function() {
   $('span.icon-eye').click(function() {
 
     let modalEdit = $('#modalEditMostrar');
+    let forms = modalEdit.find('form.edit');
     let botonEdit = modalEdit.find('button[type="submit"]')
     let inputs = modalEdit.find('input,select');
+
+    forms.removeClass('edit');
+    forms.addClass('mostrar');
     modalEdit.fadeIn().css({
       "display": "flex"
     });

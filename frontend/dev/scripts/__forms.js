@@ -154,6 +154,8 @@ $('form#login').submit(function(event) {
 });
 
 // NOTE: CONSULTA EDIT
+
+// NOTE: CONSULTA EDIT
 $('form.edit').submit(function(event) {
 
   var formulario = $(this);
@@ -167,7 +169,7 @@ $('form.edit').submit(function(event) {
 
     $.post("procesar.php", data, function(response) {
         formulario.parent().find('.loading').show();
-        console.log(data);
+
       })
       .done(function(response) {
 
