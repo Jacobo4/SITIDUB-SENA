@@ -109,3 +109,22 @@
   }
 
 }
+
+
+
+#modalEditUser{
+  .modal-body{
+    form{
+      button[type="submit"]{
+        right: 30px;
+      }
+    }
+    form:nth-last-child(1){
+      button[type="submit"]{
+        right: 90px;
+      }
+    }
+
+  }
+
+}

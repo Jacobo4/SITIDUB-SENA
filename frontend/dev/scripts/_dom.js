@@ -40,7 +40,14 @@ $(document).ready(function() {
 
   //Modales
 
+  ////Editar usueario
+  $('#editUser').click(function() {
+    $('#modalEditUser').fadeIn().css({
+      "display": "flex"
+    });
+  });
 
+  ////Nueva matricula
   $('#btn-nuevo').click(function() {
 
     $('#modalNuevo').fadeIn().css({
@@ -48,19 +55,19 @@ $(document).ready(function() {
     });
   });
 
-
+  ////Cerrar modales
   $('.btn-cancel').click(function() {
     $(this).closest('.modal,.modal-tittle').fadeOut();
     // $('.loading').fadeOut();
     $('.alert-container').fadeOut();
   });
-
+  ////Eliminar matricula
   $('span.icon-bin').click(function() {
     $('#modalElminar').fadeIn().css({
       "display": "flex"
     });
   });
-
+  ////Editar matricula
   $('span.icon-pencil').click(function() {
 
     let modalEdit = $('#modalEditMostrar');
@@ -72,7 +79,7 @@ $(document).ready(function() {
     botonEdit.show();
     inputs.attr('disabled',false);
   });
-
+  ////Mostrar matricula
   $('span.icon-eye').click(function() {
 
     let modalEdit = $('#modalEditMostrar');

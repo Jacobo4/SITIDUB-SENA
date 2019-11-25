@@ -1,4 +1,12 @@
+
 <!DOCTYPE html>
+<?php
+  session_start();
+
+  $user = $_SESSION['username'];
+  $rol = $_SESSION['rol'];
+
+ ?>
 <html>
 
 <head>
@@ -57,10 +65,11 @@
       <div class="container">
 
         <div class="ctn-normal options-container">
-          <div class="options-content">
-            <button id="btn-nuevo" class="alerta" type="button" name="button">Nuevo</button>
-
-          </div>
+          <?php if( $rol == 'Coordinador'){?>
+            <div class="options-content">
+              <button id="btn-nuevo" class="alerta" type="button" name="button">Nuevo</button>
+            </div>
+          <?php } ?>
           <div class="search-container icon-search">
             <input class="input-form " type="text" name="" value="" placeholder="">
           </div>
@@ -88,7 +97,7 @@
                 <td>@mdo</td>
                 <td>@mdo</td>
                 <td>@mdo</td>
-                <td class="table-options"><span class="icon-eye"></span><span class="icon-pencil"></span><span class="icon-bin"></span></td>
+                <span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-pencil"></span><span class="icon-bin"></span><?php } ?></td>
               </tr>
               <tr class="mostrarEstu">
                 <td>2</td>
@@ -97,7 +106,7 @@
                 <td>@fat</td>
                 <td>@fat</td>
                 <td>@fat</td>
-                <td class="table-options"><span class="icon-eye"></span><span class="icon-pencil"></span><span class="icon-bin"></span></td>
+                <span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-pencil"></span><span class="icon-bin"></span><?php } ?></td>
               </tr>
               <tr class="mostrarEstu">
                 <td>3</td>
@@ -106,7 +115,7 @@
                 <td>@twitter</td>
                 <td>@twitter</td>
                 <td>@twitter</td>
-                <td class="table-options"><span class="icon-eye"></span><span class="icon-pencil"></span><span class="icon-bin"></span></td>
+                <span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-pencil"></span><span class="icon-bin"></span><?php } ?></td>
               </tr>
             </tbody>
           </table>

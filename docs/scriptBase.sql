@@ -1,9 +1,6 @@
 
 -- -----------------------------------------------------
 -- Schema -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema -- -----------------------------------------------------
 drop database if exists proyecto;
 CREATE SCHEMA IF NOT EXISTS proyecto;
 USE proyecto;
@@ -12,23 +9,25 @@ USE proyecto;
 -- Table rol
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS rol (
-  rol INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   desc_rol VARCHAR(45) NOT NULL,
-  PRIMARY KEY (rol));
+  PRIMARY KEY (id));
 
 
 -- -----------------------------------------------------
 -- Table users
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS users (
-  id VARCHAR(45) NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  id_rol INT NOT NULL,
   username VARCHAR(30) NOT NULL,
   password VARCHAR(30) NOT NULL,
-  rol_rol INT NOT NULL,
+  palabra_seguridad VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
+  UNIQUE INDEX username_UNIQUE (username ASC),
   CONSTRAINT fk_users_rol
-    FOREIGN KEY (rol_rol)
-    REFERENCES rol (rol)
+    FOREIGN KEY (id_rol)
+    REFERENCES rol (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
@@ -180,6 +179,19 @@ CREATE TABLE IF NOT EXISTS parentescos (
 
 
 
+INSERT INTO rol (id, desc_rol) VALUES
+(null, 'Coordinador'),
+(null, 'Tesorero'),
+(null, 'Secretario');
+
+INSERT INTO users (id,id_rol, username, password, palabra_seguridad) VALUES
+(null,'1','admin', '123', 'oso'),
+(null,'2','tesor', '123', 'oso'),
+(null,'3','secretario', '123', 'oso');
+
+
+
+
 INSERT INTO tipos_documentos (des_tipoDocumento) VALUES
 ('CC'),
 ('CE'),
@@ -193,7 +205,7 @@ INSERT INTO eps (des_eps) VALUES
 INSERT INTO personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps_des_eps) VALUES
 (null, '1001097692', 'TI', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar'),
 (null, '1001097693', 'TI', 'estudiante', 'Camila', null, 'Izquierdo', 'Camacho', 'Bogotá', 'Bogotá', '2001-07-18', 'Calle A', 'camila@gmail.com', null, 369874521, null, null, null, null, 'A+', '3', 'Sanitas'),
-(null, '3546976', 'CC', 'responsable', 'Adelaida', null, 'Becerra', 'Cano', 'Bogotá', 'Bogotá', '1956-03-28', 'Calle A', 'adeliada@gmail.com', null, 3154207893, null, null, null, null, 'O-', '3', 'Compensar').
+(null, '3546976', 'CC', 'responsable', 'Adelaida', null, 'Becerra', 'Cano', 'Bogotá', 'Bogotá', '1956-03-28', 'Calle A', 'adeliada@gmail.com', null, 3154207893, null, null, null, null, 'O-', '3', 'Compensar'),
 (null, '1001097692', 'CE', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar');
 
 
