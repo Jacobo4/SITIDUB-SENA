@@ -43,6 +43,8 @@
             'list3': '&#xe9bd;',
             'eye': '&#xe9ce;',
             'views': '&#xe9ce;',
+            'plus': '&#xea0a;',
+            'add': '&#xea0a;',
           '0': 0
         };
         delete icons['0'];

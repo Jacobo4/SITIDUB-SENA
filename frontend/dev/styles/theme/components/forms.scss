@@ -34,21 +34,18 @@ form {
     margin-top: 20px;
   }
 
-  input#numIdentEstu,
-  input#numIdentAcu {
+  input.numIden {
     &:hover,
     &:focus,
     &:active,
     &:visited{
-      &+select#tipoIdentEstu,
-      &+select#tipoIdentAcu {
+      &+select.tipoIdent{
         border: 1px solid $morado;
       }
     }
   }
 
-  select#tipoIdentEstu,
-        #tipoIdentAcu {
+  select.tipoIdent {
     padding-left: 0;
     position: absolute;
     right: 15px;
@@ -63,9 +60,7 @@ form {
   }
 }
 
-form#estudiante{
-  display: none;
-}
+
 form#acudiente{
   display: none;
 }

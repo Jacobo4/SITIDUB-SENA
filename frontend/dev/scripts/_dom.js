@@ -69,31 +69,31 @@ $(document).ready(function() {
   });
   ////Editar matricula
   $('span.icon-pencil').click(function() {
-
-    let modalEdit = $('#modalEditMostrar');
-    let botonEdit = modalEdit.find('button[type="submit"]')
-    let inputs = modalEdit.find('input,select');
+    let modalEdit = $('#modalEdit');
     modalEdit.fadeIn().css({
       "display": "flex"
     });
-    botonEdit.show();
-    inputs.attr('disabled',false);
   });
-  ////Mostrar matricula
+  ////Mostrar INFO
   $('span.icon-eye').click(function() {
 
-    let modalEdit = $('#modalEditMostrar');
-    let forms = modalEdit.find('form.edit');
-    let botonEdit = modalEdit.find('button[type="submit"]')
-    let inputs = modalEdit.find('input,select');
+    let modalShow = $('#modalShow');
 
-    forms.removeClass('edit');
-    forms.addClass('mostrar');
-    modalEdit.fadeIn().css({
+    modalShow.fadeIn().css({
       "display": "flex"
     });
-    botonEdit.hide();
-    inputs.attr('disabled',true);
+
+  });
+
+  ////Mostrar matricula
+  $('span.icon-plus').click(function() {
+
+    let modalMatri = $('#modalMatricula');
+
+    modalMatri.fadeIn().css({
+      "display": "flex"
+    });
+
   });
 
 

@@ -156,7 +156,7 @@ $('form#login').submit(function(event) {
   var data = $(formulario).serialize();
   console.log(data);
 
-  $.post("login.php?logIn=true", data ,function(response) {
+  $.post("login.php?log=true", data, function(response) {
 
     var jsonData = JSON.parse(response);
     if (jsonData.success == "1") {
@@ -173,7 +173,14 @@ $('form#login').submit(function(event) {
 
 // NOTE: LOG OUT
 $('#logOut').click(function() {
-  $.post("login.php?logOut=true");
+  $.post( "login.php?log=false", function(response) {
+    var jsonData = JSON.parse(response);
+    if (jsonData.success == "1") {
+      location.href = 'index.php';
+    } else {
+      showAlert(2, 1000, 3000);
+    }
+  });
 });
 
 // NOTE: CONSULTA EDITAR USERNAME
@@ -312,11 +319,10 @@ $('form#eliminar').submit(function(event) {
 $('form#matricula').submit(function(event) {
   var formulario = $(this);
   var idFormulario = formulario.attr('id');
-  console.log(idFormulario);
 
   if (validateForm(this)) {
 
-    //Data que se envia a la base de datos
+    // Data que se envia a la base de datos
     var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
@@ -327,11 +333,10 @@ $('form#matricula').submit(function(event) {
       },
       success: function(response) {
         formulario.parent().find('.loading').fadeOut(1000);
-
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
-          formulario.hide();
-          $('form#estudiante').show();
+          formulario.closest('.modal').fadeOut();
+          showAlert(1, 1000, 3000);
 
         } else {
           showAlert(2, 1000, 3000);

@@ -112,14 +112,14 @@
 
 
 
-#modalEditUser{
+#modalEdit{
   .modal-body{
     form{
       button[type="submit"]{
         right: 30px;
       }
     }
-    form:nth-last-child(1){
+    form:nth-last-child(2){
       button[type="submit"]{
         right: 90px;
       }
@@ -127,4 +127,13 @@
 
   }
 
+}
+
+#modalShow{
+  div[class^='col-']{
+    p{
+      border-bottom: 1px solid $morado;
+      box-shadow: 0px 2px 0px #c4a9fe;
+    }
+  }
 }
