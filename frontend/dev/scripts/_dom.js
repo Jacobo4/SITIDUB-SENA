@@ -51,6 +51,7 @@ $(document).ready(function() {
   $('#newStudent,#addRelative').click(function() {
 
     let modal = $('#modalNuevo');
+
     let closestModal = $(this).closest('.modal');
     let inputStudent = modal.find('.student').parent();
     let inputRelative = modal.find('.relative').parent();
@@ -64,12 +65,13 @@ $(document).ready(function() {
     switch ($(this).attr('id')) {
       case 'newStudent':
         modal.find('#tittle-person').text("Student's info");
+        
         inputRelative.hide();
-
         inputStudent.show();
         break;
       case 'addRelative':
         modal.find('#tittle-person').text("Relative's info");
+        
         inputStudent.hide();
         inputRelative.show();
         break;

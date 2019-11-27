@@ -192,7 +192,7 @@ $('form#editUsername').submit(function(event) {
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
     $.post("procesar.php", data, function(response) {
@@ -223,7 +223,7 @@ $('form#editPassword').submit(function(event) {
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
     $.post("procesar.php", data, function(response) {
@@ -256,7 +256,7 @@ $('form.edit').submit(function(event) {
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
     $.post("procesar.php", data, function(response) {
@@ -291,7 +291,7 @@ $('form#delete').submit(function(event) {
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
     $.ajax({
@@ -323,7 +323,7 @@ $('form#matricula').submit(function(event) {
   if (validateForm(this)) {
 
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
     console.log(data);
 
     $.ajax({
@@ -353,12 +353,14 @@ $('.person').submit(function(event) {
 
 
 
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
+  let formulario = $(this);
+  let modal = formulario.closest('.modal');
+
+  
 
   if (validateForm(this)) {
     // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
+    let data = 'typeForm=person&' +  $(formulario).serialize();
     console.log(data);
 
     $.ajax({
@@ -371,9 +373,9 @@ $('.person').submit(function(event) {
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
 
-          formulario.closest('.modal').fadeOut();
-          formulario.closest('.modal').find('form').hide();
-          formulario.closest('.modal').find('form#matricula').show();
+          modal.fadeOut();
+          modal.find('form').hide();
+
           showAlert(1, 1000, 3000);
         } else {
           showAlert(2, 1000, 3000);
