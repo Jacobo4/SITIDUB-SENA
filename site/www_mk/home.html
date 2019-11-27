@@ -142,7 +142,7 @@
             </div>
             <div class="col-12 col-lg-6">
               <label for="newUsername">New Username</label>
-              <input id="newUsername" class="input-form" type="text" name="" value="" placeholder="Avoid Alvaro Uribe as username">
+              <input id="newUsername" class="input-form" type="text" name="newUsername" placeholder="Avoid Alvaro Uribe as username">
             </div>
 
           </div>
@@ -159,15 +159,15 @@
 
             <div class="col-12 col-lg-6">
               <label for="newPassword">New Password</label>
-              <input id="newPassword" class="input-form" type="password" name="" value="">
+              <input id="newPassword" class="input-form" type="password" name="newPassword">
             </div>
             <div class="col-12 col-lg-6">
               <label for="oldPassword">Old Password .___.</label>
-              <input id="oldPassword" class="input-form" type="password" name="" value="">
+              <input id="oldPassword" class="input-form" type="password" name="oldPassword">
             </div>
             <div class="col-12 col-lg-6">
               <label for="secretWord">Secret Word ;)</label>
-              <input id="secretWord" class="input-form" type="password" name="" value="">
+              <input id="secretWord" class="input-form" type="password" name="secretWord">
             </div>
 
           </div>
@@ -181,7 +181,7 @@
   </div>
 
   <!-- NOTE: MODAL ELIMINAR  -->
-  <div class="modal" id="modalElminar">
+  <div class="modal" id="modalDelete">
 
     <div class="modal-container ">
 
@@ -192,11 +192,11 @@
         </div>
 
         <h2>Are you sure?</h2>
-        <form id="eliminar" action="index.html" method="post">
+        <form id="delete" action="index.html" method="post">
           <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-              <label for="idEliminar">Please digit again the student's id</label>
-              <input id="idEliminar" class="input-form" type="text" name="" value="">
+              <label for="idDelete">Please digit again the student's id</label>
+              <input id="idDelete" class="input-form" type="text" name="idDelete">
             </div>
           </div>
           <button class="btn-submitModal" type="submit" name="button">Delete</button>
@@ -231,11 +231,11 @@
 
             <div class="col-12 col-sm-6">
               <label for="numMatri">Número de matrícula</label>
-              <input id="numMatri" class="input-form" type="text" value="" placeholder="ej: ASAD-01">
+              <input id="numMatri" class="input-form" type="text" name="numMatri" placeholder="ej: ASAD-01">
             </div>
             <div class="col-12 col-sm-6">
               <label for="fechaInialMatri">Fecha inicial</label>
-              <input id="fechaInialMatri" class="input-form" type="date" value="">
+              <input id="fechaInialMatri" class="input-form" type="date" name="fechaInicialMatri">
             </div>
           </div>
 
@@ -275,91 +275,91 @@
 
 
             <div class="col-12 col-sm-6">
-              <label for="nombresEstu">Nombres</label>
-              <input id="nombresEstu" class="input-form" type="text" value="" placeholder="Alvaro Paraco">
+              <label for="nombres">Names</label>
+              <input id="nombres" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
             </div>
             <div class="col-12 col-sm-6">
-              <label for="apellidosEstu">Apellidos</label>
-              <input id="apellidosEstu" class="input-form" type="text" value="" placeholder="Uribe Velez">
+              <label for="apellidos">Last names</label>
+              <input id="apellidos" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
             </div>
             <div class="col-12 col-sm-6">
-              <label for="numIdentEstu">Número de identidad</label>
-              <input id="numIdentEstu" class="input-form numIdent" type="identification" value="" placeholder="1001065497">
-              <select id="tipoIdentEstu" class="select-form tipoIdent" type="select">
-                <option value="">TI</option>
-                <option value="">CC</option>
-                <option value="">CE</option>
+              <label for="numIdent">Identification number</label>
+              <input id="numIdent" class="input-form numIdent" type="identification" name="numIdent" placeholder="1001065497">
+              <select id="tipoIdent" class="select-form tipoIdent" type="select" name="tipoIdent">
+                <option value="TI">TI</option>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
               </select>
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="lugarExpedicionEstu">Lugar de expedición</label>
-              <input id="lugarExpedicionEstu" class="input-form" type="text" value="" placeholder="Lugar de expedición">
+              <label for="lugarExpe">Expedition place</label>
+              <input id="lugarExpe" class="input-form" type="text" name="lugarExpe" placeholder="Lugar de expedición">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="fechaNaciEstu">Fecha de nacimiento</label>
-              <input id="fechaNaciEstu" class="input-form" type="date" value="">
+              <label for="fechaNaci">Birthdate</label>
+              <input id="fechaNaci" class="input-form" type="date" name="fechaNaci">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="lugarNaciEstu">Lugar de nacimiento</label>
-              <select class="select-form citys " name="">
+              <label for="lugarNaci">Birthplace</label>
+              <select id="lugarNaci" class="select-form citys " name="lugarNaci">
 
               </select>
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="direccionEstu">Direccion</label>
-              <input id="direccionEstu" class="input-form" type="text" value="" placeholder="Calle A">
+              <label for="direccion">Address</label>
+              <input id="direccion" class="input-form" type="text" name="direccion" placeholder="Calle A">
             </div>
 
 
 
 
             <div class="col-12 col-sm-6">
-              <label for="emailEstu">Correo electrónico</label>
-              <input id="emailEstu" class="input-form" type="emailCustom" value="" placeholder="ej: jamespapasito@gmail.com">
+              <label for="email">Email</label>
+              <input id="email" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="telResidenciaEstu">Teléfono residencia</label>
-              <input id="telResidenciaEstu" class="input-form" type="text" value="" placeholder="3462116">
+              <label for="telResi">Home's phone number</label>
+              <input id="telResi" class="input-form" type="text" name="telResi" placeholder="3462116">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="celular1Acu">Celular personal</label>
-              <input id="celular1Acu" class="input-form relative" type="text" value="" placeholder="3132029021">
+              <label for="celular">cell phone number</label>
+              <input id="celular" class="input-form relative" type="text" name="celular" placeholder="3132029021">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="ocupacion">Ocupación</label>
-              <input id="ocupacion" class="input-form relative" type="text" value="" placeholder="Zapatero">
+              <label for="ocupacion">Employment</label>
+              <input id="ocupacion" class="input-form relative" type="text" name="ocupacion" placeholder="Zapatero">
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="profesion">Profesión</label>
-              <input id="profesion" class="input-form relative" type="text" value="" placeholder="Ingeniero Industrial">
+              <label for="profesion">Profession</label>
+              <input id="profesion" class="input-form relative" type="text" name="profesion" placeholder="Ingeniero Industrial">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="parentesco">Parentesco</label>
-              <input id="parentesco" class="input-form relative" type="text" value="" placeholder="Papá">
+              <input id="parentesco" class="input-form relative" type="text" name="parentesco" placeholder="Papá">
             </div>
 
 
             <div class="col-12 mt-5">
-              <h2 class="student">Datos Clinicos</h2>
+              <h2 class="student">Clinic info</h2>
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="eps">EPS</label>
-              <input id="eps" class="input-form student" type="text" value="" placeholder="EPS">
+              <input id="eps" class="input-form student" type="text" name="eps" placeholder="EPS">
             </div>
 
             <div class="col-6 col-sm-2">
-              <label for="rh">RH</label>
-              <select id="rh" class="select-form student" type="select" placeholder="RH">
+              <label for="rh">Blood type</label>
+              <select id="rh" class="select-form student" type="select" name="rh">
                 <option value="">A</option>
                 <option value="">C</option>
                 <option value="">B</option>
@@ -368,14 +368,15 @@
             </div>
 
             <div class="col-6 col-sm-2">
-              <label for="estrato">Estrato</label>
-              <select id="estrato" class="select-form student" type="select">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
+              <label for="estrato">Income Class</label>
+              <select id="estrato" class="select-form student" type="select" name="estrato">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
               </select>
             </div>
 
@@ -400,9 +401,9 @@
     <div class="modal-container ">
 
       <div class="modal-tittle ctn-normal">
-        <h1>Nombre del estudiante</h1>
+        <h1 id="personName">Student's name</h1>
         <div class="showOptions">
-          <button id="editStudent" class="btn" type="button" name="button">Edit student's info</button>
+          <button id="btn-editStudent" class="btn" type="button" name="button">Edit student's info</button>
           <button id="addRelative" type="button" name="button">Add relative</button>
         </div>
       </div>
@@ -417,16 +418,16 @@
 
           <div class="row">
             <div class="col-12">
-              <h2>Datos matrícula</h2>
+              <h2>Tutuition info</h2>
             </div>
 
             <div class="col-12 col-sm-6">
-              <label for="editNumMatri">Número de matrícula</label>
-              <input id="editNumMatri" class="input-form" type="text" value="" placeholder="ej: ASAD-01">
+              <label for="editNumMatri">Tutuition number</label>
+              <input id="editNumMatri" class="input-form" type="text" name="editNumMatri" placeholder="ej: ASAD-01">
             </div>
             <div class="col-12 col-sm-6">
-              <label for="editFechaInialMatri">Fecha inicial</label>
-              <input id="editFechaInialMatri" class="input-form" type="date" value="">
+              <label for="editFechaIniMatri">Initial date</label>
+              <input id="editFechaIniMatri" class="input-form" type="date" name="editFechaIniMatri">
             </div>
           </div>
 
@@ -434,7 +435,7 @@
 
         </form>
 
-        <form class="edit" id="editEstudiante" action="index.html" method="post">
+        <form class="edit" id="editStudent" action="index.html" method="post">
 
           <div class="row">
 
@@ -446,16 +447,16 @@
 
             <div class="col-12 col-sm-6">
               <label for="editNombresEstu">Nombres</label>
-              <input id="editNombresEstu" class="input-form" type="text" value="" placeholder="Alvaro Paraco">
+              <input id="editNombresEstu" class="input-form" type="text" name="editNombresEstu" placeholder="Alvaro Paraco">
             </div>
             <div class="col-12 col-sm-6">
               <label for="editApellidosEstu">Apellidos</label>
-              <input id="editApellidosEstu" class="input-form" type="text" value="" placeholder="Uribe Velez">
+              <input id="editApellidosEstu" class="input-form" type="text" name="editApellidosEstu" placeholder="Uribe Velez">
             </div>
             <div class="col-12 col-sm-6">
               <label for="editNumIdentEstu">Número de identidad</label>
-              <input id="editNumIdentEstu" class="input-form numIdent" type="identification" value="" placeholder="1001065497">
-              <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select">
+              <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="editNumIdentEstu" placeholder="1001065497">
+              <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select" name="editNumIdentEstu">
                 <option value="">TI</option>
                 <option value="">CC</option>
                 <option value="">CE</option>
@@ -464,22 +465,22 @@
 
             <div class="col-12 col-sm-6">
               <label for="editLugarExpedicionEstu">Lugar de expedición</label>
-              <input id="editLugarExpedicionEstu" class="input-form" type="text" value="" placeholder="Lugar de expedición">
+              <input id="editLugarExpedicionEstu" class="input-form" type="text" name="editLugarExpedicionEstu" placeholder="Lugar de expedición">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editFechaNaciEstu">Fecha de nacimiento</label>
-              <input id="editFechaNaciEstu" class="input-form" type="date" value="">
+              <input id="editFechaNaciEstu" class="input-form" type="date" name="editFechaNaciEstu">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editLugarNaciEstu">Lugar de nacimiento</label>
-              <input id="editLugarNaciEstu" class="input-form" type="text" value="" placeholder="Selva">
+              <input id="editLugarNaciEstu" class="input-form" type="text" name="editLugarNaciEstu" placeholder="Selva">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editDireccionEstu">Direccion</label>
-              <input id="editDireccionEstu" class="input-form" type="text" value="" placeholder="Calle A">
+              <input id="editDireccionEstu" class="input-form" type="text" name="editDireccionEstu" placeholder="Calle A">
             </div>
 
 
@@ -487,12 +488,12 @@
 
             <div class="col-12 col-sm-6">
               <label for="editEmailEstu">Correo electrónico</label>
-              <input id="editEmailEstu" class="input-form" type="emailCustom" value="" placeholder="ej: jamespapasito@gmail.com">
+              <input id="editEmailEstu" class="input-form" type="emailCustom" name="editEmailEstu" placeholder="ej: jamespapasito@gmail.com">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editTelResidenciaEstu">Teléfono residencia</label>
-              <input id="editTelResidenciaEstu" class="input-form" type="text" value="" placeholder="3462116">
+              <input id="editTelResidenciaEstu" class="input-form" type="text" name="editTelResidenciaEstu" placeholder="3462116">
             </div>
 
             <div class="col-12 mt-5">
@@ -501,12 +502,12 @@
 
             <div class="col-12 col-sm-6">
               <label for="editEps">EPS</label>
-              <input id="editEps" class="input-form" type="text" value="" placeholder="EPS">
+              <input id="editEps" class="input-form" type="text" name="editEps" placeholder="EPS">
             </div>
 
             <div class="col-6 col-sm-2">
               <label for="editRh">RH</label>
-              <select id="editRh" class="select-form" type="select" placeholder="RH">
+              <select id="editRh" class="select-form" type="select" name="editRh" placeholder="RH">
                 <option value="">A</option>
                 <option value="">C</option>
                 <option value="">B</option>
@@ -516,13 +517,14 @@
 
             <div class="col-6 col-sm-2">
               <label for="editEstrato">Estrato</label>
-              <select id="editEstrato" class="select-form" type="select">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
+              <select id="editEstrato" class="select-form" type="select" name="editEstrato">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
               </select>
             </div>
 
@@ -545,40 +547,40 @@
 
             <div class="col-12 col-sm-6">
               <label for="editNombresAcu">Nombres</label>
-              <input id="editNombresAcu" class="input-form" type="text" value="" placeholder="Alvaro Paraco">
+              <input id="editNombresAcu" class="input-form" type="text" name="editNombresAcu" placeholder="Alvaro Paraco">
             </div>
             <div class="col-12 col-sm-6">
               <label for="editApellidosAcu">Apellidos</label>
-              <input id="editApellidosAcu" class="input-form" type="text" value="" placeholder="Uribe Velez">
+              <input id="editApellidosAcu" class="input-form" type="text" name="editApellidosAcu" placeholder="Uribe Velez">
             </div>
             <div class="col-12 col-sm-6">
               <label for="editNumIdent">Número de identidad</label>
-              <input id="editNumIdentAcu" class="input-form numIdent" type="identification" value="" placeholder="1001065497">
-              <select id="editTipoIdentAcu" class="select-form tipoIdent" type="select">
-                <option value="">TI</option>
-                <option value="">CC</option>
-                <option value="">CE</option>
+              <input id="editNumIdentAcu" class="input-form numIdent" type="identification"name="editNumIdentAcu" placeholder="1001065497">
+              <select id="editTipoIdentAcu" class="select-form tipoIdent" type="select" name="editTipoIdentAcu">
+                <option value="TI">TI</option>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
               </select>
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editLugarExpedicionAcu">Lugar de expedición</label>
-              <input id="editLugarExpedicionAcu" class="input-form" type="text" value="" placeholder="Lugar de expedición">
+              <input id="editLugarExpedicionAcu" class="input-form" type="text" name="editLugarExpedicionAcu" placeholder="Lugar de expedición">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editFechaNaciAcu">Fecha de nacimiento</label>
-              <input id="editFechaNaciAcu" class="input-form" type="date" value="">
+              <input id="editFechaNaciAcu" class="input-form" type="date" name="editFechaNaciAcu">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editLugarNaciAcu">Lugar de nacimiento</label>
-              <input id="editLugarNaciAcu" class="input-form" type="text" value="" placeholder="Selva">
+              <input id="editLugarNaciAcu" class="input-form" type="text" name="editLugarNaciAcu" placeholder="Selva">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editDireccionAcu">Direccion</label>
-              <input id="editDireccionAcu" class="input-form" type="text" value="" placeholder="Calle A">
+              <input id="editDireccionAcu" class="input-form" type="text" name="editDireccionAcu" placeholder="Calle A">
             </div>
 
 
@@ -586,32 +588,32 @@
 
             <div class="col-12 col-sm-6">
               <label for="editEmailAcu">Correo electrónico</label>
-              <input id="editEmailAcu" class="input-form" type="emailCustom" value="" placeholder="ej: jamespapasito@gmail.com">
+              <input id="editEmailAcu" class="input-form" type="emailCustom" name="editEmailAcu" placeholder="ej: jamespapasito@gmail.com">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editTelResidenciaAcu">Teléfono residencia</label>
-              <input id="editTelResidenciaAcu" class="input-form" type="text" value="" placeholder="3462116">
+              <input id="editTelResidenciaAcu" class="input-form" type="text" name="editTelResidenciaAcu" placeholder="3462116">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editCelular1Acu">Celular personal</label>
-              <input id="editCelular1Acu" class="input-form" type="text" value="" placeholder="3132029021">
+              <input id="editCelular1Acu" class="input-form" type="text" name="editCelular1Acu" placeholder="3132029021">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editOcupacion">Ocupación</label>
-              <input id="editOcupacion" class="input-form" type="text" value="" placeholder="Zapatero">
+              <input id="editOcupacion" class="input-form" type="text" name="editOcupacion" placeholder="Zapatero">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editProfesion">Profesión</label>
-              <input id="editProfesion" class="input-form" type="text" value="" placeholder="Ingeniero Industrial">
+              <input id="editProfesion" class="input-form" type="text" name="editProfesion" placeholder="Ingeniero Industrial">
             </div>
 
             <div class="col-12 col-sm-6">
               <label for="editParentesco">Parentesco</label>
-              <input id="editParentesco" class="input-form" type="text" value="" placeholder="Papá">
+              <input id="editParentesco" class="input-form" type="text" name="editParentesco" placeholder="Papá">
             </div>
 
 

@@ -84,7 +84,7 @@ $(document).ready(function() {
   });
   ////Eliminar matricula
   $('span.icon-bin').click(function() {
-    $('#modalElminar').fadeIn().css({
+    $('#modalDelete').fadeIn().css({
       "display": "flex"
     });
   });
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
   });
 
-  $('#editStudent').click(function(){
+  $('#btn-editStudent').click(function(){
     let modal = $(this).closest('.modal');
     let inputs = modal.find('select,input');
 

@@ -280,7 +280,7 @@ $('form.edit').submit(function(event) {
 
 
 // NOTE: CONSULTA ELIMINAR
-$('form#eliminar').submit(function(event) {
+$('form#delete').submit(function(event) {
 
   var formulario = $(this);
   var idFormulario = formulario.attr('id');
@@ -346,7 +346,7 @@ $('form#matricula').submit(function(event) {
 
 
 
-$('form#persona').submit(function(event) {
+$('form.person').submit(function(event) {
 
   var formulario = $(this);
   var idFormulario = formulario.attr('id');
@@ -379,41 +379,9 @@ $('form#persona').submit(function(event) {
 
 });
 
-$('form#acudiente').submit(function(event) {
-
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
-
-  if (validateForm(this)) {
-
-    // Data que se envia a la base de datos
-    var data = 'idForm=' + idFormulario + '&' + $(formulario).serialize();
-    console.log(data);
-
-    $.ajax({
-      data: data,
-      beforeSend: function() {
-        formulario.parent().find('.loading').show();
-      },
-      success: function(response) {
-        formulario.parent().find('.loading').fadeOut(1000);
-
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-
-          showAlert(1, 1000, 3000);
-
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      },
-    });
-  }
-
-});
 
 
-// 
+//
 // $('select.citys').click(function(){
 //   $.ajax({
 //     dataType: "json",
