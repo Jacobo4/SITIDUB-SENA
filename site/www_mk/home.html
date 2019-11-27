@@ -304,8 +304,10 @@
 
             <div class="col-12 col-sm-6">
               <label for="lugarNaci">Birthplace</label>
-              <select id="lugarNaci" class="select-form citys " name="lugarNaci">
-
+              <select id="lugarNaci" class="select-form citys "type="select" name="lugarNaci">
+                <option value="1">asd</option>
+                <option value="2">asd</option>
+                <option value="3">asd</option>
               </select>
             </div>
 
@@ -414,26 +416,6 @@
           <img src="assets/images/loader.gif" alt="loading..">
         </div>
 
-        <form class="edit" id="editMatricula" action="index.html" method="post">
-
-          <div class="row">
-            <div class="col-12">
-              <h2>Tutuition info</h2>
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editNumMatri">Tutuition number</label>
-              <input id="editNumMatri" class="input-form" type="text" name="editNumMatri" placeholder="ej: ASAD-01">
-            </div>
-            <div class="col-12 col-sm-6">
-              <label for="editFechaIniMatri">Initial date</label>
-              <input id="editFechaIniMatri" class="input-form" type="date" name="editFechaIniMatri">
-            </div>
-          </div>
-
-          <button class="btn-submitModal" type="submit" name="button">Save</button>
-
-        </form>
 
         <form class="edit" id="editStudent" action="index.html" method="post">
 
@@ -535,93 +517,8 @@
 
         </form>
 
-        <form class="edit" id="editAcudiente" action="index.html" method="post">
-
-          <div class="row">
 
 
-            <div class="col-12">
-              <h2>Datos del acudiente</h2>
-            </div>
-
-
-            <div class="col-12 col-sm-6">
-              <label for="editNombresAcu">Nombres</label>
-              <input id="editNombresAcu" class="input-form" type="text" name="editNombresAcu" placeholder="Alvaro Paraco">
-            </div>
-            <div class="col-12 col-sm-6">
-              <label for="editApellidosAcu">Apellidos</label>
-              <input id="editApellidosAcu" class="input-form" type="text" name="editApellidosAcu" placeholder="Uribe Velez">
-            </div>
-            <div class="col-12 col-sm-6">
-              <label for="editNumIdent">Número de identidad</label>
-              <input id="editNumIdentAcu" class="input-form numIdent" type="identification"name="editNumIdentAcu" placeholder="1001065497">
-              <select id="editTipoIdentAcu" class="select-form tipoIdent" type="select" name="editTipoIdentAcu">
-                <option value="TI">TI</option>
-                <option value="CC">CC</option>
-                <option value="CE">CE</option>
-              </select>
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editLugarExpedicionAcu">Lugar de expedición</label>
-              <input id="editLugarExpedicionAcu" class="input-form" type="text" name="editLugarExpedicionAcu" placeholder="Lugar de expedición">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editFechaNaciAcu">Fecha de nacimiento</label>
-              <input id="editFechaNaciAcu" class="input-form" type="date" name="editFechaNaciAcu">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editLugarNaciAcu">Lugar de nacimiento</label>
-              <input id="editLugarNaciAcu" class="input-form" type="text" name="editLugarNaciAcu" placeholder="Selva">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editDireccionAcu">Direccion</label>
-              <input id="editDireccionAcu" class="input-form" type="text" name="editDireccionAcu" placeholder="Calle A">
-            </div>
-
-
-
-
-            <div class="col-12 col-sm-6">
-              <label for="editEmailAcu">Correo electrónico</label>
-              <input id="editEmailAcu" class="input-form" type="emailCustom" name="editEmailAcu" placeholder="ej: jamespapasito@gmail.com">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editTelResidenciaAcu">Teléfono residencia</label>
-              <input id="editTelResidenciaAcu" class="input-form" type="text" name="editTelResidenciaAcu" placeholder="3462116">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editCelular1Acu">Celular personal</label>
-              <input id="editCelular1Acu" class="input-form" type="text" name="editCelular1Acu" placeholder="3132029021">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editOcupacion">Ocupación</label>
-              <input id="editOcupacion" class="input-form" type="text" name="editOcupacion" placeholder="Zapatero">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editProfesion">Profesión</label>
-              <input id="editProfesion" class="input-form" type="text" name="editProfesion" placeholder="Ingeniero Industrial">
-            </div>
-
-            <div class="col-12 col-sm-6">
-              <label for="editParentesco">Parentesco</label>
-              <input id="editParentesco" class="input-form" type="text" name="editParentesco" placeholder="Papá">
-            </div>
-
-
-
-          </div>
-          <button class="btn-submitModal" type="submit" name="button">Save</button>
-
-        </form>
         <button class="btn-cancel" type="button" name="button">Cancel</button>
       </div>
     </div>

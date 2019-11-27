@@ -65,6 +65,7 @@ $(document).ready(function() {
       case 'newStudent':
         modal.find('#tittle-person').text("Student's info");
         inputRelative.hide();
+
         inputStudent.show();
         break;
       case 'addRelative':

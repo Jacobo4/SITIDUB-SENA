@@ -67,24 +67,27 @@ function validarLength(valor, minLength, maxLength) {
 function validateForm(form) {
 
   event.preventDefault();
-
-  var camposObliga = $(form).find('input,select').length;
-  var botonSubmit = $(form).find('button[type="submit"]');
+  let inputs = $(form).find('input,select');
+  let camposObliga = $(form).find('input:visible,select:visible').length;
+  let botonSubmit = $(form).find('button[type="submit"]');
 
   //Variable para comprar los inputs que estan bien con la cantidad de inputs del formulario
-  var total = 0;
+  let total = 0;
   //expresiones Regulares
   const regExpEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
   const regExpNumber = /^\d+$/;
+
+
+
 
   ////Validar los campos
   $(form).find('input,select').each(function(i, e) {
 
 
-    var valorInput = $(e).val();
-    var valorCheckbox = $(e).prop('checked');
-    var valorSelect = $(e).val();
-    var customDivCheck = $(e).parent().find('div.custom-checkbox');
+    let valorInput = $(e).val();
+    let valorCheckbox = $(e).prop('checked');
+    let valorSelect = $(e).val();
+    let customDivCheck = $(e).parent().find('div.custom-checkbox');
 
 
     if ($(e).length !== 0) {
@@ -346,7 +349,9 @@ $('form#matricula').submit(function(event) {
 
 
 
-$('form.person').submit(function(event) {
+$('.person').submit(function(event) {
+
+
 
   var formulario = $(this);
   var idFormulario = formulario.attr('id');
