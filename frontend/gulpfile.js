@@ -103,7 +103,8 @@ function copyAll(done) {
   gulp.src([paths.dev + 'assets/vendors/**/*']).pipe(gulp.dest(paths.public + 'assets/vendors/'));
   //Copy other external files
   gulp.src([paths.dev + 'assets/images/**/*']).pipe(gulp.dest(paths.public + 'assets/images/'));
-  gulp.src([paths.dev + 'assets/files/**/*']).pipe(gulp.dest(paths.public + 'assets/files/'));
+  //Copy local Json
+  gulp.src([paths.dev + 'json/**/*']).pipe(gulp.dest(paths.public + 'assets/json/'));
   done();
 };
 

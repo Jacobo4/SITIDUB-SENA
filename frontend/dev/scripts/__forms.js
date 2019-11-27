@@ -80,9 +80,6 @@ function validateForm(form) {
   ////Validar los campos
   $(form).find('input,select').each(function(i, e) {
 
-    var id = $(e).attr('id')
-    //Poner el id en el name para mandar los datos por serialize
-    $(e).attr('name', id);
 
     var valorInput = $(e).val();
     var valorCheckbox = $(e).prop('checked');
@@ -349,7 +346,7 @@ $('form#matricula').submit(function(event) {
 
 
 
-$('form#estudiante').submit(function(event) {
+$('form#persona').submit(function(event) {
 
   var formulario = $(this);
   var idFormulario = formulario.attr('id');
@@ -368,8 +365,11 @@ $('form#estudiante').submit(function(event) {
         formulario.parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
-          formulario.hide();
-          $('form#acudiente').show();
+
+          formulario.closest('.modal').fadeOut();
+          formulario.closest('.modal').find('form').hide();
+          formulario.closest('.modal').find('form#matricula').show();
+          showAlert(1, 1000, 3000);
         } else {
           showAlert(2, 1000, 3000);
         }
@@ -401,9 +401,6 @@ $('form#acudiente').submit(function(event) {
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
 
-          formulario.closest('.modal').fadeOut();
-          formulario.closest('.modal').find('form').hide();
-          formulario.closest('.modal').find('form#matricula').show();
           showAlert(1, 1000, 3000);
 
         } else {
@@ -414,3 +411,24 @@ $('form#acudiente').submit(function(event) {
   }
 
 });
+
+
+// 
+// $('select.citys').click(function(){
+//   $.ajax({
+//     dataType: "json",
+//     url: "../json/citys.json",
+//     data: data,
+//     success: function(data){
+//       var items = [];
+//       $.each( data, function( key, val ) {
+//         items.push( "<option id='" + key + "'>" + val + "</option>" );
+//       });
+//
+//       $( "<select/>", {
+//         "class": "citys",
+//         html: items.join( "" )
+//       }).appendTo( "body" );
+//     }
+//   });
+// });

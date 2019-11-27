@@ -466,9 +466,9 @@
               <label for="numIdentEstu">Número de identidad</label>
               <input id="numIdentEstu" class="input-form numIdent" type="identification" value="" placeholder="1001065497">
               <select id="tipoIdentEstu" class="select-form tipoIdent" type="select">
-                <option value="">TI</option>
-                <option value="">CC</option>
-                <option value="">CE</option>
+                <option value="TI">TI</option>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
               </select>
             </div>
 

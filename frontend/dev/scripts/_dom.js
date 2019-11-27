@@ -48,11 +48,32 @@ $(document).ready(function() {
   });
 
   ////Nueva matricula
-  $('#btn-nuevo').click(function() {
+  $('#newStudent,#addRelative').click(function() {
 
-    $('#modalNuevo').fadeIn().css({
-      "display": "flex"
+    let modal = $('#modalNuevo');
+    let closestModal = $(this).closest('.modal');
+    let inputStudent = modal.find('.student').parent();
+    let inputRelative = modal.find('.relative').parent();
+
+    closestModal.css({"z-index": "10"})
+
+    modal.fadeIn().css({
+      "display": "flex",
     });
+
+    switch ($(this).attr('id')) {
+      case 'newStudent':
+        modal.find('#tittle-person').text("Student's info");
+        inputRelative.hide();
+        inputStudent.show();
+        break;
+      case 'addRelative':
+        modal.find('#tittle-person').text("Relative's info");
+        inputStudent.hide();
+        inputRelative.show();
+        break;
+    }
+
   });
 
   ////Cerrar modales
@@ -67,23 +88,32 @@ $(document).ready(function() {
       "display": "flex"
     });
   });
-  ////Editar matricula
-  $('span.icon-pencil').click(function() {
-    let modalEdit = $('#modalEdit');
-    modalEdit.fadeIn().css({
-      "display": "flex"
-    });
-  });
-  ////Mostrar INFO
+
+  ////Mostrar INFO / EDITAR
   $('span.icon-eye').click(function() {
 
-    let modalShow = $('#modalShow');
+    let modalShow = $('#modalEditShow');
+    let inputs = modalShow.find('select,input');
+    let saveButtons = modalShow.find('.btn-submitModal');
+
 
     modalShow.fadeIn().css({
       "display": "flex"
     });
 
+    inputs.attr('disabled', true);
+    saveButtons.hide();
+
   });
+
+  $('#editStudent').click(function(){
+    let modal = $(this).closest('.modal');
+    let inputs = modal.find('select,input');
+
+    modal.find('.btn-submitModal').fadeIn('500');
+    inputs.attr('disabled', false);
+  });
+
 
   ////Mostrar matricula
   $('span.icon-plus').click(function() {
