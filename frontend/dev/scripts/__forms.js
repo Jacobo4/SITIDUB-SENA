@@ -55,6 +55,9 @@ function showAlert(cumple, timeIn, timeOut) {
 
 
 
+
+
+
 //////////// Valida longitud
 function validarLength(valor, minLength, maxLength) {
   if ((valor >= minLength) & (valor <= maxLength)) {
@@ -148,12 +151,40 @@ $.ajaxSetup({
   }
 });
 
+//// NOTE: BUSCADOR
+
+var peticion;
+$('#searchAll').keypress(function() {
+  clearTimeout(peticion);
+  peticion = setTimeout(function() {
+    let data = $(this).serialize();
+
+    $.post("procesar.php", data, function(response) {
+
+      var jsonData = JSON.parse(response);
+      if (jsonData.success == "1") {
+
+        showAlert(1, 1000, 3000);
+
+
+      } else {
+        showAlert(2, 1000, 3000);
+      }
+    });
+
+
+  }, 1000);
+
+});
+
+
+
 // NOTE: CONSULTA LOGIN
 $('form#login').submit(function(event) {
   event.preventDefault();
 
   var formulario = $(this);
-  var data = $(formulario).serialize();
+  var data = formulario.serialize();
   console.log(data);
 
   $.post("login.php?log=true", data, function(response) {
@@ -173,7 +204,7 @@ $('form#login').submit(function(event) {
 
 // NOTE: LOG OUT
 $('#logOut').click(function() {
-  $.post( "login.php?log=false", function(response) {
+  $.post("login.php?log=false", function(response) {
     var jsonData = JSON.parse(response);
     if (jsonData.success == "1") {
       location.href = 'index.php';
@@ -183,159 +214,64 @@ $('#logOut').click(function() {
   });
 });
 
-// NOTE: CONSULTA EDITAR USERNAME
-$('form#editUsername').submit(function(event) {
-
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
-
-  if (validateForm(this)) {
-
-    // Data que se envia a la base de datos
-    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
-    console.log(data);
-
-    $.post("procesar.php", data, function(response) {
-        formulario.parent().find('.loading').show();
-
-      })
-      .done(function(response) {
-
-        formulario.parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-          showAlert(1, 1000, 3000);
-
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      });
-  }
-
-});
-
-// NOTE: CONSULTA EDITAR PASSWORD
-$('form#editPassword').submit(function(event) {
-
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
-
-  if (validateForm(this)) {
-
-    // Data que se envia a la base de datos
-    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
-    console.log(data);
-
-    $.post("procesar.php", data, function(response) {
-        formulario.parent().find('.loading').show();
-
-      })
-      .done(function(response) {
-
-        formulario.parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-          showAlert(1, 1000, 3000);
-
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      });
-  }
-
-});
 
 
 
 // NOTE: CONSULTA EDIT
 $('form.edit').submit(function(event) {
-
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
-
-  if (validateForm(this)) {
-
-    // Data que se envia a la base de datos
-    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
-    console.log(data);
-
-    $.post("procesar.php", data, function(response) {
-        formulario.parent().find('.loading').show();
-
-      })
-      .done(function(response) {
-
-        formulario.parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-          showAlert(1, 1000, 3000);
-
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      });
-
-  }
-
+  sendForm(this, false);
 });
 
+// NOTE: CONSULTA EDITAR USERNAME
+$('form#editUsername').submit(function(event) {
+  sendForm(this, false);
+});
 
+// NOTE: CONSULTA EDITAR PASSWORD
+$('form#editPassword').submit(function(event) {
+  sendForm(this, false);
+});
 
-
+// NOTE: CONSULTA NUEVO ESTUDIANTE
+$('form#estudiante').submit(function(event) {
+  sendForm(this);
+}); // NOTE: CONSULTA NUEVO RESPONSABLE
+$('form#responsable').submit(function(event) {
+  sendForm(this);
+});
 // NOTE: CONSULTA ELIMINAR
 $('form#delete').submit(function(event) {
-
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
-
-  if (validateForm(this)) {
-
-    // Data que se envia a la base de datos
-    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
-    console.log(data);
-
-    $.ajax({
-      data: data,
-      beforeSend: function() {
-        formulario.parent().find('.loading').show();
-      },
-      success: function(response) {
-        formulario.parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-          formulario.closest('.modal').fadeOut();
-          showAlert(1, 1000, 3000);
-
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      },
-    });
-  }
-
+  sendForm(this);
 });
-
-// NOTE: CONSULTAS NUEVA MATRICULA
+// NOTE: CONSULTA NUEVA MATRICULA
 $('form#matricula').submit(function(event) {
-  var formulario = $(this);
-  var idFormulario = formulario.attr('id');
+  sendForm(this);
+});
 
-  if (validateForm(this)) {
+function sendForm(form, closeModal = true) {
 
-    // Data que se envia a la base de datos
-    var data = 'typeForm=' + idFormulario + '&' + $(formulario).serialize();
+  let idForm = $(form).attr('id');
+  let inputs = $(form).find('input,select');
+
+  if (validateForm(form)) {
+
+    var data = 'idForm=' + idForm + '&' + $(form).serialize();
     console.log(data);
 
     $.ajax({
       data: data,
       beforeSend: function() {
-        formulario.parent().find('.loading').show();
+        $(form).parent().find('.loading').show();
       },
       success: function(response) {
-        formulario.parent().find('.loading').fadeOut(1000);
+        $(form).parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
         if (jsonData.success == "1") {
-          formulario.closest('.modal').fadeOut();
+
+          if (closeModal) {
+            $(form).closest('.modal').fadeOut();
+          }
+          inputs.val('').removeClass('correcto');
           showAlert(1, 1000, 3000);
 
         } else {
@@ -344,66 +280,38 @@ $('form#matricula').submit(function(event) {
       },
     });
   }
-
-});
-
-
-
-$('.person').submit(function(event) {
+}
 
 
 
-  let formulario = $(this);
-  let modal = formulario.closest('.modal');
 
-  
+$.getJSON('assets/json/citys.json', function(data) {
+  // var jsonData = JSON.parse(data);
+  var options = [];
+  let select = $('select.citys');
 
-  if (validateForm(this)) {
-    // Data que se envia a la base de datos
-    let data = 'typeForm=person&' +  $(formulario).serialize();
-    console.log(data);
-
-    $.ajax({
-      data: data,
-      beforeSend: function() {
-        formulario.parent().find('.loading').show();
-      },
-      success: function(response) {
-        formulario.parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
-
-          modal.fadeOut();
-          modal.find('form').hide();
-
-          showAlert(1, 1000, 3000);
-        } else {
-          showAlert(2, 1000, 3000);
-        }
-      },
-    });
+  for (var i = 0; i < data.length; i++) {
+    for (var z = 0; z < data[i].ciudades.length; z++) {
+      options.push("<option value='" + data[i].ciudades[z] + "'>" + data[i].departamento + '-' + data[i].ciudades[z] + "</option>");
+    }
+  }
+  for (var i = 0; i < options.length; i++) {
+    select.append(options[i]);
   }
 
 });
 
+$.getJSON('assets/json/bloodTypes.json', function(data) {
 
+  var options = [];
+  let select = $('select.bloodTypes');
 
-//
-// $('select.citys').click(function(){
-//   $.ajax({
-//     dataType: "json",
-//     url: "../json/citys.json",
-//     data: data,
-//     success: function(data){
-//       var items = [];
-//       $.each( data, function( key, val ) {
-//         items.push( "<option id='" + key + "'>" + val + "</option>" );
-//       });
-//
-//       $( "<select/>", {
-//         "class": "citys",
-//         html: items.join( "" )
-//       }).appendTo( "body" );
-//     }
-//   });
-// });
+  $.each(data, function(key) {
+    options.push("<option value='" + key + "'>" + key + "</option>");
+  })
+
+  for (var i = 0; i < options.length; i++) {
+    select.append(options[i]);
+  }
+
+});

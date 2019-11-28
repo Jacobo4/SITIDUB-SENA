@@ -4,31 +4,49 @@
    $cumple = false;
 
 switch ($tipoForm) {
+
   case 'estudiante':
+  case 'responsable':
 
   $nombres = $_POST['nombres'];
   $apellidos = $_POST['apellidos'];
-  $numIdent = $_POST['numIdentEstu'];
+  $numIdent = $_POST['numIdent'];
+  $tipoIdent = $_POST['tipoIdent'];
+  $direccion = $_POST['direccion'];
+  $email = $_POST['email'];
+  $telResi = $_POST['telResi'];
 
-  $tipoIdent = $_POST['tipoIdentEstu'];
-  $lugarExpe = $_POST['lugarExpedicionEstu'];
+  $celular = null;
+  $ocupacion = null;
+  $profesion = null;
+  $parentesco = null;
 
-  $fechaNaci = $_POST['fechaNaciEstu'];
-  $lugarNaci = $_POST['lugarNaciEstu'];
-  $direccion = $_POST['direccionEstu'];
+  $celular = null;
+  $lugarExpe = null;
+  $fechaNaci = null;
+  $lugarNaci = null;
+  $eps = null;
+  $rh = null;
+  $estrato = null;
 
-  $email = $_POST['emailEstu'];
-  $telResi = $_POST['telResidenciaEstu'];
-
-  $eps = $_POST['eps'];
-  $rh = $_POST['rh'];
-  $estrato = $_POST['estrato'];
-
-  apellidos=Becerra&numIdent=1001098769&tipoIdent=TI&lugarExpe=Bogot%C3%A1&fechaNaci=2019-11-08&lugarNaci=2&direccion=Calle%20A&email=ivansito_2512%40hotmail.com&telResi=12342134&celular=&ocupacion=&profesion=&parentesco=&eps=Compensar&rh=&estrato=0
-
+  if($tipoForm == 'responsable'){
+    $celular = $_POST['celular'];
+    $ocupacion = $_POST['ocupacion'];
+    $profesion = $_POST['profesion'];
+    $parentesco = $_POST['parentesco'];
+  }
+  else if($tipoForm == 'estudiante'){
+    $celular = $_POST['celular'];
+    $lugarExpe = $_POST['lugarExpe'];
+    $fechaNaci = $_POST['fechaNaci'];
+    $lugarNaci = $_POST['lugarNaci'];
+    $eps = $_POST['eps'];
+    $rh = $_POST['rh'];
+    $estrato = $_POST['estrato'];
+  }
 
   $sql1 = " insert into personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps_des_eps) VALUES
-  (null, '$numIdent', '$tipoIdent', 'estudiante', '$nombres', null, '$apellidos', null, '$lugarExpe', '$lugarNaci', '$fechaNaci', '$direccion', '$email', null, '$telResi', null, null, null, null, '$rh', '$estrato', '$eps') ";
+  (null, '$numIdent', '$tipoIdent', '$tipoForm', '$nombres', null, '$apellidos', null, '$lugarExpe', '$lugarNaci', '$fechaNaci', '$direccion', '$email', null, '$telResi', $celular, null, $ocupacion, $profesion, '$rh', '$estrato', '$eps') ";
 
   if ($con->query($sql1) === TRUE) {
     $cumple = true;

@@ -48,13 +48,11 @@ $(document).ready(function() {
   });
 
   ////Nueva matricula
-  $('#newStudent,#addRelative').click(function() {
+  $('#addRelative').click(function() {
 
-    let modal = $('#modalNuevo');
-
+    let modal = $('#modalNewRelative');
     let closestModal = $(this).closest('.modal');
-    let inputStudent = modal.find('.student').parent();
-    let inputRelative = modal.find('.relative').parent();
+
 
     closestModal.css({"z-index": "10"})
 
@@ -62,22 +60,26 @@ $(document).ready(function() {
       "display": "flex",
     });
 
-    switch ($(this).attr('id')) {
-      case 'newStudent':
-        modal.find('#tittle-person').text("Student's info");
-        
-        inputRelative.hide();
-        inputStudent.show();
-        break;
-      case 'addRelative':
-        modal.find('#tittle-person').text("Relative's info");
-        
-        inputStudent.hide();
-        inputRelative.show();
-        break;
-    }
 
   });
+
+  ////Nueva matricula
+  $('#newStudent').click(function() {
+
+    let modal = $('#modalNewStudent');
+
+    let closestModal = $(this).closest('.modal');
+
+
+    closestModal.css({"z-index": "10"})
+
+    modal.fadeIn().css({
+      "display": "flex",
+    });
+
+
+  });
+
 
   ////Cerrar modales
   $('.btn-cancel').click(function() {

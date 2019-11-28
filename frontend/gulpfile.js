@@ -10,7 +10,8 @@ const terser = require('gulp-terser');
 
 
 var paths = {
-  public: './../site/www_mk/',
+  www: './../site/www/',
+  www_mk: './../site/www_mk/',
   dev: './dev/',
   sass: './dev/styles/',
   css: './dist/assets/css/',
@@ -54,7 +55,7 @@ function compile_scss(done) {
     .pipe(sass(config.sass).on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(paths.public + 'assets/css/'))
+    .pipe(gulp.dest(paths.www_mk + 'assets/css/'))
     .pipe(browserSync.stream());
   done();
 };
@@ -65,7 +66,7 @@ function compile_scss(done) {
 function server() {
   browserSync.init({
     server: {
-      baseDir: paths.public
+      baseDir: paths.www_mk
     }
   });
 };
@@ -74,7 +75,7 @@ function watch(done) {
 
   gulp.watch(paths.images + '*', copyAll).on('change', browserSync.reload);
   gulp.watch(paths.sass + '**/*.scss', compile_scss); //callback para ejecutar compile_scss()
-  gulp.watch(paths.public + '*.html').on('change', browserSync.reload);
+  gulp.watch(paths.www_mk + '*.html').on('change', browserSync.reload);
   gulp.watch(paths.dev + 'scripts/*.js', copy_js).on('change', browserSync.reload);
   done();
 };
@@ -86,7 +87,7 @@ function compile_vendors_js(done) {
       paths.node + 'wowjs/dist/wow.min.js'
     ])
     .pipe(concat('vendors.js'))
-    .pipe(gulp.dest(paths.public + 'assets/js/'));
+    .pipe(gulp.dest(paths.www_mk + 'assets/js/'));
   done();
 };
 
@@ -96,15 +97,15 @@ function copyAll(done) {
   //Copy other external css assets
   gulp.src([paths.dev + 'assets/css/*.css'])
   .pipe(concat('vendors.css'))
-  .pipe(gulp.dest(paths.public + 'assets/css/'));
+  .pipe(gulp.dest(paths.www_mk + 'assets/css/'));
   //Copy other external font assets
-  gulp.src([paths.dev + 'assets/fonts/*']).pipe(gulp.dest(paths.public + 'assets/fonts/'));
+  gulp.src([paths.dev + 'assets/fonts/*']).pipe(gulp.dest(paths.www_mk + 'assets/fonts/'));
   //Copy other external vendors
-  gulp.src([paths.dev + 'assets/vendors/**/*']).pipe(gulp.dest(paths.public + 'assets/vendors/'));
+  gulp.src([paths.dev + 'assets/vendors/**/*']).pipe(gulp.dest(paths.www_mk + 'assets/vendors/'));
   //Copy other external files
-  gulp.src([paths.dev + 'assets/images/**/*']).pipe(gulp.dest(paths.public + 'assets/images/'));
+  gulp.src([paths.dev + 'assets/images/**/*']).pipe(gulp.dest(paths.www_mk + 'assets/images/'));
   //Copy local Json
-  gulp.src([paths.dev + 'json/**/*']).pipe(gulp.dest(paths.public + 'assets/json/'));
+  gulp.src([paths.dev + 'json/**/*']).pipe(gulp.dest(paths.www_mk + 'assets/json/'));
   done();
 };
 
@@ -115,7 +116,8 @@ function copy_js(done) {
     .pipe(concat('app.js'))
     .pipe(terser(config.terser))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(paths.public + 'assets/js/'))
+    .pipe(gulp.dest(paths.www_mk + 'assets/js/'))
+    .pipe(gulp.dest(paths.www + 'assets/js/'))
 
   done();
 };
