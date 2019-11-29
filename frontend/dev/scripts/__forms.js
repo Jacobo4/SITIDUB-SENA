@@ -23,15 +23,18 @@ function showAlert(cumple, timeIn, timeOut) {
   divAlert.find('div.alert-content').empty();
   divAlert.removeClass();
   divAlert.addClass('alert-container');
-  if (cumple === 1) {
 
+  if (cumple === "nice") {
     divAlert.addClass('alert-check').find(contentAlert).text('Nice !');
 
-  } else if (cumple === 2) {
-
+  } else if (cumple === "error") {
     divAlert.addClass('alert-error').find(contentAlert).text('Hmm, something went wrong');
-  } else if (cumple === 3) {
+
+  } else if (cumple === "serverDown") {
     divAlert.addClass('alert-server').find(contentAlert).text('Maybe the server is down :(');
+
+  } else if (cumple === "entryDuplicate") {
+    divAlert.addClass('alert-duplicate').find(contentAlert).text('This user already exists');
   }
 
   divAlert.fadeIn(timeIn, "linear", function() {
@@ -51,12 +54,6 @@ function showAlert(cumple, timeIn, timeOut) {
   });
 
 }
-
-
-
-
-
-
 
 //////////// Valida longitud
 function validarLength(valor, minLength, maxLength) {
@@ -142,41 +139,130 @@ function validateForm(form) {
 }
 // NOTE: CONFIG CONSULTAS
 $.ajaxSetup({
-  url: 'procesar.php',
+  url: 'services/process.php',
   type: 'POST',
   async: true,
   error: function(response) {
     console.log('response', response);
-    showAlert(3, 1000, 3000);
+    showAlert("serverDown", 1000, 3000);
   }
 });
 
 //// NOTE: BUSCADOR
 
 var peticion;
-$('#searchAll').keypress(function() {
+var buttonSearch = $('#searchAll');
+
+buttonSearch.keypress(function() {
+  searchStudent($(this));
+});
+$('span.icon-search').click(function() {
+  searchStudent(buttonSearch);
+});
+
+function searchStudent(button) {
+
+  let value = button.val();
+  let input = button;
+
+
   clearTimeout(peticion);
   peticion = setTimeout(function() {
-    let data = $(this).serialize();
-
-    $.post("procesar.php", data, function(response) {
-
-      var jsonData = JSON.parse(response);
-      if (jsonData.success == "1") {
-
-        showAlert(1, 1000, 3000);
+    let data = 'idForm=serachEstu&' + input.serialize();
 
 
+
+    $.post("services/process.php", data, function(response) {
+      console.log(data);
+      var students = JSON.parse(response);;
+
+      if (students.success == "Error") {
+        showAlert("error", 1000, 3000);
+      } else if (students.success == "Don't exists") {
+        showAlert("error", 1000, 3000);
       } else {
-        showAlert(2, 1000, 3000);
+        console.log(students);
+        showStudents(students);
       }
     });
 
 
   }, 1000);
 
-});
 
+}
+
+function showStudents(students) {
+  $('#showStudents').empty();
+  $.each(students, function(id, student) {
+
+    // $.each(student, function(campo, value) {
+    //   if (value == null) {
+    //
+    //     value = " ";
+    //   }
+    //
+    //
+    // });
+
+    $('#showStudents').append(
+      `
+      <tr>
+        <td>${id+1}</td>
+        <td>${student.ndoc}</td>
+        <td>${student.tdoc_persona}</td>
+        <td>${student.nombre1} ${student.nombre2}</td>
+        <td>${student.apellido1} ${student.apellido2}</td>
+        <td class="table-options"><span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-plus"></span><span class="icon-bin"></span><?php } ?></td>
+      </tr>
+      `
+    );
+
+  });
+
+  optionsStudents();
+
+}
+
+function optionsStudents() {
+  ////Eliminar ESTUDIANTE
+
+  $('span.icon-bin').click(function() {
+
+    $('#modalDelete').fadeIn().css({
+      "display": "flex"
+    });
+  });
+
+  ////Mostrar INFO / EDITAR
+  $('span.icon-eye').click(function() {
+
+    let modalShow = $('#modalEditShow');
+    let inputs = modalShow.find('select,input');
+    let saveButtons = modalShow.find('.btn-submitModal');
+
+
+    modalShow.fadeIn().css({
+      "display": "flex"
+    });
+
+    inputs.attr('disabled', true);
+    saveButtons.hide();
+
+  });
+
+
+  ////NUEVA MATRICULA
+  $('span.icon-plus').click(function() {
+
+    let modalMatri = $('#modalMatricula');
+
+    modalMatri.fadeIn().css({
+      "display": "flex"
+    });
+
+  });
+}
 
 
 // NOTE: CONSULTA LOGIN
@@ -187,16 +273,16 @@ $('form#login').submit(function(event) {
   var data = formulario.serialize();
   console.log(data);
 
-  $.post("login.php?log=true", data, function(response) {
+  $.post("services/login.php?log=true", data, function(response) {
 
     var jsonData = JSON.parse(response);
-    if (jsonData.success == "1") {
+    if (jsonData.success == "Cool") {
 
-      showAlert(1, 1000, 3000);
+      showAlert("nice", 1000, 3000);
       location.href = 'home.php';
 
     } else {
-      showAlert(2, 1000, 3000);
+      showAlert("error", 1000, 3000);
     }
   });
 
@@ -204,12 +290,12 @@ $('form#login').submit(function(event) {
 
 // NOTE: LOG OUT
 $('#logOut').click(function() {
-  $.post("login.php?log=false", function(response) {
+  $.post("services/login.php?log=false", function(response) {
     var jsonData = JSON.parse(response);
-    if (jsonData.success == "1") {
+    if (jsonData.success == "Cool") {
       location.href = 'index.php';
     } else {
-      showAlert(2, 1000, 3000);
+      showAlert("error", 1000, 3000);
     }
   });
 });
@@ -266,16 +352,19 @@ function sendForm(form, closeModal = true) {
       success: function(response) {
         $(form).parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
-        if (jsonData.success == "1") {
+        if (jsonData.success == "Cool") {
 
           if (closeModal) {
             $(form).closest('.modal').fadeOut();
           }
           inputs.val('').removeClass('correcto');
-          showAlert(1, 1000, 3000);
+          showAlert("nice", 1000, 3000);
 
-        } else {
-          showAlert(2, 1000, 3000);
+        } else if (jsonData.success == "Error") {
+          showAlert("error", 1000, 3000);
+
+        } else if (jsonData.success == "Entry duplicate") {
+          showAlert("entryDuplicate", 1000, 3000);
         }
       },
     });

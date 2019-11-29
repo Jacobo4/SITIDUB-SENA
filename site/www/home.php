@@ -75,7 +75,8 @@
 
           </div>
           <?php } ?>
-          <div class="search-container icon-search">
+          <div class="search-container">
+            <span class="icon-search"></span>
             <input id="searchAll"class="input-form " type="text" name="searchAll" value="" placeholder="">
           </div>
         </div>
@@ -86,42 +87,15 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Curso</th>
-                <th>Acudiente</th>
+                <th>ID number</th>
+                <th>Means of ID</th>
+                <th>Names</th>
+                <th>Surnames</th>
                 <th>Options</th>
+                
               </tr>
             </thead>
-            <tbody>
-              <tr class="mostrarEstu">
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td class="table-options"><span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-plus"></span><span class="icon-bin"></span><?php } ?></td>
-              </tr>
-              <tr class="mostrarEstu">
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td class="table-options"><span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-plus"></span><span class="icon-bin"></span><?php } ?></td>
-              </tr>
-              <tr class="mostrarEstu">
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td class="table-options"><span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-plus"></span><span class="icon-bin"></span><?php } ?></td>
-              </tr>
+            <tbody id="showStudents">
             </tbody>
           </table>
         </div>
@@ -293,7 +267,7 @@
                 <input id="nombresEstu" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
               </div>
               <div class="col-12 col-sm-6">
-                <label for="apellidosEstu">Last names</label>
+                <label for="apellidosEstu">Surnames</label>
                 <input id="apellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
               </div>
               <div class="col-12 col-sm-6">
@@ -308,7 +282,9 @@
 
               <div class="col-12 col-sm-6">
                 <label for="lugarExpe">Expedition place</label>
-                <input id="lugarExpe" class="input-form" type="text" name="lugarExpe" placeholder="Lugar de expedición">
+                <select id="lugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
+
+                </select>
               </div>
 
               <div class="col-12 col-sm-6">
@@ -412,7 +388,7 @@
                 <input id="nombresRes" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
               </div>
               <div class="col-12 col-sm-6">
-                <label for="apellidosRes">Last names</label>
+                <label for="apellidosRes">Surnames</label>
                 <input id="apellidosRes" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
               </div>
               <div class="col-12 col-sm-6">

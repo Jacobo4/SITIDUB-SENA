@@ -20,18 +20,20 @@
 
   if ($data != "") {
     session_start();
+
     $_SESSION['username'] = $user;
     $_SESSION['rol'] = $data['desc_rol'];
-      echo json_encode(array('success' => 1));
+    
+      echo json_encode(array('success' => "Cool"));
   } else {
-      echo json_encode(array('success' => 0));
+      echo json_encode(array('success' => "Error"));
   }
 
 } else if($_REQUEST['log'] == 'false'){
 
     session_start();
     session_destroy();
-    echo json_encode(array('success' => 1));
+    echo json_encode(array('success' => "Cool"));
 
   }
 

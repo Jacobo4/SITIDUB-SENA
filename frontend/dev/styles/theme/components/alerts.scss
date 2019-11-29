@@ -21,14 +21,18 @@
   }
 
   &-error{
-    background: $rojo;
+    background: $cp4;
   }
   &-check{
-    background: $verdeOscuro;
+    background: $cp3;
   }
 
   &-server{
-    background: $amarillo;
+    background: $cp11;
     color: black;
+  }
+  &-duplicate{
+    background: $cp9;
+    color: white;
   }
 }

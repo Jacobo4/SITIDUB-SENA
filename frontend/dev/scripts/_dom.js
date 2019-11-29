@@ -63,7 +63,7 @@ $(document).ready(function() {
 
   });
 
-  ////Nueva matricula
+  ////NUEVO ESTUDIANTE
   $('#newStudent').click(function() {
 
     let modal = $('#modalNewStudent');
@@ -87,29 +87,7 @@ $(document).ready(function() {
     // $('.loading').fadeOut();
     $('.alert-container').fadeOut();
   });
-  ////Eliminar matricula
-  $('span.icon-bin').click(function() {
-    $('#modalDelete').fadeIn().css({
-      "display": "flex"
-    });
-  });
 
-  ////Mostrar INFO / EDITAR
-  $('span.icon-eye').click(function() {
-
-    let modalShow = $('#modalEditShow');
-    let inputs = modalShow.find('select,input');
-    let saveButtons = modalShow.find('.btn-submitModal');
-
-
-    modalShow.fadeIn().css({
-      "display": "flex"
-    });
-
-    inputs.attr('disabled', true);
-    saveButtons.hide();
-
-  });
 
   $('#btn-editStudent').click(function(){
     let modal = $(this).closest('.modal');
@@ -120,16 +98,6 @@ $(document).ready(function() {
   });
 
 
-  ////Mostrar matricula
-  $('span.icon-plus').click(function() {
-
-    let modalMatri = $('#modalMatricula');
-
-    modalMatri.fadeIn().css({
-      "display": "flex"
-    });
-
-  });
 
 
   //Tablas

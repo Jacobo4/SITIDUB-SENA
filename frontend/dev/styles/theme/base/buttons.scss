@@ -2,23 +2,23 @@ $filter1: brightness(1.2);
 $filter2: brightness(0.9);
 
 .error{
-  border: 1px solid $rojoClaro !important;
+  border: 1px solid $cp5 !important;
   box-sizing: border-box;
-  box-shadow: -5px 5px 0 $rojoClaro;
+  box-shadow: -5px 5px 0 $cp5;
   background: white !important;
 }
 
 .correcto{
-  border: 1px solid $verde !important;
+  border: 1px solid $cp2 !important;
   box-sizing: border-box;
-  box-shadow: -5px 5px 0 $verdeClaro;
+  box-shadow: -5px 5px 0 $cp3;
   background: white !important;
 }
 
 .yellow{
-  border: 1px solid $amarillo !important;
+  border: 1px solid $cp11 !important;
   box-sizing: border-box;
-  box-shadow: -5px 5px 0 $amarilloClaro;
+  box-shadow: -5px 5px 0 $cp12;
   background: white !important;
 }
 input[type=date]::-webkit-inner-spin-button {
@@ -41,7 +41,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  box-shadow: -5px 5px 0px $moradoClaro;
+  box-shadow: -5px 5px 0px $cp7;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -50,14 +50,14 @@ input,select{
   width: 100%;
   border-radius: 20px;
   border: 1px solid transparent;
-  box-shadow: -4px 4px 0px #c4a9fe;
+  box-shadow: -4px 4px 0px $cp8;
   &:hover,
   &:focus,
   &:active,
   &:visited{
-    border: 1px solid $morado;
+    border: 1px solid $cp9;
     box-sizing: border-box;
-    box-shadow: -5px 5px 0px $moradoClaro;
+    box-shadow: -5px 5px 0px $cp7;
   }
 }
 .select{
@@ -96,7 +96,7 @@ input,select{
 button{
   border: none;
   border-radius: 4px;
-  background: $morado;
+  background: $cp9;
   color: white;
   &:hover,
   &:focus,
@@ -141,7 +141,7 @@ button{
     div.custom-checkbox{
       font-size: 13px;
       background: white;
-      border: 1px solid $morado;
+      border: 1px solid $cp9;
       border-radius: 4px;
       width: 20px;
       height: 20px;
