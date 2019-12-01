@@ -180,14 +180,14 @@ CREATE TABLE IF NOT EXISTS parentescos (
 
 
 INSERT INTO rol (id, desc_rol) VALUES
-(null, 'Coordinador'),
+(null, 'Administrador'),
 (null, 'Tesorero'),
-(null, 'Secretario');
+(null, 'Coordinador');
 
 INSERT INTO users (id,id_rol, username, password, palabra_seguridad) VALUES
-(null,'1','admin', '123', 'oso'),
-(null,'2','tesor', '123', 'oso'),
-(null,'3','secretario', '123', 'oso');
+(null,'1','wilmer', 'admin123', 'oso'),
+(null,'2','juanjacobo', 'teso123', 'oso'),
+(null,'3','alvaro', 'coor123', 'oso');
 
 
 

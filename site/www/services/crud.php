@@ -1,3 +1,4 @@
+
 <?php
 
 $person = new Person;
@@ -49,13 +50,17 @@ class Person
       }
 
     }
-    public function showPerson($con,$tipoForm){
+    public function showPerson($con,$tipoForm,$rol){
 
+      $search = "";
+       if(!empty($_POST['searchAll'])){
+          $search =  RTRIM($_POST['searchAll']);
 
-       $search = "'".(!empty($_POST['searchAll'])) ? $_POST['searchAll'] : ""."'" ;
+       }
+
        $sql = "SELECT ndoc,tdoc_persona,nombre1,nombre2,apellido1,apellido2 from personas where
                ndoc like '%$search%' or
-               tdoc_persona like '%$search%' or
+               tdoc_persona like '%juan%' or
                nombre1 like '%$search%' or
                nombre2 like '%$search%' or
                apellido1 like '%$search%'or
@@ -68,11 +73,17 @@ class Person
        $error = $con->error;
 
 
+
        if($numRows > 0) {
          while( $row = $result->fetch_assoc()){
             $students[] = $row;
          }
-         echo json_encode($students,$asd);
+
+
+         $permiso = array('rol' => $rol );
+
+         $students[] = $permiso;
+         echo json_encode($students);
 
 
        } else if($numRows == 0){

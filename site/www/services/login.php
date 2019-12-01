@@ -23,7 +23,7 @@
 
     $_SESSION['username'] = $user;
     $_SESSION['rol'] = $data['desc_rol'];
-    
+
       echo json_encode(array('success' => "Cool"));
   } else {
       echo json_encode(array('success' => "Error"));

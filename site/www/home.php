@@ -1,30 +1,21 @@
+<?php include 'services/session.php' ?>
 
-<!DOCTYPE html>
-<?php
-  session_start();
-  if(!isset($_SESSION['username']) & !isset($_SESSION['rol'])  ){
-    header('Location: index.php');
-  }else{
-    $user = $_SESSION['username'];
-    $rol = $_SESSION['rol'];
-  }
+ <!DOCTYPE html>
 
- ?>
-<html>
+ <html>
 
-<head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta name="title" content="">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+ <head>
+   <title>Home</title>
+   <meta charset="utf-8">
+   <meta name="title" content="">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/vendors.css">
+   <link rel="stylesheet" href="assets/css/main.css">
+   <link rel="stylesheet" href="assets/css/vendors.css">
 
 
-</head>
-
+ </head>
 <body>
   <nav class="ctn-normal">
     <div class="row">
@@ -41,7 +32,7 @@
               <li><a href="">Home</a></li>
               <li><a href="">Pagina 2</a></li>
               <li><a href="">Pagina 3</a></li>
-              <li><button id="acountbtn">Acount</button></li>
+              <li><button id="acountbtn">Account</button></li>
             </ul>
           </div>
 
@@ -69,7 +60,7 @@
 
 
         <div class="ctn-normal options-container">
-          <?php if( $rol == 'Coordinador'){?>
+          <?php if( $rol == 'Administrador'){?>
           <div class="options-content">
             <button id="newStudent" class="alerta" type="button" name="button">New Student</button>
 
@@ -92,7 +83,8 @@
                 <th>Names</th>
                 <th>Surnames</th>
                 <th>Options</th>
-                
+
+
               </tr>
             </thead>
             <tbody id="showStudents">

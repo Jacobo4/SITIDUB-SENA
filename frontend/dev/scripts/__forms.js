@@ -35,6 +35,9 @@ function showAlert(cumple, timeIn, timeOut) {
 
   } else if (cumple === "entryDuplicate") {
     divAlert.addClass('alert-duplicate').find(contentAlert).text('This user already exists');
+
+  } else if (cumple === "dontExists") {
+    divAlert.addClass('alert-dontExists').find(contentAlert).text("This user don't exists");
   }
 
   divAlert.fadeIn(timeIn, "linear", function() {
@@ -153,11 +156,19 @@ $.ajaxSetup({
 var peticion;
 var buttonSearch = $('#searchAll');
 
+
 buttonSearch.keypress(function() {
-  searchStudent($(this));
+  let buttonValue = buttonSearch.val();
+
+  if(buttonValue.length > 0){
+    searchStudent(buttonSearch);
+  }
 });
 $('span.icon-search').click(function() {
-  searchStudent(buttonSearch);
+  let buttonValue = buttonSearch.val();
+  if(buttonValue.length > 0){
+    searchStudent(buttonSearch);
+  }
 });
 
 function searchStudent(button) {
@@ -166,54 +177,74 @@ function searchStudent(button) {
   let input = button;
 
 
-  clearTimeout(peticion);
-  peticion = setTimeout(function() {
-    let data = 'idForm=serachEstu&' + input.serialize();
+    clearTimeout(peticion);
+    peticion = setTimeout(function() {
+      let data = 'idForm=serachEstu&' + input.serialize();
 
-
-
-    $.post("services/process.php", data, function(response) {
       console.log(data);
-      var students = JSON.parse(response);;
-
-      if (students.success == "Error") {
-        showAlert("error", 1000, 3000);
-      } else if (students.success == "Don't exists") {
-        showAlert("error", 1000, 3000);
-      } else {
-        console.log(students);
-        showStudents(students);
-      }
-    });
+      $.post("services/process.php", data, function(response) {
+        // console.log(response);
+        var students = JSON.parse(response);
 
 
-  }, 1000);
 
+        if (students.success == "Error") {
+          showAlert("error", 1000, 3000);
+        } else if (students.success == "Don't exists") {
+          showAlert("dontExists", 1000, 3000);
+        } else {
+
+
+          showStudents(students);
+        }
+      });
+
+    }, 1000);
 
 }
 
 function showStudents(students) {
-  $('#showStudents').empty();
-  $.each(students, function(id, student) {
+  let rol = students.slice(-1)[0].rol;
+  let options = null;
 
-    // $.each(student, function(campo, value) {
-    //   if (value == null) {
-    //
-    //     value = " ";
-    //   }
-    //
-    //
-    // });
+
+  switch (rol) {
+    case 'Administrador':
+      options = `<span class="icon-eye"></span><span class="icon-plus"></span><span class="icon-bin"></span>`;
+      break;
+    case 'Coordinador':
+      options = `<span class="icon-eye"></span>`;
+      break;
+    default:
+
+  }
+
+  // NOTE: Delete the last element of the array cuz it's the rol
+  students.pop(-1);
+
+  $('#showStudents').empty();
+  $.each(students.slice(0), function(id, student) {
+
+
+    $.each(student, function(campo, value) {
+      if (value == null) {
+
+        value = " ";
+      }
+
+
+    });
+
 
     $('#showStudents').append(
       `
       <tr>
         <td>${id+1}</td>
-        <td>${student.ndoc}</td>
-        <td>${student.tdoc_persona}</td>
+        <td data-tdoc="${student.tdoc_persona}" >${student.tdoc_persona}</td>
+        <td data-student="${student.ndoc}">${student.ndoc}</td>
         <td>${student.nombre1} ${student.nombre2}</td>
         <td>${student.apellido1} ${student.apellido2}</td>
-        <td class="table-options"><span class="icon-eye"></span><?php if($rol === 'Coordinador'){ ?><span class="icon-plus"></span><span class="icon-bin"></span><?php } ?></td>
+        <td class="table-options">${options}</td>
       </tr>
       `
     );
@@ -240,6 +271,10 @@ function optionsStudents() {
     let modalShow = $('#modalEditShow');
     let inputs = modalShow.find('select,input');
     let saveButtons = modalShow.find('.btn-submitModal');
+    let numStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
+    let tdocStudent = $(this).closest('tr').find('td[data-tdoc]').attr('data-tdoc');
+
+    console.log(numStudent, tdocStudent);
 
 
     modalShow.fadeIn().css({
