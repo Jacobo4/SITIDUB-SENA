@@ -68,7 +68,7 @@
           <?php } ?>
           <div class="search-container">
             <span class="icon-search"></span>
-            <input id="searchAll"class="input-form " type="text" name="searchAll" value="" placeholder="">
+            <input id="searchAll"class="input-form " type="text" name="searchAll" value="" >
           </div>
         </div>
 
@@ -172,7 +172,7 @@
           </div>
 
           <h2>Are you sure?</h2>
-          <form id="delete" action="index.html" method="post">
+          <form id="deleteStudent" action="index.html" method="post">
             <div class="row justify-content-center">
               <div class="col-12 col-lg-6">
                 <label for="idDelete">Please digit again the student's id</label>
@@ -244,7 +244,7 @@
             <img src="assets/images/loader.gif" alt="loading..">
           </div>
 
-          <form id="estudiante" action="index.html" method="post">
+          <form id="insertStudent" action="index.html" method="post">
 
             <div class="row">
 
@@ -266,15 +266,17 @@
                 <label for="numIdentEstu">Identification number</label>
                 <input id="numIdentEstu" class="input-form numIdent" type="identification" name="numIdent" placeholder="1001065497">
                 <select id="tipoIdentEstu" class="select-form tipoIdent" type="select" name="tipoIdent">
-                  <option value="TI">TI</option>
-                  <option value="CC">CC</option>
-                  <option value="CE">CE</option>
+                  <option value="default">?</option>
+                  <option value="1">TI</option>
+                  <option value="2">CC</option>
+                  <option value="3">CE</option>
                 </select>
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="lugarExpe">Expedition place</label>
                 <select id="lugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
+                  <option value="default">Select a city</option>
 
                 </select>
               </div>
@@ -287,6 +289,7 @@
               <div class="col-12 col-sm-6">
                 <label for="lugarNaci">Birthplace</label>
                 <select id="lugarNaci" class="input-form citys "type="select" name="lugarNaci" placeholder="Birthplace">
+                  <option value="default">Select a city</option>
 
                 </select>
               </div>
@@ -313,12 +316,15 @@
 
               <div class="col-12 col-sm-6">
                 <label for="eps">EPS</label>
-                <input id="eps" class="input-form " type="text" name="eps" placeholder="EPS">
+                <select id="eps" class="input-form epss" type="select" name="eps">
+                  <option value="default">Select a</option>
+                </select>
               </div>
 
               <div class="col-6 col-sm-3 col-lg-2">
                 <label for="rh">Blood type</label>
                 <select id="rh" class="input-form bloodTypes" type="select" name="rh">
+                  <option value="default">?</option>
                 </select>
 
               </div>
@@ -326,6 +332,7 @@
               <div class="col-6 col-sm-3 col-lg-2">
                 <label for="estrato">Income Class</label>
                 <select id="estrato" class="select-form " type="select" name="estrato">
+                  <option value="default">?</option>
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -365,7 +372,7 @@
             <img src="assets/images/loader.gif" alt="loading..">
           </div>
 
-          <form id="responsable" action="index.html" method="post">
+          <form id="insertRelative" action="index.html" method="post">
 
             <div class="row">
 
@@ -387,9 +394,9 @@
                 <label for="numIdentRes">Identification number</label>
                 <input id="numIdentRes" class="input-form numIdent" type="identification" name="numIdent" placeholder="1001065497">
                 <select id="tipoIdentRes" class="select-form tipoIdent" type="select" name="tipoIdent">
-                  <option value="TI">TI</option>
-                  <option value="CC">CC</option>
-                  <option value="CE">CE</option>
+                  <option value="1">TI</option>
+                  <option value="2">CC</option>
+                  <option value="3">CE</option>
                 </select>
               </div>
 
@@ -473,25 +480,25 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editNombresEstu">Names</label>
-                <input id="editNombresEstu" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
+                <input id="editNombresEstu" class="input-form" type="text" name="nombres" "Alvaro Paraco">
               </div>
               <div class="col-12 col-sm-6">
-                <label for="editApellidosEstu">Last names</label>
-                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
+                <label for="editApellidosEstu">Surnames</label>
+                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos" "Uribe Velez">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="editNumIdentEstu">Identification number</label>
-                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent" placeholder="1001065497">
+                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent" "1001065497">
                 <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select" name="tipoIdent">
-                  <option value="TI">TI</option>
-                  <option value="CC">CC</option>
-                  <option value="CE">CE</option>
+                  <option value="1">TI</option>
+                  <option value="2">CC</option>
+                  <option value="3">CE</option>
                 </select>
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editLugarExpe">Expedition place</label>
-                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe" placeholder="Lugar de expedición">
+                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe" "Lugar de expedición">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -501,24 +508,24 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editLugarNaci">Birthplace</label>
-                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci" placeholder="Birthplace">
+                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci" "Birthplace">
 
                 </select>
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editDireccionEstu">Address</label>
-                <input id="editDireccionEstu" class="input-form" type="text" name="direccion" placeholder="Calle A">
+                <input id="editDireccionEstu" class="input-form" type="text" name="direccion" "Calle A">
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editEmailEstu">Email</label>
-                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
+                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email" "ej: jamespapasito@gmail.com">
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editTelResiEstu">Home's phone number</label>
-                <input id="editTelResiEstu" class="input-form" type="text" name="telResi" placeholder="3462116">
+                <input id="editTelResiEstu" class="input-form" type="text" name="telResi" "3462116">
               </div>
 
 
@@ -528,7 +535,9 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editEps">EPS</label>
-                <input id="editEps" class="input-form " type="text" name="eps" placeholder="EPS">
+                <select id="editEps" class="input-form epss" type="select" name="eps">
+                  <option value="default">Select a</option>
+                </select>
               </div>
 
               <div class="col-6 col-sm-3 col-lg-2 ">

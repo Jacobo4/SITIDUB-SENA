@@ -10,23 +10,36 @@
 
 
 switch ($tipoForm) {
-
- case 'estudiante':
+// NOTE: STUDENT CRUD
+ case 'insertStudent':
    $person->insertPerson($con,$tipoForm);
   break;
- case 'responsable':
+ case 'editStudent':
+   $person->editPerson($con,$tipoForm);
+  break;
+ case 'showStudentInfo':
+   $person->showStudentInfo($con,$rol);
+  break;
+ case 'deleteStudent':
+   $person->deleteStudent($con);
+  break;
+ case 'searchStudent':
+   $person->searchStudent($con,$rol);
+  break;
+
+
+ case 'insertRelative':
    $person->insertPerson($con,$tipoForm);
  break;
 
- case 'serachEstu':
- $person->showStudent($con,$rol);
-   break;
 
- case 'showStudentInfo':
 
- $person->showStudentInfo($con,$rol);
-   break;
+
+
+
+
  default:
+
    // code...
    break;
 }

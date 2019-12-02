@@ -59,7 +59,7 @@ function showAlert(cumple, timeIn, timeOut) {
 }
 
 //////////// Valida longitud
-function validarLength(valor, minLength, maxLength) {
+function validateLength(valor, minLength, maxLength) {
   if ((valor >= minLength) & (valor <= maxLength)) {
     return true;
   } else {
@@ -109,7 +109,7 @@ function validateForm(form) {
           break;
 
         case "identification":
-          if ((regExpNumber.test($(e).prop('value'))) & (validarLength(valorInput.length, 10, 10))) {
+          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 5, 10))) {
             pintarStilos($(e), 'valido');
           } else {
             pintarStilos($(e), 'error');
@@ -125,7 +125,7 @@ function validateForm(form) {
           break;
 
         case "select":
-          valorSelect != 1 ? pintarStilos($(e), 'valido') : pintarStilos($(e), 'error');
+          valorSelect != "default" ? pintarStilos($(e), 'valido') : pintarStilos($(e), 'error');
           break;
       }
       total = total + cumple;
@@ -179,14 +179,12 @@ function searchStudent(button) {
 
   clearTimeout(peticion);
   peticion = setTimeout(function() {
-    let data = 'idForm=serachEstu&' + input.serialize();
+    let data = 'idForm=searchStudent&' + input.serialize();
 
     console.log(data);
     $.post("services/process.php", data, function(response) {
       // console.log(response);
       var students = JSON.parse(response);
-
-
 
       if (students.success == "Error") {
         showAlert("error", 1000, 3000);
@@ -239,9 +237,9 @@ function showStudents(students) {
     $('#showStudents').append(
       `
       <tr>
-        <td>${id+1}</td>
-        <td data-tdoc="${student.tdoc_persona}" >${student.tdoc_persona}</td>
-        <td data-student="${student.ndoc}">${student.ndoc}</td>
+        <td data-student="${student.id}">${id+1}</td>
+        <td>${student.descripcion_tdoc}</td>
+        <td data-ndoc="${student.ndoc}">${student.ndoc}</td>
         <td>${student.nombre1} ${student.nombre2}</td>
         <td>${student.apellido1} ${student.apellido2}</td>
         <td class="table-options">${options}</td>
@@ -260,58 +258,95 @@ function optionsStudents() {
 
   $('span.icon-bin').click(function() {
 
-    $('#modalDelete').fadeIn().css({
+    let modalDelete = $('#modalDelete');
+    let inputModal = modalDelete.find('input');
+    let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
+    let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');;
+
+    inputModal.attr('data-student', idStudent);
+    inputModal.attr('data-ndoc', numDocStudent);
+
+    modalDelete.fadeIn().css({
       "display": "flex"
     });
+    // modalDelete.find('input').attr('data-student',)
   });
 
   ////Mostrar INFO / EDITAR
   $('span.icon-eye').click(function() {
 
     let modalShow = $('#modalEditShow');
-    let numStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
-    let tdocStudent = $(this).closest('tr').find('td[data-tdoc]').attr('data-tdoc');
+    let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
 
-    let data = `idForm=showStudentInfo&numIdent=${numStudent}&tipoIdent=${tdocStudent}`;
+    let data = `idForm=showStudentInfo&idStudent=${idStudent}`;
 
-    console.log(data);
+    console.log('lo que envio ', data);
     $.post("services/process.php", data, function(response) {
-      // console.log(response);
+      console.log('response student', response);
       var studentInfo = JSON.parse(response);
+
+
+
 
       if (studentInfo.success == "Error") {
         showAlert("error", 1000, 3000);
       } else if (studentInfo.success == "Don't exists") {
         showAlert("dontExists", 1000, 3000);
       } else {
-        showStudentInfo(studentInfo,modalShow);
+        showStudentInfo(studentInfo, modalShow);
       }
     });
 
 
 
-
-
   });
 
-  function showStudentInfo(studentInfo,modalShow) {
+  function showStudentInfo(studentInfo, modalShow) {
 
-    modalShow.fadeIn().css({
-      "display": "flex"
-    });
+    console.table(studentInfo[0]);
 
     let inputs = modalShow.find('select,input');
     let saveButtons = modalShow.find('.btn-submitModal');
 
+    var studentInputs = {
+      tittle: $('#personName'),
+      names: $('#editNombresEstu'),
+      surnames: $('#editApellidosEstu'),
+      numIdent: $('#editNumIdentEstu'),
+      tdoc: $('#editTipoIdentEstu'),
+      expeditionPlace: $('#editLugarExpe'),
+      birthdate: $('#editFechaNaci'),
+      birthplace: $('#editLugarNaci'),
+      address: $('#editDireccionEstu'),
+      email: $('#editEmailEstu'),
+      tel1: $('#editTelResiEstu'),
+      eps: $('#editEps'),
+      rh: $('#editRh'),
+      income: $('#editEstrato')
+    }
+    modalShow.fadeIn().css({
+      "display": "flex"
+    });
     inputs.attr('disabled', true);
     saveButtons.hide();
+    studentInputs.tittle.attr(`data-student`, studentInfo[0].id);
+    studentInputs.tittle.text(`${studentInfo[0].nombre1} ${studentInfo[0].nombre2} ${studentInfo[0].apellido1} ${studentInfo[0].apellido2}`);
+    studentInputs.names.val(`${studentInfo[0].nombre1} ${studentInfo[0].nombre2}`);
+    studentInputs.surnames.val(`${studentInfo[0].apellido1} ${studentInfo[0].apellido2}`);
+    studentInputs.numIdent.val(`${studentInfo[0].ndoc}`);
+    studentInputs.tdoc.val(`${studentInfo[0].tdoc_persona}`);
+    studentInputs.expeditionPlace.val(`${studentInfo[0].lugar_expedicion}`);
+    studentInputs.birthdate.val(`${studentInfo[0].fecha_nacimiento}`);
+    studentInputs.birthplace.val(`${studentInfo[0].lugar_nacimiento}`);
+    studentInputs.address.val(`${studentInfo[0].direccion}`);
+    studentInputs.email.val(`${studentInfo[0].email}`);
+    studentInputs.tel1.val(`${studentInfo[0].tel1}`);
+    studentInputs.eps.val(`${studentInfo[0].eps}`);
+    studentInputs.rh.val(`${studentInfo[0].rh}`);
+    studentInputs.income.val(`${studentInfo[0].estrato}`);
 
-    $.each(inputs,function(key,value){
 
-    });
 
-    let tittle = studentInfo[0].nombre1;
-    $('#personName').text(tittle);
 
 
   }
@@ -370,43 +405,111 @@ $('#logOut').click(function() {
 
 // NOTE: CONSULTA EDIT
 $('form.edit').submit(function(event) {
-  sendForm(this, false);
-});
+  let form = this;
+  let modal = $(form).closest('.modal');
+  let idForm = $(form).attr('id');
+  let idStudent = $('#personName').attr('data-student');
+  let inputs = $(form).find('input');
+  let selects = $(form).find('select');
+  var data = $(form).serialize();
 
+
+  if (validateForm(form)) {
+
+    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+
+    console.log(data);
+    $.ajax({
+      data: data,
+      beforeSend: function() {
+        $(form).parent().find('.loading').show();
+      },
+      success: function(response) {
+        $(form).parent().find('.loading').fadeOut(1000);
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "Cool") {
+          modal.fadeOut();
+          showAlert("nice", 1000, 3000);
+
+        } else if (jsonData.success == "Error") {
+          showAlert("error", 1000, 3000);
+
+        }
+      },
+    });
+  }
+});
+// NOTE: CONSULTA NUEVA MATRICULA
+$('form#matricula').submit(function(event) {
+  insertPerson(this);
+});
 // NOTE: CONSULTA EDITAR USERNAME
 $('form#editUsername').submit(function(event) {
-  sendForm(this, false);
+  insertPerson(this, false);
 });
 
 // NOTE: CONSULTA EDITAR PASSWORD
 $('form#editPassword').submit(function(event) {
-  sendForm(this, false);
+  insertPerson(this, false);
 });
 
 // NOTE: CONSULTA NUEVO ESTUDIANTE
-$('form#estudiante').submit(function(event) {
-  sendForm(this);
+$('form#insertStudent').submit(function(event) {
+  insertPerson(this);
 }); // NOTE: CONSULTA NUEVO RESPONSABLE
-$('form#responsable').submit(function(event) {
-  sendForm(this);
+$('form#insertRelative').submit(function(event) {
+  insertPerson(this);
 });
 // NOTE: CONSULTA ELIMINAR
-$('form#delete').submit(function(event) {
-  sendForm(this);
-});
-// NOTE: CONSULTA NUEVA MATRICULA
-$('form#matricula').submit(function(event) {
-  sendForm(this);
+$('form#deleteStudent').submit(function(event) {
+  event.preventDefault();
+  let modal = $(this).closest('.modal');
+  let idForm = $(this).attr('id');
+  let input = $(this).find('input');
+  let idStudent = input.attr('data-student');
+  let ndocStudent = input.attr('data-ndoc');
+
+  if (input.val() !== ndocStudent) {
+    pintarStilos($(input), 'error');
+  } else {
+
+    pintarStilos($(input), 'valido');
+
+    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(this).serialize()}`;
+
+    console.log(data);
+    $.ajax({
+      data: data,
+      beforeSend: function() {
+        $(this).parent().find('.loading').show();
+      },
+      success: function(response) {
+        $(this).parent().find('.loading').fadeOut(1000);
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "Cool") {
+          modal.fadeOut();
+          showAlert("nice", 1000, 3000);
+        } else if (jsonData.success == "Error") {
+          showAlert("error", 1000, 3000);
+        }
+      },
+    });
+
+  }
+
+
 });
 
-function sendForm(form, closeModal = true) {
+
+function insertPerson(form, closeModal = true) {
 
   let idForm = $(form).attr('id');
-  let inputs = $(form).find('input,select');
+  let inputs = $(form).find('input');
+  let selects = $(form).find('select');
 
   if (validateForm(form)) {
 
-    var data = 'idForm=' + idForm + '&' + $(form).serialize();
+    var data = `idForm=${idForm}&${$(form).serialize()}`;
     console.log(data);
 
     $.ajax({
@@ -423,12 +526,14 @@ function sendForm(form, closeModal = true) {
             $(form).closest('.modal').fadeOut();
           }
           inputs.val('').removeClass('correcto');
+          selects.val('default').removeClass('correcto');
           showAlert("nice", 1000, 3000);
 
         } else if (jsonData.success == "Error") {
           showAlert("error", 1000, 3000);
 
         } else if (jsonData.success == "Entry duplicate") {
+
           showAlert("entryDuplicate", 1000, 3000);
         }
       },
@@ -462,6 +567,22 @@ $.getJSON('assets/json/bloodTypes.json', function(data) {
 
   $.each(data, function(key) {
     options.push("<option value='" + key + "'>" + key + "</option>");
+  })
+
+  for (var i = 0; i < options.length; i++) {
+    select.append(options[i]);
+  }
+
+});
+
+$.getJSON('assets/json/eps.json', function(data) {
+
+  var options = [];
+  let select = $('select.epss');
+
+  $.each(data, function(key, eps) {
+
+    options.push("<option value='" + eps.name + "'>" + eps.name + "</option>");
   })
 
   for (var i = 0; i < options.length; i++) {

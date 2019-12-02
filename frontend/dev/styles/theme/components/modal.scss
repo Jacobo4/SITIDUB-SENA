@@ -103,6 +103,11 @@
 }
 
 #modalEditShow{
+  .modal-tittle{
+    h1{
+      font-size: 35px;
+    }
+  }
   .modal-body{
     form{
       button[type="submit"]{

@@ -1,9 +1,9 @@
 
 -- -----------------------------------------------------
 -- -- Schema -- -----------------------------------------------------
--- drop database if exists proyecto;
--- CREATE SCHEMA IF NOT EXISTS proyecto;
--- USE proyecto;
+drop database if exists proyecto;
+CREATE SCHEMA IF NOT EXISTS proyecto;
+USE proyecto;
 
 -- -----------------------------------------------------
 -- Table rol
@@ -36,8 +36,9 @@ CREATE TABLE IF NOT EXISTS users (
 -- Table tipos_documentos
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS tipos_documentos (
-  des_tipoDocumento VARCHAR(5) NOT NULL,
-  PRIMARY KEY (des_tipoDocumento));
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion_tdoc VARCHAR(5) NOT NULL,
+  PRIMARY KEY (id));
 
 
 -- -----------------------------------------------------
@@ -49,70 +50,56 @@ CREATE TABLE IF NOT EXISTS observaciones (
   PRIMARY KEY (id));
 
 
--- -----------------------------------------------------
--- Table eps
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS eps (
-  des_eps VARCHAR(30) NOT NULL,
-  PRIMARY KEY (des_eps));
 
-
--- -----------------------------------------------------
--- Table personas
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS personas (
   id INT NOT NULL AUTO_INCREMENT,
   ndoc VARCHAR(12) NOT NULL,
-  tdoc_persona VARCHAR(5) NOT NULL,
+  tdoc_persona INT NOT NULL,
   tipo_persona VARCHAR(45) NOT NULL,
   nombre1 VARCHAR(30) NOT NULL,
   nombre2 VARCHAR(30) NULL DEFAULT NULL,
   apellido1 VARCHAR(30) NOT NULL,
   apellido2 VARCHAR(30) NULL DEFAULT NULL,
-  lugar_expedicion VARCHAR(45) NULL DEFAULT NULL,
-  lugar_nacimiento VARCHAR(45) NULL DEFAULT NULL,
-  fecha_nacimiento DATE NULL DEFAULT NULL,
+  lugar_expedicion VARCHAR(45) NOT NULL,
+  lugar_nacimiento VARCHAR(45) NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
   direccion VARCHAR(45) NOT NULL,
   email VARCHAR(50) NOT NULL,
   id_observacion INT NULL DEFAULT NULL,
   tel1 VARCHAR(12) NOT NULL,
   tel2 VARCHAR(12) NULL DEFAULT NULL,
   tel3 VARCHAR(12) NULL DEFAULT NULL,
-  ocupacion VARCHAR(35) NULL,
-  profesion VARCHAR(35) NULL,
-  rh VARCHAR(5) NULL,
-  estrato INT NULL,
-  eps_des_eps VARCHAR(30) NULL,
+  ocupacion VARCHAR(35) NULL DEFAULT NULL,
+  profesion VARCHAR(35) NULL DEFAULT NULL,
+  rh VARCHAR(5) NULL DEFAULT NULL,
+  estrato INT NULL DEFAULT NULL,
+  eps VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (id),
-  UNIQUE INDEX ndoc_tdoc_UNIQUE (ndoc, tdoc_persona ASC),
-  CONSTRAINT fk_tbl_persona_tbl_tipoDocumento1
-    FOREIGN KEY (tdoc_persona)
-    REFERENCES tipos_documentos (des_tipoDocumento)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    UNIQUE INDEX ndoc_tdoc_UNIQUE (ndoc, tdoc_persona ASC),
   CONSTRAINT fk_tbl_persona_tbl_observaciones1
     FOREIGN KEY (id_observacion)
     REFERENCES observaciones (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT fk_personas_eps1
-    FOREIGN KEY (eps_des_eps)
-    REFERENCES eps (des_eps)
+  CONSTRAINT fk_personas_tipos_documentos1
+    FOREIGN KEY (tdoc_persona)
+    REFERENCES tipos_documentos (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
-
 
 -- -----------------------------------------------------
 -- Table matriculas
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS matriculas (
   id INT NOT NULL AUTO_INCREMENT,
+  descripcion_matricula VARCHAR(12) NOT NULL,
   fecha_inicial DATE NOT NULL,
   fecha_final DATE NULL DEFAULT NULL,
   estado TINYINT NOT NULL,
   grado VARCHAR(15) NULL DEFAULT NULL,
   id_persona INT NOT NULL,
   PRIMARY KEY (id),
+  UNIQUE INDEX descripcion_matriculas_UNIQUE (descripcion_matricula ASC),
   CONSTRAINT fk_matriculas_personas1
     FOREIGN KEY (id_persona)
     REFERENCES personas (id)
@@ -189,24 +176,17 @@ INSERT INTO users (id,id_rol, username, password, palabra_seguridad) VALUES
 (null,'2','juanjacobo', 'teso123', 'oso'),
 (null,'3','alvaro', 'coor123', 'oso');
 
+INSERT INTO tipos_documentos (id,descripcion_tdoc) VALUES
+(null,'TI'),
+(null,'CC'),
+(null,'CE');
 
 
-
-INSERT INTO tipos_documentos (des_tipoDocumento) VALUES
-('CC'),
-('CE'),
-('TI');
-
-INSERT INTO eps (des_eps) VALUES
-('Compensar'),
-('Sanitas'),
-('ASAAP');
-
-INSERT INTO personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps_des_eps) VALUES
-(null, '1001097692', 'TI', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar'),
-(null, '1001097693', 'TI', 'estudiante', 'Camila', null, 'Izquierdo', 'Camacho', 'Bogotá', 'Bogotá', '2001-07-18', 'Calle A', 'camila@gmail.com', null, 369874521, null, null, null, null, 'A+', '3', 'Sanitas'),
-(null, '3546976', 'CC', 'responsable', 'Adelaida', null, 'Becerra', 'Cano', 'Bogotá', 'Bogotá', '1956-03-28', 'Calle A', 'adeliada@gmail.com', null, 3154207893, null, null, null, null, 'O-', '3', 'Compensar'),
-(null, '1001097692', 'CE', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar');
+INSERT INTO personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps) VALUES
+(null, '1001097692', '1', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar'),
+(null, '1001097693', '1', 'estudiante', 'Camila', null, 'Izquierdo', 'Camacho', 'Bogotá', 'Bogotá', '2001-07-18', 'Calle A', 'camila@gmail.com', null, 369874521, null, null, null, null, 'A+', '3', 'Sanitas'),
+(null, '3546976', '2', 'responsable', 'Adelaida', null, 'Becerra', 'Cano', 'Bogotá', 'Bogotá', '1956-03-28', 'Calle A', 'adeliada@gmail.com', null, 3154207893, null, null, null, null, 'O-', '3', 'Compensar'),
+(null, '1001097692', '3', 'estudiante', 'Juan', 'Jacobo', 'Izquierdo', 'Becerra', 'Bogotá', 'Bogotá', '2001-03-28', 'Calle A', 'jacobo@gmail.com', null, 3058194685, 313202902, null, null, null, 'O+', '3', 'Compensar');
 
 
 INSERT INTO parentescos (parentesco, id_estudiante, id_acudiente) VALUES
@@ -214,9 +194,9 @@ INSERT INTO parentescos (parentesco, id_estudiante, id_acudiente) VALUES
 ('tia', '2', '3');
 
 
-INSERT INTO matriculas (id, fecha_inicial, fecha_final, estado, grado, id_persona) VALUES
-(null, '2018-02-24', null, '1', 'octavo', '1'),
-(null, '2018-02-24', null, '1', 'septimo', '2');
+INSERT INTO matriculas (id, descripcion_matricula, fecha_inicial, fecha_final, estado, grado, id_persona) VALUES
+(null, 'ESTU-1','2018-02-24', null, '1', 'octavo', '1'),
+(null, 'ESTU-2','2018-02-24', null, '1', 'septimo', '2');
 
 
 INSERT INTO cuotas (id, mes, valor, saldo, id_matricula) VALUES
