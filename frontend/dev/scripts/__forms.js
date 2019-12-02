@@ -160,13 +160,13 @@ var buttonSearch = $('#searchAll');
 buttonSearch.keypress(function() {
   let buttonValue = buttonSearch.val();
 
-  if(buttonValue.length > 0){
+  if (buttonValue.length > 0) {
     searchStudent(buttonSearch);
   }
 });
 $('span.icon-search').click(function() {
   let buttonValue = buttonSearch.val();
-  if(buttonValue.length > 0){
+  if (buttonValue.length > 0) {
     searchStudent(buttonSearch);
   }
 });
@@ -177,29 +177,29 @@ function searchStudent(button) {
   let input = button;
 
 
-    clearTimeout(peticion);
-    peticion = setTimeout(function() {
-      let data = 'idForm=serachEstu&' + input.serialize();
+  clearTimeout(peticion);
+  peticion = setTimeout(function() {
+    let data = 'idForm=serachEstu&' + input.serialize();
 
-      console.log(data);
-      $.post("services/process.php", data, function(response) {
-        // console.log(response);
-        var students = JSON.parse(response);
-
-
-
-        if (students.success == "Error") {
-          showAlert("error", 1000, 3000);
-        } else if (students.success == "Don't exists") {
-          showAlert("dontExists", 1000, 3000);
-        } else {
+    console.log(data);
+    $.post("services/process.php", data, function(response) {
+      // console.log(response);
+      var students = JSON.parse(response);
 
 
-          showStudents(students);
-        }
-      });
 
-    }, 1000);
+      if (students.success == "Error") {
+        showAlert("error", 1000, 3000);
+      } else if (students.success == "Don't exists") {
+        showAlert("dontExists", 1000, 3000);
+      } else {
+
+
+        showStudents(students);
+      }
+    });
+
+  }, 1000);
 
 }
 
@@ -269,22 +269,52 @@ function optionsStudents() {
   $('span.icon-eye').click(function() {
 
     let modalShow = $('#modalEditShow');
-    let inputs = modalShow.find('select,input');
-    let saveButtons = modalShow.find('.btn-submitModal');
     let numStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
     let tdocStudent = $(this).closest('tr').find('td[data-tdoc]').attr('data-tdoc');
 
-    console.log(numStudent, tdocStudent);
+    let data = `idForm=showStudentInfo&numIdent=${numStudent}&tipoIdent=${tdocStudent}`;
 
+    console.log(data);
+    $.post("services/process.php", data, function(response) {
+      // console.log(response);
+      var studentInfo = JSON.parse(response);
+
+      if (studentInfo.success == "Error") {
+        showAlert("error", 1000, 3000);
+      } else if (studentInfo.success == "Don't exists") {
+        showAlert("dontExists", 1000, 3000);
+      } else {
+        showStudentInfo(studentInfo,modalShow);
+      }
+    });
+
+
+
+
+
+  });
+
+  function showStudentInfo(studentInfo,modalShow) {
 
     modalShow.fadeIn().css({
       "display": "flex"
     });
 
+    let inputs = modalShow.find('select,input');
+    let saveButtons = modalShow.find('.btn-submitModal');
+
     inputs.attr('disabled', true);
     saveButtons.hide();
 
-  });
+    $.each(inputs,function(key,value){
+
+    });
+
+    let tittle = studentInfo[0].nombre1;
+    $('#personName').text(tittle);
+
+
+  }
 
 
   ////NUEVA MATRICULA

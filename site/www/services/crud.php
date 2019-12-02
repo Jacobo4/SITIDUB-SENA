@@ -50,27 +50,27 @@ class Person
       }
 
     }
-    public function showPerson($con,$tipoForm,$rol){
+    public function showStudent($con,$rol){
 
-      $search = "";
-       if(!empty($_POST['searchAll'])){
-          $search =  RTRIM($_POST['searchAll']);
 
-       }
+      $search = !empty($_POST['searchAll']) ? RTRIM($_POST['searchAll']) : "";
 
-       $sql = "SELECT ndoc,tdoc_persona,nombre1,nombre2,apellido1,apellido2 from personas where
-               ndoc like '%$search%' or
+
+      $sql = "SELECT ndoc,tdoc_persona,nombre1,nombre2,apellido1,apellido2 from personas where
+               (ndoc like '%$search%' or
                tdoc_persona like '%juan%' or
                nombre1 like '%$search%' or
                nombre2 like '%$search%' or
                apellido1 like '%$search%'or
-               apellido2 like '%$search%'
+               apellido2 like '%$search%' )and
+               tipo_persona = 'estudiante'
                ORDER BY apellido1 ASC";
 
        $con->query($sql);
        $result = $con->query($sql);
        $numRows = $result->num_rows;
        $error = $con->error;
+
 
 
 
@@ -92,6 +92,47 @@ class Person
          echo json_encode(array('success' => "error",
                                 'desc'=> $error));
        }
+
+
+    }
+    public function showStudentInfo($con,$rol){
+
+
+
+      $numIdent    = !empty($_POST['numIdent'])     ?  $_POST['numIdent']      : "" ;
+      $tipoIdent   = !empty($_POST['tipoIdent'])    ?  $_POST['tipoIdent']     : "" ;
+
+
+      $sql = "SELECT * from personas where ndoc = '$numIdent' and tdoc_persona = '$tipoIdent' ";
+
+             $con->query($sql);
+             $result = $con->query($sql);
+             $numRows = $result->num_rows;
+             $error = $con->error;
+
+
+
+
+             if($numRows > 0) {
+               while( $row = $result->fetch_assoc()){
+                  $students[] = $row;
+               }
+
+
+               $permiso = array('rol' => $rol );
+
+               $students[] = $permiso;
+               echo json_encode($students);
+
+
+             } else if($numRows == 0){
+               echo json_encode(array('success' => "Don't exists"));
+             } else {
+               echo json_encode(array('success' => "error",
+                                      'desc'=> $error));
+             }
+
+
 
 
     }

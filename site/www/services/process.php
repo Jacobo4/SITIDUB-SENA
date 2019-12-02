@@ -5,6 +5,7 @@
   include 'crud.php';
 
   $tipoForm = $_POST['idForm'];
+
   $cumple = 0;
 
 
@@ -18,10 +19,12 @@ switch ($tipoForm) {
  break;
 
  case 'serachEstu':
+ $person->showStudent($con,$rol);
+   break;
 
- $usera = $_SESSION['username'];
- $person->showPerson($con,$tipoForm,$rol);
+ case 'showStudentInfo':
 
+ $person->showStudentInfo($con,$rol);
    break;
  default:
    // code...

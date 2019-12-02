@@ -447,7 +447,7 @@
       <div class="modal-container ">
 
         <div class="modal-tittle ctn-normal">
-          <h1 id="personName">Student's name</h1>
+          <h1 id="personName"></h1>
           <div class="showOptions">
             <button id="btn-editStudent" class="btn" type="button" name="button">Edit student's info</button>
             <button id="addRelative" type="button" name="button">Add relative</button>
