@@ -257,7 +257,7 @@ function showStudents(students) {
 
   switch (rol) {
     case 'Administrador':
-      options = `<span class="icon-eye"></span><span class="icon-plus"></span><span class="icon-bin"></span>`;
+      options = `<span class="icon-eye"></span><span class="iconplus"></span><span class="icon-bin"></span>`;
       break;
     case 'Coordinador':
       options = `<span class="icon-eye"></span>`;
