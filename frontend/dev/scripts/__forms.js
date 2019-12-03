@@ -67,6 +67,18 @@ function validateLength(valor, minLength, maxLength) {
   }
 }
 
+//////////// remove class corecto on formularios
+function emptyClass(form){
+
+  let selects = $(form).find('select');
+  let inputs = $(form).find('input');
+
+
+  selects.val('default').removeClass('correcto');
+  inputs.val('').removeClass('correcto');
+
+}
+
 function validateForm(form) {
 
   event.preventDefault();
@@ -150,6 +162,43 @@ $.ajaxSetup({
     showAlert("serverDown", 1000, 3000);
   }
 });
+// NOTE: LOG OUT
+$('#logOut').click(function() {
+  $.post("services/login.php?log=false", function(response) {
+    var jsonData = JSON.parse(response);
+    if (jsonData.success == "Cool") {
+      location.href = 'index.php';
+    } else {
+      showAlert("error", 1000, 3000);
+    }
+  });
+});
+
+// NOTE: CONSULTA LOGIN
+$('form#login').submit(function(event) {
+  event.preventDefault();
+
+  let formulario = $(this);
+  let data = formulario.serialize();
+  console.log(data);
+
+  formulario.parent().find('.loading').show();
+
+  $.post("services/login.php?log=true", data, function(response) {
+    formulario.parent().find('.loading').hide();
+    let jsonData = JSON.parse(response);
+    if (jsonData.success == "Cool") {
+
+      showAlert("nice", 1000, 3000);
+      location.href = 'home.php';
+
+    } else {
+      showAlert("error", 1000, 3000);
+    }
+  });
+
+});
+
 
 //// NOTE: BUSCADOR
 
@@ -224,14 +273,12 @@ function showStudents(students) {
   $.each(students.slice(0), function(id, student) {
 
 
-    $.each(student, function(campo, value) {
-      if (value == null) {
-
-        value = " ";
-      }
-
-
-    });
+    // $.each(student, function(campo, value) {
+    //   if (value == null) {
+    //
+    //     value = " ";
+    //   }
+    // });
 
 
     $('#showStudents').append(
@@ -284,9 +331,6 @@ function optionsStudents() {
     $.post("services/process.php", data, function(response) {
       console.log('response student', response);
       var studentInfo = JSON.parse(response);
-
-
-
 
       if (studentInfo.success == "Error") {
         showAlert("error", 1000, 3000);
@@ -345,10 +389,6 @@ function optionsStudents() {
     studentInputs.rh.val(`${studentInfo[0].rh}`);
     studentInputs.income.val(`${studentInfo[0].estrato}`);
 
-
-
-
-
   }
 
 
@@ -356,50 +396,20 @@ function optionsStudents() {
   $('span.icon-plus').click(function() {
 
     let modalMatri = $('#modalMatricula');
+    let inputModal = modalMatri.find('input#numMatri');
+    let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
+    let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');
 
     modalMatri.fadeIn().css({
       "display": "flex"
     });
 
+
+    inputModal.attr('data-student', idStudent);
+    inputModal.attr('data-ndoc', numDocStudent);
+
   });
 }
-
-
-// NOTE: CONSULTA LOGIN
-$('form#login').submit(function(event) {
-  event.preventDefault();
-
-  var formulario = $(this);
-  var data = formulario.serialize();
-  console.log(data);
-
-  $.post("services/login.php?log=true", data, function(response) {
-
-    var jsonData = JSON.parse(response);
-    if (jsonData.success == "Cool") {
-
-      showAlert("nice", 1000, 3000);
-      location.href = 'home.php';
-
-    } else {
-      showAlert("error", 1000, 3000);
-    }
-  });
-
-});
-
-// NOTE: LOG OUT
-$('#logOut').click(function() {
-  $.post("services/login.php?log=false", function(response) {
-    var jsonData = JSON.parse(response);
-    if (jsonData.success == "Cool") {
-      location.href = 'index.php';
-    } else {
-      showAlert("error", 1000, 3000);
-    }
-  });
-});
-
 
 
 
@@ -429,6 +439,7 @@ $('form.edit').submit(function(event) {
         var jsonData = JSON.parse(response);
         if (jsonData.success == "Cool") {
           modal.fadeOut();
+          emptyClass(form);
           showAlert("nice", 1000, 3000);
 
         } else if (jsonData.success == "Error") {
@@ -440,8 +451,36 @@ $('form.edit').submit(function(event) {
   }
 });
 // NOTE: CONSULTA NUEVA MATRICULA
-$('form#matricula').submit(function(event) {
-  insertPerson(this);
+$('form#insertMatricula').submit(function(event) {
+  event.preventDefault();
+  let form = this;
+  let modal = $(this).closest('.modal');
+  let idForm = $(this).attr('id');
+  let input = $(this).find('input');
+  let idStudent = input.attr('data-student');
+
+  if (validateForm(this)) {
+    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+
+    console.log(data);
+    $.ajax({
+      data: data,
+      beforeSend: function() {
+        $(form).parent().find('.loading').show();
+      },
+      success: function(response) {
+        $(form).parent().find('.loading').fadeOut(1000);
+        var jsonData = JSON.parse(response);
+        if (jsonData.success == "Cool") {
+          modal.fadeOut();
+          emptyClass(form);
+          showAlert("nice", 1000, 3000);
+        } else if (jsonData.success == "Error") {
+          showAlert("error", 1000, 3000);
+        }
+      },
+    });
+  }
 });
 // NOTE: CONSULTA EDITAR USERNAME
 $('form#editUsername').submit(function(event) {
@@ -463,11 +502,14 @@ $('form#insertRelative').submit(function(event) {
 // NOTE: CONSULTA ELIMINAR
 $('form#deleteStudent').submit(function(event) {
   event.preventDefault();
+  let form = this;
   let modal = $(this).closest('.modal');
   let idForm = $(this).attr('id');
   let input = $(this).find('input');
   let idStudent = input.attr('data-student');
   let ndocStudent = input.attr('data-ndoc');
+  let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
+
 
   if (input.val() !== ndocStudent) {
     pintarStilos($(input), 'error');
@@ -475,19 +517,25 @@ $('form#deleteStudent').submit(function(event) {
 
     pintarStilos($(input), 'valido');
 
-    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(this).serialize()}`;
+    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
     console.log(data);
     $.ajax({
       data: data,
       beforeSend: function() {
-        $(this).parent().find('.loading').show();
+        $(form).parent().find('.loading').show();
       },
       success: function(response) {
-        $(this).parent().find('.loading').fadeOut(1000);
+
+        $(form).parent().find('.loading').fadeOut(1000);
         var jsonData = JSON.parse(response);
+
         if (jsonData.success == "Cool") {
+          console.log(trStudent);
+
+          trStudent.remove();
           modal.fadeOut();
+          emptyClass(form);
           showAlert("nice", 1000, 3000);
         } else if (jsonData.success == "Error") {
           showAlert("error", 1000, 3000);
@@ -504,8 +552,7 @@ $('form#deleteStudent').submit(function(event) {
 function insertPerson(form, closeModal = true) {
 
   let idForm = $(form).attr('id');
-  let inputs = $(form).find('input');
-  let selects = $(form).find('select');
+
 
   if (validateForm(form)) {
 
@@ -525,8 +572,7 @@ function insertPerson(form, closeModal = true) {
           if (closeModal) {
             $(form).closest('.modal').fadeOut();
           }
-          inputs.val('').removeClass('correcto');
-          selects.val('default').removeClass('correcto');
+          emptyClass(form);
           showAlert("nice", 1000, 3000);
 
         } else if (jsonData.success == "Error") {
@@ -579,6 +625,22 @@ $.getJSON('assets/json/eps.json', function(data) {
 
   var options = [];
   let select = $('select.epss');
+
+  $.each(data, function(key, eps) {
+
+    options.push("<option value='" + eps.name + "'>" + eps.name + "</option>");
+  })
+
+  for (var i = 0; i < options.length; i++) {
+    select.append(options[i]);
+  }
+
+});
+
+$.getJSON('assets/json/grades.json', function(data) {
+
+  var options = [];
+  let select = $('select.grades');
 
   $.each(data, function(key, eps) {
 

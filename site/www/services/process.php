@@ -12,7 +12,7 @@
 switch ($tipoForm) {
 // NOTE: STUDENT CRUD
  case 'insertStudent':
-   $person->insertPerson($con,$tipoForm);
+   $person->insertStudent($con);
   break;
  case 'editStudent':
    $person->editPerson($con,$tipoForm);
@@ -29,7 +29,11 @@ switch ($tipoForm) {
 
 
  case 'insertRelative':
-   $person->insertPerson($con,$tipoForm);
+   $person->insertRelative($con);
+ break;
+
+ case 'insertMatricula':
+   $person->insertMatricula($con);
  break;
 
 

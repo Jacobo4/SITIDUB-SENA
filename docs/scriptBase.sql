@@ -1,9 +1,9 @@
 
 -- -----------------------------------------------------
--- -- Schema -- -----------------------------------------------------
-drop database if exists proyecto;
-CREATE SCHEMA IF NOT EXISTS proyecto;
-USE proyecto;
+-- -- -- Schema -- -----------------------------------------------------
+-- drop database if exists proyecto;
+-- CREATE SCHEMA IF NOT EXISTS proyecto;
+-- USE proyecto;
 
 -- -----------------------------------------------------
 -- Table rol

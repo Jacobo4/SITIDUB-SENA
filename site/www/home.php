@@ -78,8 +78,8 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>ID number</th>
                 <th>Means of ID</th>
+                <th>ID number</th>
                 <th>Names</th>
                 <th>Surnames</th>
                 <th>Options</th>
@@ -202,7 +202,7 @@
             <img src="assets/images/loader.gif" alt="loading..">
           </div>
 
-          <form id="matricula" action="index.html" method="post">
+          <form id="insertMatricula" action="index.html" method="post">
 
             <div class="row">
               <div class="col-12">
@@ -216,6 +216,12 @@
               <div class="col-12 col-sm-6">
                 <label for="fechaInialMatri">Fecha inicial</label>
                 <input id="fechaInialMatri" class="input-form" type="date" name="fechaInicialMatri">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="grado">Grade</label>
+                <select id="grado" class="input-form grades" type="select" name="grado">
+                  <option value="default">Select a grade</option>
+                </select>
               </div>
             </div>
 
@@ -314,7 +320,7 @@
                 <h2 class="">Clinic info</h2>
               </div>
 
-              <div class="col-12 col-sm-6">
+              <div class="col-12 col-sm-5 col-lg-6">
                 <label for="eps">EPS</label>
                 <select id="eps" class="input-form epss" type="select" name="eps">
                   <option value="default">Select a</option>
@@ -329,7 +335,7 @@
 
               </div>
 
-              <div class="col-6 col-sm-3 col-lg-2">
+              <div class="col-6 col-sm-4 col-lg-2">
                 <label for="estrato">Income Class</label>
                 <select id="estrato" class="select-form " type="select" name="estrato">
                   <option value="default">?</option>
@@ -455,10 +461,12 @@
 
         <div class="modal-tittle ctn-normal">
           <h1 id="personName"></h1>
+          <?php if( $rol == 'Administrador'){?>
           <div class="showOptions">
             <button id="btn-editStudent" class="btn" type="button" name="button">Edit student's info</button>
             <button id="addRelative" type="button" name="button">Add relative</button>
           </div>
+        <?php } ?>
         </div>
 
         <div class="modal-body  ctn-normal">
@@ -533,21 +541,21 @@
                 <h2 class="">Clinic info</h2>
               </div>
 
-              <div class="col-12 col-sm-6">
+              <div class="col-12 col-sm-5 col-lg-6">
                 <label for="editEps">EPS</label>
                 <select id="editEps" class="input-form epss" type="select" name="eps">
                   <option value="default">Select a</option>
                 </select>
               </div>
 
-              <div class="col-6 col-sm-3 col-lg-2 ">
+              <div class="col-6 col-sm-3 col-lg-2">
                 <label for="editRh">Blood type</label>
                 <select id="editRh" class="input-form bloodTypes" type="select" name="rh">
                 </select>
 
               </div>
 
-              <div class="col-6 col-sm-3 col-lg-2 ">
+              <div class="col-6 col-sm-4 col-lg-2">
                 <label for="editEstrato">Income Class</label>
                 <select id="editEstrato" class="select-form " type="select" name="estrato">
                   <option value="0">0</option>
