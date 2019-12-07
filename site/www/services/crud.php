@@ -261,8 +261,8 @@ class Person
       if(!empty($_POST['nombres'])){
         $nombres = $_POST['nombres'];
         $nombre = explode(" ", $nombres,2);
-        if(empty($apellido[1])){
-          $apellido[1] = "NULL" ;
+        if(empty($nombre[1])){
+          $nombre[1] = "NULL" ;
         }
 
       }
@@ -275,6 +275,7 @@ class Person
         }
 
       }
+      $idStudent    = (!empty($_POST['idStudent']))     ?  $_POST['idStudent']      : "" ;
       $numIdent    = (!empty($_POST['numIdent']))      ?  "'".$_POST['numIdent']."'"      : "NULL" ;
       $tipoIdent   = (!empty($_POST['tipoIdent']))     ?  "'".$_POST['tipoIdent']."'"     : "NULL" ;
       $direccion   = (!empty($_POST['direccion']))     ?  "'".$_POST['direccion']."'"     : "NULL" ;
@@ -288,11 +289,20 @@ class Person
 
 
       $sql = " insert into personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps) VALUES
-      (null, ".$numIdent.", ".$tipoIdent.", 'responsable', '$nombre[0]', '$nombre[1]', '$apellido[0]', '$apellido[1]', null, null, null, ".$direccion.", ".$email.", null, ".$telResi.", ".$celular.", null,".$ocupacion.", ".$profesion.",null, null, null) ";
+      (null,".$numIdent.", ".$tipoIdent.", 'estudiante', '$nombre[0]', '$nombre[1]', '$apellido[0]', '$apellido[1]', null, null, null, ".$direccion.", ".$email.", null, ".$telResi.", ".$celular.", null, ".$ocupacion.", ".$profesion.", null, null, null) ";
+
+
 
       $con->query($sql);
-
       $rowsAfectadas = $con->affected_rows;
+      $idRela = $con->insert_id;
+
+      $sql2 = "insert into parentescos (parentesco, id_estudiante, id_acudiente) VALUES
+      (".$parentesco.", ".$idStudent.", '$idRela');";
+
+      $con->query($sql2);
+
+
 
       if ($rowsAfectadas > 0) {
         echo json_encode(array('success' => 'Cool',

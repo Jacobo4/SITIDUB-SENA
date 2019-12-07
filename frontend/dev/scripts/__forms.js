@@ -158,7 +158,7 @@ $.ajaxSetup({
   type: 'POST',
   async: true,
   error: function(response) {
-    console.log('response', response);
+    // console.log('response', response);
     showAlert("serverDown", 1000, 3000);
   }
 });
@@ -180,7 +180,7 @@ $('form#login').submit(function(event) {
 
   let formulario = $(this);
   let data = formulario.serialize();
-  console.log(data);
+  // console.log(data);
 
   formulario.parent().find('.loading').show();
 
@@ -230,7 +230,7 @@ function searchStudent(button) {
   peticion = setTimeout(function() {
     let data = 'idForm=searchStudent&' + input.serialize();
 
-    console.log(data);
+    // console.log(data);
     $.post("services/process.php", data, function(response) {
       // console.log(response);
       var students = JSON.parse(response);
@@ -257,7 +257,7 @@ function showStudents(students) {
 
   switch (rol) {
     case 'Administrador':
-      options = `<span class="icon-eye"></span><span class="iconplus"></span><span class="icon-bin"></span>`;
+      options = `<span class="icon-eye"></span><span class="icon-plus"></span><span class="icon-bin"></span>`;
       break;
     case 'Coordinador':
       options = `<span class="icon-eye"></span>`;
@@ -327,9 +327,9 @@ function optionsStudents() {
 
     let data = `idForm=showStudentInfo&idStudent=${idStudent}`;
 
-    console.log('lo que envio ', data);
+    // console.log('lo que envio ', data);
     $.post("services/process.php", data, function(response) {
-      console.log('response student', response);
+      // console.log('response student', response);
       var studentInfo = JSON.parse(response);
 
       if (studentInfo.success == "Error") {
@@ -347,7 +347,7 @@ function optionsStudents() {
 
   function showStudentInfo(studentInfo, modalShow) {
 
-    console.table(studentInfo[0]);
+    // console.table(studentInfo[0]);
 
     let inputs = modalShow.find('select,input');
     let saveButtons = modalShow.find('.btn-submitModal');
@@ -428,7 +428,7 @@ $('form.edit').submit(function(event) {
 
     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
-    console.log(data);
+    // console.log(data);
     $.ajax({
       data: data,
       beforeSend: function() {
@@ -462,7 +462,7 @@ $('form#insertMatricula').submit(function(event) {
   if (validateForm(this)) {
     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
-    console.log(data);
+    // console.log(data);
     $.ajax({
       data: data,
       beforeSend: function() {
@@ -519,7 +519,7 @@ $('form#deleteStudent').submit(function(event) {
 
     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
-    console.log(data);
+    // console.log(data);
     $.ajax({
       data: data,
       beforeSend: function() {
@@ -531,7 +531,7 @@ $('form#deleteStudent').submit(function(event) {
         var jsonData = JSON.parse(response);
 
         if (jsonData.success == "Cool") {
-          console.log(trStudent);
+          // console.log(trStudent);
 
           trStudent.remove();
           modal.fadeOut();

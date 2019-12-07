@@ -52,6 +52,7 @@ $(document).ready(function() {
 
     let modal = $('#modalNewRelative');
     let closestModal = $(this).closest('.modal');
+    let idEstudiante = closestModal.find('#personName').attr('data-student');
 
 
     closestModal.css({"z-index": "10"})
@@ -59,6 +60,7 @@ $(document).ready(function() {
     modal.fadeIn().css({
       "display": "flex",
     });
+    modal.find('form#insertRelative').append(`<input type="text" name="idStudent" value="${idEstudiante}" style="display:none">`);
 
 
   });

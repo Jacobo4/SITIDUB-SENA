@@ -262,11 +262,11 @@
 
               <div class="col-12 col-sm-6">
                 <label for="nombresEstu">Names</label>
-                <input id="nombresEstu" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
+                <input id="nombresEstu" class="input-form" type="text" name="nombres" placeholder="Juan Jacobo">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="apellidosEstu">Surnames</label>
-                <input id="apellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
+                <input id="apellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Izquierdo Becerra">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="numIdentEstu">Identification number</label>
@@ -390,16 +390,17 @@
 
               <div class="col-12 col-sm-6">
                 <label for="nombresRes">Names</label>
-                <input id="nombresRes" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
+                <input id="nombresRes" class="input-form" type="text" name="nombres" placeholder="Adelaida">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="apellidosRes">Surnames</label>
-                <input id="apellidosRes" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
+                <input id="apellidosRes" class="input-form" type="text" name="apellidos" placeholder="Becerra Cano">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="numIdentRes">Identification number</label>
                 <input id="numIdentRes" class="input-form numIdent" type="identification" name="numIdent" placeholder="1001065497">
                 <select id="tipoIdentRes" class="select-form tipoIdent" type="select" name="tipoIdent">
+                  <option value="default">?</option>
                   <option value="1">TI</option>
                   <option value="2">CC</option>
                   <option value="3">CE</option>
@@ -488,15 +489,15 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editNombresEstu">Names</label>
-                <input id="editNombresEstu" class="input-form" type="text" name="nombres" "Alvaro Paraco">
+                <input id="editNombresEstu" class="input-form" type="text" name="nombres">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="editApellidosEstu">Surnames</label>
-                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos" "Uribe Velez">
+                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="editNumIdentEstu">Identification number</label>
-                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent" "1001065497">
+                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent">
                 <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select" name="tipoIdent">
                   <option value="1">TI</option>
                   <option value="2">CC</option>
@@ -506,7 +507,7 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editLugarExpe">Expedition place</label>
-                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe" "Lugar de expedición">
+                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -516,24 +517,24 @@
 
               <div class="col-12 col-sm-6">
                 <label for="editLugarNaci">Birthplace</label>
-                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci" "Birthplace">
+                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci">
 
                 </select>
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editDireccionEstu">Address</label>
-                <input id="editDireccionEstu" class="input-form" type="text" name="direccion" "Calle A">
+                <input id="editDireccionEstu" class="input-form" type="text" name="direccion">
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editEmailEstu">Email</label>
-                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email" "ej: jamespapasito@gmail.com">
+                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email">
               </div>
 
               <div class="col-12 col-sm-6">
                 <label for="editTelResiEstu">Home's phone number</label>
-                <input id="editTelResiEstu" class="input-form" type="text" name="telResi" "3462116">
+                <input id="editTelResiEstu" class="input-form" type="text" name="telResi">
               </div>
 
 
