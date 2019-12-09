@@ -215,7 +215,7 @@
               </div>
               <div class="col-12 col-sm-6">
                 <label for="fechaInialMatri">Fecha inicial</label>
-                <input id="fechaInialMatri" class="input-form" type="date" name="fechaInicialMatri">
+                <input id="fechaInialMatri" class="input-form" type="number" name="fechaInicialMatri">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="grado">Grade</label>
@@ -262,11 +262,11 @@
 
               <div class="col-12 col-sm-6">
                 <label for="nombresEstu">Names</label>
-                <input id="nombresEstu" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
+                <input id="nombresEstu" class="input-form" type="text" name="nombres" placeholder="Juan Jacobo">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="apellidosEstu">Surnames</label>
-                <input id="apellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
+                <input id="apellidosEstu" class="input-form" type="text" name="apellidos" placeholder="Izquierdo Becerra">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="numIdentEstu">Identification number</label>
@@ -307,7 +307,7 @@
 
               <div class="col-12 col-sm-6">
                 <label for="emailEstu">Email</label>
-                <input id="emailEstu" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
+                <input id="emailEstu" class="input-form" type="emailCustom" name="email" placeholder="ej: jjizquierdo2@misena.edu.co">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -390,11 +390,11 @@
 
               <div class="col-12 col-sm-6">
                 <label for="nombresRes">Names</label>
-                <input id="nombresRes" class="input-form" type="text" name="nombres" placeholder="Alvaro Paraco">
+                <input id="nombresRes" class="input-form" type="text" name="nombres" placeholder="Juan Jacobo">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="apellidosRes">Surnames</label>
-                <input id="apellidosRes" class="input-form" type="text" name="apellidos" placeholder="Uribe Velez">
+                <input id="apellidosRes" class="input-form" type="text" name="apellidos" placeholder="Izquierdo Becerra">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="numIdentRes">Identification number</label>
@@ -413,7 +413,7 @@
 
               <div class="col-12 col-sm-6">
                 <label for="emailRes">Email</label>
-                <input id="emailRes" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
+                <input id="emailRes" class="input-form" type="emailCustom" name="email" placeholder="ej: jjizquierdo2@misena.edu.co">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -505,8 +505,13 @@
               </div>
 
               <div class="col-12 col-sm-6">
+
                 <label for="editLugarExpe">Expedition place</label>
-                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe" "Lugar de expedición">
+                <select id="editLugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
+                  <option value="default">Select a city</option>
+
+                </select>
+
               </div>
 
               <div class="col-12 col-sm-6">

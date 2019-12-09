@@ -25,26 +25,9 @@
     var icons;
     if (!supportsProperty('fontFeatureSettings')) {
         icons = {
-            'pencil': '&#xe905;',
-            'write': '&#xe905;',
-            'user': '&#xe971;',
-            'profile2': '&#xe971;',
-            'user-plus': '&#xe973;',
-            'user2': '&#xe973;',
-            'search': '&#xe986;',
-            'magnifier': '&#xe986;',
-            'key2': '&#xe98e;',
-            'password2': '&#xe98e;',
-            'cog': '&#xe994;',
-            'gear': '&#xe994;',
-            'bin': '&#xe9ac;',
-            'trashcan': '&#xe9ac;',
-            'menu': '&#xe9bd;',
-            'list3': '&#xe9bd;',
-            'eye': '&#xe9ce;',
-            'views': '&#xe9ce;',
-            'plus': '&#xea0a;',
-            'add': '&#xea0a;',
+            'money': '&#xe93b;',
+            'coin-dollar': '&#xe93b;',
+            '': '&#xea0a;',
           '0': 0
         };
         delete icons['0'];
