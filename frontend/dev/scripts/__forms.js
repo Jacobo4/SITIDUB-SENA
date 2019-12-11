@@ -15,7 +15,7 @@ function pintarStilos(elem, tipo) {
 }
 
 //////////// Muestra alerta de los formularios
-function showAlert(cumple, timeIn, timeOut) {
+function showAlert(type, timeIn, timeOut) {
 
   const divAlert = $('div.alert-container');
   const contentAlert = 'div.alert-content';
@@ -24,19 +24,19 @@ function showAlert(cumple, timeIn, timeOut) {
   divAlert.removeClass();
   divAlert.addClass('alert-container');
 
-  if (cumple === "nice") {
+  if (type === "nice") {
     divAlert.addClass('alert-check').find(contentAlert).text('Nice !');
 
-  } else if (cumple === "error") {
+  } else if (type === "error") {
     divAlert.addClass('alert-error').find(contentAlert).text('Hmm, something went wrong');
 
-  } else if (cumple === "serverDown") {
+  } else if (type === "serverDown") {
     divAlert.addClass('alert-server').find(contentAlert).text('Maybe the server is down :(');
 
-  } else if (cumple === "entryDuplicate") {
+  } else if (type === "entryDuplicate") {
     divAlert.addClass('alert-duplicate').find(contentAlert).text('This user already exists');
 
-  } else if (cumple === "dontExists") {
+  } else if (type === "dontExists") {
     divAlert.addClass('alert-dontExists').find(contentAlert).text("This user don't exists");
   }
 
@@ -68,7 +68,7 @@ function validateLength(valor, minLength, maxLength) {
 }
 
 //////////// remove class corecto on formularios
-function emptyClass(form){
+function emptyClass(form) {
 
   let selects = $(form).find('select');
   let inputs = $(form).find('input');
@@ -121,7 +121,7 @@ function validateForm(form) {
           break;
 
         case "identification":
-          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 5, 10))) {
+          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 5, 14))) {
             pintarStilos($(e), 'valido');
           } else {
             pintarStilos($(e), 'error');
@@ -138,6 +138,13 @@ function validateForm(form) {
 
         case "select":
           valorSelect != "default" ? pintarStilos($(e), 'valido') : pintarStilos($(e), 'error');
+          break;
+        case "year":
+          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 4, 5))){
+            pintarStilos($(e), 'valido');
+          } else {
+            pintarStilos($(e), 'error');
+          }
           break;
       }
       total = total + cumple;
@@ -180,7 +187,7 @@ $('form#login').submit(function(event) {
 
   let formulario = $(this);
   let data = formulario.serialize();
-  // console.log(data);
+  console.log(data);
 
   formulario.parent().find('.loading').show();
 
@@ -230,7 +237,7 @@ function searchStudent(button) {
   peticion = setTimeout(function() {
     let data = 'idForm=searchStudent&' + input.serialize();
 
-    // console.log(data);
+    console.log(data);
     $.post("services/process.php", data, function(response) {
       // console.log(response);
       var students = JSON.parse(response);
@@ -273,13 +280,6 @@ function showStudents(students) {
   $.each(students.slice(0), function(id, student) {
 
 
-    $.each(student, function(campo, value) {
-      if (value == null) {
-
-        value = " ";
-      }
-    });
-
 
     $('#showStudents').append(
       `
@@ -300,15 +300,74 @@ function showStudents(students) {
 
 }
 
-function changeNullValue(string){
-  if (string === "NULL") {
-    return "";
-  }else{
-    return string;
-  }
+function changeNullValue(string) {
+  return string === "NULL" ? "" : string;
 }
 
 function optionsStudents() {
+
+
+  $('span.icon-coin-dollar').click(function() {
+
+    let modalPayments = $('#modalPayments');
+    let inputModal = modalPayments.find('input');
+    let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
+    let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');;
+
+    inputModal.attr('data-student', idStudent);
+
+    modalPayments.fadeIn().css({
+      "display": "flex"
+    });
+
+    // // NOTE: CONSULTA ELIMINAR
+    // $('form#deleteStudent').submit(function(event) {
+    //   event.preventDefault();
+    //   let form = this;
+    //   let modal = $(this).closest('.modal');
+    //   let idForm = $(this).attr('id');
+    //   let input = $(this).find('input');
+    //   let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
+    //
+    //
+    //   if (input.val() !== numDocStudent) {
+    //     pintarStilos($(input), 'error');
+    //   } else {
+    //
+    //     pintarStilos($(input), 'valido');
+    //
+    //     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+    //
+    //     console.log(data);
+    //     $.ajax({
+    //       data: data,
+    //       beforeSend: function() {
+    //         $(form).parent().find('.loading').show();
+    //       },
+    //       success: function(response) {
+    //
+    //         $(form).parent().find('.loading').fadeOut(1000);
+    //         var jsonData = JSON.parse(response);
+    //
+    //         if (jsonData.success == "Cool") {
+    //           // console.log(trStudent);
+    //
+    //           trStudent.remove();
+    //           modal.fadeOut();
+    //           emptyClass(form);
+    //           showAlert("nice", 1000, 3000);
+    //         } else if (jsonData.success == "Error") {
+    //           showAlert("error", 1000, 3000);
+    //         }
+    //       },
+    //     });
+    //
+    //   }
+    //
+    //
+    // });
+
+  });
   ////Eliminar ESTUDIANTE
 
   $('span.icon-bin').click(function() {
@@ -319,12 +378,58 @@ function optionsStudents() {
     let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');;
 
     inputModal.attr('data-student', idStudent);
-    inputModal.attr('data-ndoc', numDocStudent);
 
     modalDelete.fadeIn().css({
       "display": "flex"
     });
-    // modalDelete.find('input').attr('data-student',)
+
+    // NOTE: CONSULTA ELIMINAR
+    $('form#deleteStudent').submit(function(event) {
+      event.preventDefault();
+      let form = this;
+      let modal = $(this).closest('.modal');
+      let idForm = $(this).attr('id');
+      let input = $(this).find('input');
+      let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
+
+
+      if (input.val() !== numDocStudent) {
+        pintarStilos($(input), 'error');
+      } else {
+
+        pintarStilos($(input), 'valido');
+
+        let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+
+        console.log(data);
+        $.ajax({
+          data: data,
+          beforeSend: function() {
+            $(form).parent().find('.loading').show();
+          },
+          success: function(response) {
+
+            $(form).parent().find('.loading').fadeOut(1000);
+            var jsonData = JSON.parse(response);
+
+            if (jsonData.success == "Cool") {
+              // console.log(trStudent);
+
+              trStudent.remove();
+              modal.fadeOut();
+              emptyClass(form);
+              showAlert("nice", 1000, 3000);
+            } else if (jsonData.success == "Error") {
+              showAlert("error", 1000, 3000);
+            }
+          },
+        });
+
+      }
+
+
+    });
+
   });
 
   ////Mostrar INFO / EDITAR
@@ -406,15 +511,49 @@ function optionsStudents() {
     let modalMatri = $('#modalMatricula');
     let inputModal = modalMatri.find('input#numMatri');
     let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
-    let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');
+    let nameStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
 
     modalMatri.fadeIn().css({
       "display": "flex"
     });
 
+    modalMatri.find('h1').text('juan');
 
-    inputModal.attr('data-student', idStudent);
-    inputModal.attr('data-ndoc', numDocStudent);
+
+    // NOTE: CONSULTA NUEVA MATRICULA
+    $('form#insertMatricula').submit(function(event) {
+      event.preventDefault();
+      let form = this;
+      let modal = $(this).closest('.modal');
+      let idForm = $(this).attr('id');
+
+
+      if (validateForm(this)) {
+        let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+
+        console.log(data);
+        $.ajax({
+          data: data,
+          beforeSend: function() {
+            $(form).parent().find('.loading').show();
+          },
+          success: function(response) {
+            $(form).parent().find('.loading').fadeOut(1000);
+            var jsonData = JSON.parse(response);
+            if (jsonData.success == "Cool") {
+              modal.fadeOut();
+              emptyClass(form);
+              showAlert("nice", 1000, 3000);
+            } else if (jsonData.success == "Error") {
+              showAlert("error", 1000, 3000);
+            } else if (jsonData.success == "Entry duplicate") {
+              showAlert("entryDuplicate", 1000, 3000);
+            }
+
+          },
+        });
+      }
+    });
 
   });
 }
@@ -436,7 +575,7 @@ $('form.edit').submit(function(event) {
 
     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
-    // console.log(data);
+    console.log(data);
     $.ajax({
       data: data,
       beforeSend: function() {
@@ -460,38 +599,7 @@ $('form.edit').submit(function(event) {
     });
   }
 });
-// NOTE: CONSULTA NUEVA MATRICULA
-$('form#insertMatricula').submit(function(event) {
-  event.preventDefault();
-  let form = this;
-  let modal = $(this).closest('.modal');
-  let idForm = $(this).attr('id');
-  let input = $(this).find('input');
-  let idStudent = input.attr('data-student');
 
-  if (validateForm(this)) {
-    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
-
-    // console.log(data);
-    $.ajax({
-      data: data,
-      beforeSend: function() {
-        $(form).parent().find('.loading').show();
-      },
-      success: function(response) {
-        $(form).parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
-        if (jsonData.success == "Cool") {
-          modal.fadeOut();
-          emptyClass(form);
-          showAlert("nice", 1000, 3000);
-        } else if (jsonData.success == "Error") {
-          showAlert("error", 1000, 3000);
-        }
-      },
-    });
-  }
-});
 // NOTE: CONSULTA EDITAR USERNAME
 $('form#editUsername').submit(function(event) {
   insertPerson(this, false);
@@ -504,59 +612,68 @@ $('form#editPassword').submit(function(event) {
 
 // NOTE: CONSULTA NUEVO ESTUDIANTE
 $('form#insertStudent').submit(function(event) {
-  insertPerson(this);
-}); // NOTE: CONSULTA NUEVO RESPONSABLE
-$('form#insertRelative').submit(function(event) {
+
   insertPerson(this);
 });
-// NOTE: CONSULTA ELIMINAR
-$('form#deleteStudent').submit(function(event) {
-  event.preventDefault();
-  let form = this;
-  let modal = $(this).closest('.modal');
-  let idForm = $(this).attr('id');
-  let input = $(this).find('input');
-  let idStudent = input.attr('data-student');
-  let ndocStudent = input.attr('data-ndoc');
-  let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
+
+// NOTE: CONSULTA NUEVO RESPONSABLE
+$('#addRelative').click(function() {
+
+  let modal = $('#modalNewRelative');
+  let closestModal = $(this).closest('.modal');
+  let idStudent = closestModal.find('#personName').attr('data-student');
 
 
-  if (input.val() !== ndocStudent) {
-    pintarStilos($(input), 'error');
-  } else {
+  closestModal.css({
+    "z-index": "10"
+  })
 
-    pintarStilos($(input), 'valido');
+  modal.fadeIn().css({
+    "display": "flex",
+  });
 
-    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+  $('form#insertRelative').submit(function(event) {
+    let form = $(this);
+    let idForm = form.attr('id');
 
-    // console.log(data);
-    $.ajax({
-      data: data,
-      beforeSend: function() {
-        $(form).parent().find('.loading').show();
-      },
-      success: function(response) {
 
-        $(form).parent().find('.loading').fadeOut(1000);
-        var jsonData = JSON.parse(response);
+    if (validateForm(form)) {
 
-        if (jsonData.success == "Cool") {
-          // console.log(trStudent);
+      let data = `idForm=${idForm}&idStudent=${idStudent}&${form.serialize()}`;
+      console.log(data);
 
-          trStudent.remove();
-          modal.fadeOut();
-          emptyClass(form);
-          showAlert("nice", 1000, 3000);
-        } else if (jsonData.success == "Error") {
-          showAlert("error", 1000, 3000);
-        }
-      },
-    });
+      $.ajax({
+        data: data,
+        beforeSend: function() {
+          form.parent().find('.loading').show();
+        },
+        success: function(response) {
+          form.parent().find('.loading').fadeOut(1000);
+          var jsonData = JSON.parse(response);
+          if (jsonData.success == "Cool") {
 
-  }
+
+            form.closest('.modal').fadeOut();
+
+            emptyClass(form);
+            showAlert("nice", 1000, 3000);
+
+          } else if (jsonData.success == "Error") {
+            showAlert("error", 1000, 3000);
+
+          } else if (jsonData.success == "Entry duplicate") {
+
+            showAlert("entryDuplicate", 1000, 3000);
+          }
+        },
+      });
+    }
+  });
 
 
 });
+
+
 
 
 function insertPerson(form, closeModal = true) {

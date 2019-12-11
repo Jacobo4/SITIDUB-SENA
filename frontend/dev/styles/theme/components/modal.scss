@@ -1,95 +1,137 @@
-.modal{
-
+.modal {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   width: 100vw;
   height: 100vh;
-  padding: 30px 0px;
+  padding: 30px 0;
   background: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
-
 }
-.modal-container{
+
+.modal-container {
   max-height: 100%;
   width: 90%;
-
-  @include sm(){
+  @include sm() {
     max-width: 650px;
   }
-  @include lg(){
+  @include lg() {
     max-width: 900px;
   }
 
-  .modal-tittle{
+  .modal-tittle {
     position: relative;
     padding-top: 20px;
-    padding-bottom: 0px;
-    h1{
-      margin-bottom: 0px;
+    padding-bottom: 0;
+
+    h1 {
+      margin-bottom: 0;
       text-align: center;
-      color: $cp10
-    }
-    .showOptions{
-      text-align: center;
+      color: $cp10;
     }
 
+    .showOptions {
+      text-align: center;
+    }
   }
-  .modal-body{
+
+  .modal-body {
     position: relative;
-    h2{
+
+    h2 {
       text-align: center;
     }
-
   }
 }
 
-
-#modalDelete{
-
-  .modal-container{
-
-    @include lg(){
-      max-width: 650px;;
+#modalDelete {
+  .modal-container {
+    @include lg() {
+      max-width: 650px;
     }
 
-    h2{
+    h2 {
       padding-top: 20px;
     }
 
-    form{
-      padding-top: 0px;
-      label{
-      margin-top: 0px;
+    form {
+      padding-top: 0;
+
+      label {
+        margin-top: 0;
       }
     }
-
   }
-
 }
 
-#modalEditShow{
-  .modal-tittle{
-    h1{
+#modalEditShow {
+  .modal-tittle {
+    h1 {
       font-size: 35px;
     }
   }
-  .modal-body{
-    form{
-      button[type="submit"]{
+
+  .modal-body {
+    form {
+      button[type="submit"] {
         right: 30px;
       }
     }
-    form:nth-last-child(2){
-      button[type="submit"]{
+
+    form:nth-last-child(2) {
+      button[type="submit"] {
         right: 90px;
       }
     }
+  }
+}
 
+#modalPayments {
+  display: block !important;
+
+  .modal-container {
+    margin: auto;
   }
 
+  .modal-body {
+    padding: 30px 0;
+
+    div.search-container {
+      position: relative;
+      display: inline-block;
+
+      span {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+      }
+    }
+
+    ul {
+      margin: auto;
+      padding: 0;
+      width: 80%;
+
+      li {
+        font-size: 24px;
+        list-style: none;
+        border-radius: 20px;
+        border: 1px solid transparent;
+
+        &:active,
+        &:focus,
+        &:hover,
+        &:visited {
+          border: 1px solid $cp9;
+          box-sizing: border-box;
+          box-shadow: -5px 5px 0 $cp7;
+          box-shadow: -4px 4px 0 $cp8;
+        }
+      }
+    }
+  }
 }

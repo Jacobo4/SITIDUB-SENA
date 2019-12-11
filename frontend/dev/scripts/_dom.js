@@ -46,24 +46,7 @@ $(document).ready(function() {
       "display": "flex"
     });
   });
-
-  ////Nueva matricula
-  $('#addRelative').click(function() {
-
-    let modal = $('#modalNewRelative');
-    let closestModal = $(this).closest('.modal');
-    let idEstudiante = closestModal.find('#personName').attr('data-student');
-
-
-    closestModal.css({"z-index": "10"})
-
-    modal.fadeIn().css({
-      "display": "flex",
-    });
-    modal.find('form#insertRelative').append(`<input type="text" name="idStudent" value="${idEstudiante}" style="display:none">`);
-
-
-  });
+  
 
   ////NUEVO ESTUDIANTE
   $('#newStudent').click(function() {

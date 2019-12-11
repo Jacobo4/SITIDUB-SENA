@@ -160,6 +160,216 @@
 
     </div>
 
+    <!-- NOTE: MODAL PARA MOSTRAR Y EDITAR -->
+    <div class="modal" id="modalEditShow">
+
+      <div class="modal-container ">
+
+        <div class="modal-tittle ctn-normal">
+          <h1 id="personName"></h1>
+          <?php if( $rol == 'Administrador'){?>
+          <div class="showOptions">
+            <button id="btn-editStudent" class="btn" type="button" name="button">Edit student's info</button>
+            <button id="addRelative" type="button" name="button">Add relative</button>
+          </div>
+        <?php } ?>
+        </div>
+
+        <div class="modal-body  ctn-normal">
+
+          <div class="loading">
+            <img src="assets/images/loader.gif" alt="loading..">
+          </div>
+
+
+          <form class="edit" id="editStudent" action="index.html" method="post">
+
+            <div class="row">
+
+
+              <div class="col-12">
+                <h2 id="tittle-person"></h2>
+              </div>
+
+
+              <div class="col-12 col-sm-6">
+                <label for="editNombresEstu">Names</label>
+                <input id="editNombresEstu" class="input-form" type="text" name="nombres">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="editApellidosEstu">Surnames</label>
+                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="editNumIdentEstu">Identification number</label>
+                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent">
+                <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select" name="tipoIdent">
+                  <option value="1">TI</option>
+                  <option value="2">CC</option>
+                  <option value="3">CE</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-sm-6">
+
+                <label for="editLugarExpe">Expedition place</label>
+                <select id="editLugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
+                  <option value="default">Select a city</option>
+
+                </select>
+
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="editFechaNaci">Birthdate</label>
+                <input id="editFechaNaci" class="input-form" type="date" name="fechaNaci">
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="editLugarNaci">Birthplace</label>
+                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci">
+
+                </select>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="editDireccionEstu">Address</label>
+                <input id="editDireccionEstu" class="input-form" type="text" name="direccion">
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="editEmailEstu">Email</label>
+                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email">
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="editTelResiEstu">Home's phone number</label>
+                <input id="editTelResiEstu" class="input-form" type="text" name="telResi">
+              </div>
+
+
+              <div class="col-12 mt-5">
+                <h2 class="">Clinic info</h2>
+              </div>
+
+              <div class="col-12 col-sm-5 col-lg-6">
+                <label for="editEps">EPS</label>
+                <select id="editEps" class="input-form epss" type="select" name="eps">
+                  <option value="default">Select a</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-sm-3 col-lg-2">
+                <label for="editRh">Blood type</label>
+                <select id="editRh" class="input-form bloodTypes" type="select" name="rh">
+                </select>
+
+              </div>
+
+              <div class="col-6 col-sm-4 col-lg-2">
+                <label for="editEstrato">Income Class</label>
+                <select id="editEstrato" class="select-form " type="select" name="estrato">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+
+
+
+            </div>
+            <button class="btn-submitModal" type="submit" name="button">Save</button>
+
+          </form>
+
+
+
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTE: MODAL PAYMENTS  -->
+    <div class="modal" id="modalPayments">
+
+      <div class="modal-container ">
+        <div class="modal-tittle ctn-normal">
+          <h1>Payments</h1>
+        </div>
+
+        <div class="modal-body  ctn-normal text-center">
+
+          <div class="loading">
+            <img src="assets/images/loader.gif" alt="loading..">
+          </div>
+
+
+          <form id="payments" action="index.html" method="post">
+            <div class="row justify-content-center">
+              <!-- <div class="col-12 col-lg-6">
+                <label for="idDelete">Please digit again the student's id</label>
+                <input id="idDelete" class="input-form" type="text" name="idDelete">
+              </div> -->
+            </div>
+            <button class="btn-submitModal" type="submit" name="button">Delete</button>
+            <button class="btn-cancel" type="button" name="button">Cancel</button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- NOTE: MODAL NUEVA MATRICULA  -->
+    <div class="modal" id="modalMatricula">
+
+      <div class="modal-container ">
+
+        <div class="modal-body  ctn-normal text-center">
+
+          <div class="loading">
+            <img src="assets/images/loader.gif" alt="loading..">
+          </div>
+
+          <form id="insertMatricula" action="index.html" method="post">
+
+            <div class="row">
+              <div class="col-12">
+                <h2>Datos matrícula</h2>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <label for="numMatri">Número de matrícula</label>
+                <input id="numMatri" class="input-form" type="text" name="numMatri" placeholder="ej: ASAD-01">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="periodo">Fecha inicial</label>
+                <input id="periodo" class="input-form" type="year" name="periodo">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="grado">Grade</label>
+                <select id="grado" class="input-form grades" type="select" name="grado">
+                  <option value="default">Select a grade</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn-submitModal" type="submit" name="button">Next</button>
+            <button class="btn-cancel" type="button" name="button">Cancel</button>
+          </form>
+
+
+        </div>
+      </div>
+
+    </div>
+
     <!-- NOTE: MODAL ELIMINAR  -->
     <div class="modal" id="modalDelete">
 
@@ -182,53 +392,6 @@
             <button class="btn-submitModal" type="submit" name="button">Delete</button>
             <button class="btn-cancel" type="button" name="button">Cancel</button>
           </form>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- NOTE: MODAL NUEVA MATRICULA  -->
-    <div class="modal" id="modalMatricula">
-
-      <div class="modal-container ">
-        <div class="modal-tittle ctn-normal">
-          <h1>Nombre del estudiante</h1>
-        </div>
-
-        <div class="modal-body  ctn-normal text-center">
-
-          <div class="loading">
-            <img src="assets/images/loader.gif" alt="loading..">
-          </div>
-
-          <form id="insertMatricula" action="index.html" method="post">
-
-            <div class="row">
-              <div class="col-12">
-                <h2>Datos matrícula</h2>
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="numMatri">Número de matrícula</label>
-                <input id="numMatri" class="input-form" type="text" name="numMatri" placeholder="ej: ASAD-01">
-              </div>
-              <div class="col-12 col-sm-6">
-                <label for="fechaInialMatri">Fecha inicial</label>
-                <input id="fechaInialMatri" class="input-form" type="number" name="fechaInicialMatri">
-              </div>
-              <div class="col-12 col-sm-6">
-                <label for="grado">Grade</label>
-                <select id="grado" class="input-form grades" type="select" name="grado">
-                  <option value="default">Select a grade</option>
-                </select>
-              </div>
-            </div>
-
-            <button class="btn-submitModal" type="submit" name="button">Next</button>
-            <button class="btn-cancel" type="button" name="button">Cancel</button>
-          </form>
-
 
         </div>
       </div>
@@ -455,139 +618,7 @@
     </div>
 
 
-    <!-- NOTE: MODAL PARA MOSTRAR Y EDITAR -->
-    <div class="modal" id="modalEditShow">
 
-      <div class="modal-container ">
-
-        <div class="modal-tittle ctn-normal">
-          <h1 id="personName"></h1>
-          <?php if( $rol == 'Administrador'){?>
-          <div class="showOptions">
-            <button id="btn-editStudent" class="btn" type="button" name="button">Edit student's info</button>
-            <button id="addRelative" type="button" name="button">Add relative</button>
-          </div>
-        <?php } ?>
-        </div>
-
-        <div class="modal-body  ctn-normal">
-
-          <div class="loading">
-            <img src="assets/images/loader.gif" alt="loading..">
-          </div>
-
-
-          <form class="edit" id="editStudent" action="index.html" method="post">
-
-            <div class="row">
-
-
-              <div class="col-12">
-                <h2 id="tittle-person"></h2>
-              </div>
-
-
-              <div class="col-12 col-sm-6">
-                <label for="editNombresEstu">Names</label>
-                <input id="editNombresEstu" class="input-form" type="text" name="nombres">
-              </div>
-              <div class="col-12 col-sm-6">
-                <label for="editApellidosEstu">Surnames</label>
-                <input id="editApellidosEstu" class="input-form" type="text" name="apellidos">
-              </div>
-              <div class="col-12 col-sm-6">
-                <label for="editNumIdentEstu">Identification number</label>
-                <input id="editNumIdentEstu" class="input-form numIdent" type="identification" name="numIdent">
-                <select id="editTipoIdentEstu" class="select-form tipoIdent" type="select" name="tipoIdent">
-                  <option value="1">TI</option>
-                  <option value="2">CC</option>
-                  <option value="3">CE</option>
-                </select>
-              </div>
-
-              <div class="col-12 col-sm-6">
-
-                <label for="editLugarExpe">Expedition place</label>
-                <select id="editLugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
-                  <option value="default">Select a city</option>
-
-                </select>
-
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="editFechaNaci">Birthdate</label>
-                <input id="editFechaNaci" class="input-form" type="date" name="fechaNaci">
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="editLugarNaci">Birthplace</label>
-                <select id="editLugarNaci" class="input-form citys "type="select" name="lugarNaci">
-
-                </select>
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="editDireccionEstu">Address</label>
-                <input id="editDireccionEstu" class="input-form" type="text" name="direccion">
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="editEmailEstu">Email</label>
-                <input id="editEmailEstu" class="input-form" type="emailCustom" name="email">
-              </div>
-
-              <div class="col-12 col-sm-6">
-                <label for="editTelResiEstu">Home's phone number</label>
-                <input id="editTelResiEstu" class="input-form" type="text" name="telResi">
-              </div>
-
-
-              <div class="col-12 mt-5">
-                <h2 class="">Clinic info</h2>
-              </div>
-
-              <div class="col-12 col-sm-5 col-lg-6">
-                <label for="editEps">EPS</label>
-                <select id="editEps" class="input-form epss" type="select" name="eps">
-                  <option value="default">Select a</option>
-                </select>
-              </div>
-
-              <div class="col-6 col-sm-3 col-lg-2">
-                <label for="editRh">Blood type</label>
-                <select id="editRh" class="input-form bloodTypes" type="select" name="rh">
-                </select>
-
-              </div>
-
-              <div class="col-6 col-sm-4 col-lg-2">
-                <label for="editEstrato">Income Class</label>
-                <select id="editEstrato" class="select-form " type="select" name="estrato">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
-              </div>
-
-
-
-            </div>
-            <button class="btn-submitModal" type="submit" name="button">Save</button>
-
-          </form>
-
-
-
-          <button class="btn-cancel" type="button" name="button">Cancel</button>
-        </div>
-      </div>
-
-    </div>
 
 
 

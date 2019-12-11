@@ -254,7 +254,7 @@ class Person
 
     }
     public function insertRelative($con){
-
+      $cumple = 0;
       $nombres = "NULL" ;
       $apellidos = "NULL" ;
 
@@ -293,63 +293,76 @@ class Person
 
 
 
-      $con->query($sql);
-      $rowsAfectadas = $con->affected_rows;
+      if($con->query($sql) === TRUE) $cumple++;
+
       $idRela = $con->insert_id;
 
       $sql2 = "insert into parentescos (parentesco, id_estudiante, id_acudiente) VALUES
       (".$parentesco.", ".$idStudent.", '$idRela');";
 
-      $con->query($sql2);
+      if($con->query($sql2) === TRUE) $cumple++;
 
 
 
-      if ($rowsAfectadas > 0) {
-        echo json_encode(array('success' => 'Cool',
-                                'cumple' => $rowsAfectadas));
+      if ( $cumple === 2) {
+        echo json_encode(array('success' => 'Cool'));
+
       } else {
         $error = $con->error;
         if( strstr($error, 'Duplicate entry')){
           echo json_encode(array('success' => 'Entry duplicate',
-                                  'error' => $error,
-                                  'Rows afectadas' => $rowsAfectadas));
+                                  'error' => $error));
         }else{
           echo json_encode(array('success' => 'Error',
-                                  'error' => $error,
-                                  'Rows afectadas' => $rowsAfectadas));
+                                  'error' => $error));
         }
       }
 
 
     }
     public function insertMatricula($con){
+      $cumple = 0;
       $idStudent        = (!empty($_POST['idStudent']))             ?  $_POST['idStudent']                      : "" ;
       $numMatri         = (!empty($_POST['numMatri']))              ?  "'".$_POST['numMatri']."'"               : "NULL" ;
       $periodo          = (!empty($_POST['periodo']))               ?  "'".$_POST['periodo']."'"                : "NULL" ;
       $grade            = (!empty($_POST['grado']))                 ?  "'".$_POST['grado']."'"                  : "NULL" ;
 
-      $sql = "insert into matriculas (id, descripcion_matricula, periodo, estado, grado, id_persona) VALUES
-      (null, ".$numMatri.",".$periodo.",'1', ".$grade.", ".$idStudent.");
+      $sql = "
+      insert into matriculas (id, descripcion_matricula, periodo, estado, grado, id_persona) VALUES
+      (null, ".$numMatri.",".$periodo.",'1', ".$grade.", ".$idStudent.");";
 
-      ";
+      if ($con->query($sql) === TRUE) $cumple++;
 
-      $con->query($sql);
+      $idMatri = $con->insert_id;
 
-      $rowsAfectadas = $con->affected_rows;
+      $sql2 = "
+            insert into cuotas (id, mes, valor, saldo, id_matricula) VALUES
+            (null, 'febrero', '500000', '500000', '$idMatri'),
+            (null, 'marzo', '300000', '300000', '$idMatri'),
+            (null, 'abril', '300000', '300000', '$idMatri'),
+            (null, 'mayo', '300000', '300000', '$idMatri'),
+            (null, 'junio', '300000', '300000', '$idMatri'),
+            (null, 'julio', '300000', '300000', '$idMatri'),
+            (null, 'agosto', '300000', '300000', '$idMatri'),
+            (null, 'septiembre', '300000', '300000', '$idMatri'),
+            (null, 'octubre', '300000', '300000', '$idMatri'),
+            (null, 'noviembre', '300000', '300000', '$idMatri');";
 
-      if ($rowsAfectadas > 0) {
-        echo json_encode(array('success' => 'Cool',
-                                'cumple' => $rowsAfectadas));
+      if ($con->query($sql2) === TRUE) $cumple++;
+
+
+      if ($cumple === 2) {
+        echo json_encode(array('success' => 'Cool'));
       } else {
         $error = $con->error;
         if( strstr($error, 'Duplicate entry')){
           echo json_encode(array('success' => 'Entry duplicate',
-                                  'error' => $error,
-                                  'Rows afectadas' => $rowsAfectadas));
+                                  'error' => $error
+                                  ));
         }else{
           echo json_encode(array('success' => 'Error',
-                                  'error' => $error,
-                                  'Rows afectadas' => $rowsAfectadas));
+                                  'error' => $error
+                                  ));
         }
       }
     }
