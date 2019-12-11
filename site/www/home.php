@@ -215,7 +215,7 @@
               </div>
               <div class="col-12 col-sm-6">
                 <label for="fechaInialMatri">Fecha inicial</label>
-                <input id="fechaInialMatri" class="input-form" type="date" name="fechaInicialMatri">
+                <input id="fechaInialMatri" class="input-form" type="number" name="fechaInicialMatri">
               </div>
               <div class="col-12 col-sm-6">
                 <label for="grado">Grade</label>
@@ -307,7 +307,7 @@
 
               <div class="col-12 col-sm-6">
                 <label for="emailEstu">Email</label>
-                <input id="emailEstu" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
+                <input id="emailEstu" class="input-form" type="emailCustom" name="email" placeholder="ej: jjizquierdo2@misena.edu.co">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -414,7 +414,7 @@
 
               <div class="col-12 col-sm-6">
                 <label for="emailRes">Email</label>
-                <input id="emailRes" class="input-form" type="emailCustom" name="email" placeholder="ej: jamespapasito@gmail.com">
+                <input id="emailRes" class="input-form" type="emailCustom" name="email" placeholder="ej: jjizquierdo2@misena.edu.co">
               </div>
 
               <div class="col-12 col-sm-6">
@@ -506,8 +506,13 @@
               </div>
 
               <div class="col-12 col-sm-6">
+
                 <label for="editLugarExpe">Expedition place</label>
-                <input id="editLugarExpe" class="input-form" type="text" name="lugarExpe">
+                <select id="editLugarExpe" class="input-form citys "type="select" name="lugarExpe" placeholder="Birthplace">
+                  <option value="default">Select a city</option>
+
+                </select>
+
               </div>
 
               <div class="col-12 col-sm-6">

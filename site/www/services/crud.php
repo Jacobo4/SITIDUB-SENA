@@ -78,7 +78,7 @@ class Person
       if(!empty($_POST['nombres'])){
         $nombres = $_POST['nombres'];
         $nombre = explode(" ", $nombres,2);
-        if(empty($apellido[1])){
+        if(empty($nombre[1])){
           $nombre[1] = "NULL" ;
         }
 
@@ -325,11 +325,12 @@ class Person
     public function insertMatricula($con){
       $idStudent        = (!empty($_POST['idStudent']))             ?  $_POST['idStudent']                      : "" ;
       $numMatri         = (!empty($_POST['numMatri']))              ?  "'".$_POST['numMatri']."'"               : "NULL" ;
-      $fechaIniMatri    = (!empty($_POST['fechaInicialMatri']))     ?  "'".$_POST['fechaInicialMatri']."'"      : "NULL" ;
+      $periodo          = (!empty($_POST['periodo']))               ?  "'".$_POST['periodo']."'"                : "NULL" ;
       $grade            = (!empty($_POST['grado']))                 ?  "'".$_POST['grado']."'"                  : "NULL" ;
 
-      $sql = "insert into matriculas (id, descripcion_matricula, fecha_inicial, fecha_final, estado, grado, id_persona) VALUES
-      (null, ".$numMatri.",".$fechaIniMatri.", null, '1', ".$grade.", ".$idStudent.")
+      $sql = "insert into matriculas (id, descripcion_matricula, periodo, estado, grado, id_persona) VALUES
+      (null, ".$numMatri.",".$periodo.",'1', ".$grade.", ".$idStudent.");
+
       ";
 
       $con->query($sql);

@@ -93,8 +93,7 @@ CREATE TABLE IF NOT EXISTS personas (
 CREATE TABLE IF NOT EXISTS matriculas (
   id INT NOT NULL AUTO_INCREMENT,
   descripcion_matricula VARCHAR(12) NOT NULL,
-  fecha_inicial DATE NOT NULL,
-  fecha_final DATE NULL DEFAULT NULL,
+  periodo VARCHAR(30) NULL DEFAULT NULL,
   estado TINYINT NOT NULL,
   grado VARCHAR(15) NULL DEFAULT NULL,
   id_persona INT NOT NULL,
@@ -194,9 +193,9 @@ INSERT INTO parentescos (parentesco, id_estudiante, id_acudiente) VALUES
 ('tia', '2', '3');
 
 
-INSERT INTO matriculas (id, descripcion_matricula, fecha_inicial, fecha_final, estado, grado, id_persona) VALUES
-(null, 'ESTU-1','2018-02-24', null, '1', 'octavo', '1'),
-(null, 'ESTU-2','2018-02-24', null, '1', 'septimo', '2');
+INSERT INTO matriculas (id, descripcion_matricula, periodo, estado, grado, id_persona) VALUES
+(null, 'ESTU-1','2018', '1', 'octavo', '1'),
+(null, 'ESTU-2','2018', '1', 'septimo', '2');
 
 
 INSERT INTO cuotas (id, mes, valor, saldo, id_matricula) VALUES

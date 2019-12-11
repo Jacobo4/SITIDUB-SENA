@@ -252,15 +252,15 @@ function searchStudent(button) {
 
 function showStudents(students) {
   let rol = students.slice(-1)[0].rol;
-  let options = null;
+  let roleOptions = null;
 
 
   switch (rol) {
     case 'Administrador':
-      options = `<span class="icon-eye"></span><span class="icon-plus"></span><span class="icon-bin"></span>`;
+      roleOptions = `<span class="icon-eye"></span><span class="icon-coin-dollar"></span><span class="icon-plus"></span><span class="icon-bin"></span>`;
       break;
     case 'Coordinador':
-      options = `<span class="icon-eye"></span>`;
+      roleOptions = `<span class="icon-eye"></span>`;
       break;
     default:
 
@@ -273,23 +273,23 @@ function showStudents(students) {
   $.each(students.slice(0), function(id, student) {
 
 
-    // $.each(student, function(campo, value) {
-    //   if (value == null) {
-    //
-    //     value = " ";
-    //   }
-    // });
+    $.each(student, function(campo, value) {
+      if (value == null) {
+
+        value = " ";
+      }
+    });
 
 
     $('#showStudents').append(
       `
       <tr>
-        <td data-student="${student.id}">${id+1}</td>
-        <td>${student.descripcion_tdoc}</td>
-        <td data-ndoc="${student.ndoc}">${student.ndoc}</td>
-        <td>${student.nombre1} ${student.nombre2}</td>
-        <td>${student.apellido1} ${student.apellido2}</td>
-        <td class="table-options">${options}</td>
+        <td data-student="${changeNullValue(student.id)}">${id+1}</td>
+        <td>${changeNullValue(student.descripcion_tdoc)}</td>
+        <td data-ndoc="${changeNullValue(student.ndoc)}">${changeNullValue(student.ndoc)}</td>
+        <td>${changeNullValue(student.nombre1)} ${changeNullValue(student.nombre2)}</td>
+        <td>${changeNullValue(student.apellido1)} ${changeNullValue(student.apellido2)}</td>
+        <td class="table-options">${roleOptions}</td>
       </tr>
       `
     );
@@ -298,6 +298,14 @@ function showStudents(students) {
 
   optionsStudents();
 
+}
+
+function changeNullValue(string){
+  if (string === "NULL") {
+    return "";
+  }else{
+    return string;
+  }
 }
 
 function optionsStudents() {
@@ -374,20 +382,20 @@ function optionsStudents() {
     inputs.attr('disabled', true);
     saveButtons.hide();
     studentInputs.tittle.attr(`data-student`, studentInfo[0].id);
-    studentInputs.tittle.text(`${studentInfo[0].nombre1} ${studentInfo[0].nombre2} ${studentInfo[0].apellido1} ${studentInfo[0].apellido2}`);
-    studentInputs.names.val(`${studentInfo[0].nombre1} ${studentInfo[0].nombre2}`);
-    studentInputs.surnames.val(`${studentInfo[0].apellido1} ${studentInfo[0].apellido2}`);
-    studentInputs.numIdent.val(`${studentInfo[0].ndoc}`);
-    studentInputs.tdoc.val(`${studentInfo[0].tdoc_persona}`);
-    studentInputs.expeditionPlace.val(`${studentInfo[0].lugar_expedicion}`);
-    studentInputs.birthdate.val(`${studentInfo[0].fecha_nacimiento}`);
-    studentInputs.birthplace.val(`${studentInfo[0].lugar_nacimiento}`);
-    studentInputs.address.val(`${studentInfo[0].direccion}`);
-    studentInputs.email.val(`${studentInfo[0].email}`);
-    studentInputs.tel1.val(`${studentInfo[0].tel1}`);
-    studentInputs.eps.val(`${studentInfo[0].eps}`);
-    studentInputs.rh.val(`${studentInfo[0].rh}`);
-    studentInputs.income.val(`${studentInfo[0].estrato}`);
+    studentInputs.tittle.text(`${changeNullValue(studentInfo[0].nombre1)} ${changeNullValue(studentInfo[0].nombre2)} ${changeNullValue(studentInfo[0].apellido1)} ${changeNullValue(studentInfo[0].apellido2)}`);
+    studentInputs.names.val(`${changeNullValue(studentInfo[0].nombre1)} ${changeNullValue(studentInfo[0].nombre2)}`);
+    studentInputs.surnames.val(`${changeNullValue(studentInfo[0].apellido1)} ${changeNullValue(studentInfo[0].apellido2)}`);
+    studentInputs.numIdent.val(`${changeNullValue(studentInfo[0].ndoc)}`);
+    studentInputs.tdoc.val(`${changeNullValue(studentInfo[0].tdoc_persona)}`);
+    studentInputs.expeditionPlace.val(`${changeNullValue(studentInfo[0].lugar_expedicion)}`);
+    studentInputs.birthdate.val(`${changeNullValue(studentInfo[0].fecha_nacimiento)}`);
+    studentInputs.birthplace.val(`${changeNullValue(studentInfo[0].lugar_nacimiento)}`);
+    studentInputs.address.val(`${changeNullValue(studentInfo[0].direccion)}`);
+    studentInputs.email.val(`${changeNullValue(studentInfo[0].email)}`);
+    studentInputs.tel1.val(`${changeNullValue(studentInfo[0].tel1)}`);
+    studentInputs.eps.val(`${changeNullValue(studentInfo[0].eps)}`);
+    studentInputs.rh.val(`${changeNullValue(studentInfo[0].rh)}`);
+    studentInputs.income.val(`${changeNullValue(studentInfo[0].estrato)}`);
 
   }
 
@@ -440,7 +448,9 @@ $('form.edit').submit(function(event) {
         if (jsonData.success == "Cool") {
           modal.fadeOut();
           emptyClass(form);
+          searchStudent(buttonSearch);
           showAlert("nice", 1000, 3000);
+
 
         } else if (jsonData.success == "Error") {
           showAlert("error", 1000, 3000);
