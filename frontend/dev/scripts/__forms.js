@@ -140,7 +140,7 @@ function validateForm(form) {
           valorSelect != "default" ? pintarStilos($(e), 'valido') : pintarStilos($(e), 'error');
           break;
         case "year":
-          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 4, 5))){
+          if ((regExpNumber.test($(e).prop('value'))) & (validateLength(valorInput.length, 4, 5))) {
             pintarStilos($(e), 'valido');
           } else {
             pintarStilos($(e), 'error');
@@ -310,64 +310,96 @@ function optionsStudents() {
   $('span.icon-coin-dollar').click(function() {
 
     let modalPayments = $('#modalPayments');
-    let inputModal = modalPayments.find('input');
     let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
-    let numDocStudent = $(this).closest('tr').find('td[data-ndoc]').attr('data-ndoc');;
 
-    inputModal.attr('data-student', idStudent);
 
     modalPayments.fadeIn().css({
       "display": "flex"
     });
 
-    // // NOTE: CONSULTA ELIMINAR
-    // $('form#deleteStudent').submit(function(event) {
-    //   event.preventDefault();
-    //   let form = this;
-    //   let modal = $(this).closest('.modal');
-    //   let idForm = $(this).attr('id');
-    //   let input = $(this).find('input');
-    //   let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
-    //
-    //
-    //   if (input.val() !== numDocStudent) {
-    //     pintarStilos($(input), 'error');
-    //   } else {
-    //
-    //     pintarStilos($(input), 'valido');
-    //
-    //     let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
-    //
-    //     console.log(data);
-    //     $.ajax({
-    //       data: data,
-    //       beforeSend: function() {
-    //         $(form).parent().find('.loading').show();
-    //       },
-    //       success: function(response) {
-    //
-    //         $(form).parent().find('.loading').fadeOut(1000);
-    //         var jsonData = JSON.parse(response);
-    //
-    //         if (jsonData.success == "Cool") {
-    //           // console.log(trStudent);
-    //
-    //           trStudent.remove();
-    //           modal.fadeOut();
-    //           emptyClass(form);
-    //           showAlert("nice", 1000, 3000);
-    //         } else if (jsonData.success == "Error") {
-    //           showAlert("error", 1000, 3000);
-    //         }
-    //       },
-    //     });
-    //
-    //   }
-    //
-    //
-    // });
+    $('div.month span.icon-IconArrowPurple').click(function() {
+      console.log('asd');
+
+      let purpleArrow = $(this);
+      let paymentContainer = purpleArrow.closest('li').find('div.container-payment');
+      let month = purpleArrow.parent().attr('data-month');
+      let year = purpleArrow.closest('.modal').find('#searchPayments').val();
+      let data = `idForm=searhPayments&idStudent=${idStudent}&year=${year}&month=${month}`;
+      console.log(data);
+
+      $.post("services/process.php", data, function(response) {
+
+        var payments = JSON.parse(response);
+        console.table(payments);
+
+        if (payments.success == "Error") {
+          showAlert("error", 1000, 3000);
+        } else if (payments.success == "Don't exists") {
+          showAlert("dontExists", 1000, 3000);
+        } else {
+
+          showPayments(payments, paymentContainer);
+          paymentContainer.slideToggle();
+        }
+      });
+
+      function showPayments(payments, paymentContainer) {
+        let row = $(paymentContainer).find('tbody.showPayments')
+        $(row).empty();
+        $.each(payments, function(index, payment) {
+
+          $(row).append(
+            `
+            <tr>
+              <td>${index+1}</td>
+              <td>${payment.consecutivo}</td>
+              <td>${payment.fecha_pago}</td>
+              <td>${payment.periodo_inicial}</td>
+              <td>${payment.periodo_final}</td>
+              <td>${payment.valor_cancelado}</td>
+              <td class="table-options"><span class="icon-bin"></span></td>
+            </tr>
+            `
+          );
+
+        });
+
+      }
+
+
+    });
+    $('div.month span.icon-plus').click(function() {
+      console.log('asd');
+      $(this).closest('li').find('.container-addPayment').slideToggle();
+
+      // let purpleArrow = $(this);
+      // let paymentContainer = purpleArrow.closest('li').find('div.container-payment');
+      // let month = purpleArrow.parent().attr('data-month');
+      // let year = purpleArrow.closest('.modal').find('#searchPayments').val();
+      // let data = `idForm=searhPayments&idStudent=${idStudent}&year=${year}&month=${month}`;
+      // console.log(data);
+      //
+      // $.post("services/process.php", data, function(response) {
+      //
+      //   var payments = JSON.parse(response);
+      //   console.table(payments);
+      //
+      //   if (payments.success == "Error") {
+      //     showAlert("error", 1000, 3000);
+      //   } else if (payments.success == "Don't exists") {
+      //     showAlert("dontExists", 1000, 3000);
+      //   } else {
+      //
+      //     showPayments(payments,paymentContainer);
+      //     paymentContainer.toggle();
+      //   }
+      // });
+
+    });
 
   });
+
+
   ////Eliminar ESTUDIANTE
 
   $('span.icon-bin').click(function() {
@@ -506,7 +538,7 @@ function optionsStudents() {
 
 
   ////NUEVA MATRICULA
-  $('span.icon-plus').click(function() {
+  $('#showStudents span.icon-plus').click(function() {
 
     let modalMatri = $('#modalMatricula');
     let inputModal = modalMatri.find('input#numMatri');

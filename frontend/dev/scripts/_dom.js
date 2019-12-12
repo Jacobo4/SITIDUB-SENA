@@ -46,7 +46,7 @@ $(document).ready(function() {
       "display": "flex"
     });
   });
-  
+
 
   ////NUEVO ESTUDIANTE
   $('#newStudent').click(function() {
@@ -85,11 +85,20 @@ $(document).ready(function() {
 
 
 
+
+
+
+
+
   //Tablas
   $(window).resize(function() {
     if (window.innerWidth <= 520) {
-      $('table').css({
+      $('table,.container-payment').css({
         "overflow-x": "scroll"
+      });
+    }else{
+      $('table,.container-payment').css({
+        "overflow-x": "hidden"
       });
     }
   });

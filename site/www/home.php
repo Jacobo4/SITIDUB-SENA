@@ -302,24 +302,668 @@
           <h1>Payments</h1>
         </div>
 
-        <div class="modal-body  ctn-normal text-center">
+        <div class="modal-body  ctn-normal">
 
           <div class="loading">
             <img src="assets/images/loader.gif" alt="loading..">
           </div>
 
+          <div class="search-container">
+            <span class="icon-search"></span>
+            <input id="searchPayments" class="input-form " type="text" name="searchPayments" value="">
+          </div>
 
-          <form id="payments" action="index.html" method="post">
-            <div class="row justify-content-center">
-              <!-- <div class="col-12 col-lg-6">
-                <label for="idDelete">Please digit again the student's id</label>
-                <input id="idDelete" class="input-form" type="text" name="idDelete">
-              </div> -->
-            </div>
-            <button class="btn-submitModal" type="submit" name="button">Delete</button>
-            <button class="btn-cancel" type="button" name="button">Cancel</button>
-          </form>
+          <div class="row">
 
+            <ul class="">
+
+              <li>
+                <div class="month" data-month="febrero"> <span class="icon-IconArrowPurple"></span>February<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="marzo"> <span class="icon-IconArrowPurple"></span>March<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="abril"> <span class="icon-IconArrowPurple"></span>April<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="mayo"> <span class="icon-IconArrowPurple"></span>May<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="junio"> <span class="icon-IconArrowPurple"></span>June<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="julio"> <span class="icon-IconArrowPurple"></span>July<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="agosto"> <span class="icon-IconArrowPurple"></span>August<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="septiembre"> <span class="icon-IconArrowPurple"></span>September<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="octubre"> <span class="icon-IconArrowPurple"></span>October<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+              <li>
+                <div class="month" data-month="noviembre"> <span class="icon-IconArrowPurple"></span>November<span class="icon-plus"></span></div>
+                <div class="container-addPayment">
+                  <form class="addPayment" action="index.html" method="post">
+                    <table class="">
+                      <thead>
+                        <tr>
+
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Principal</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <button type="submit" name="button">Save</button>
+                  </div>
+                  <div class="container-payment">
+                    <table class="">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Consecutive</th>
+                          <th>Payment date</th>
+                          <th>Initial period</th>
+                          <th>Final period</th>
+                          <th>Amount</th>
+                          <th>Options</th>
+                        </tr>
+
+
+                      </thead>
+                      <tbody id="showStudents">
+                        <tr>
+                          <td>1</td>
+                          <td>1564657981</td>
+                          <td>01-03-2001</td>
+                          <td>30-03-2001</td>
+                          <td>Izquierdo Becerra</td>
+                          <td>Izquierdo Becerra</td>
+                          <td class="table-options"><span class="icon-bin"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <button class="btn-cancel" type="button" name="button">Cancel</button>
         </div>
       </div>
 
@@ -616,6 +1260,50 @@
 
       </div>
     </div>
+
+
+
+    <footer>
+
+            <div class="row justify-content-center container-info">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h3>About</h3>
+                    <p><strong>SITIDOB</strong>
+                        Sistema de información gestión administrativo instituto técnico industrial centro don Bosco, para el pleno desarrollo del registro de matrícula y de pensión de los estudiantes.</p>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h3>Contact us</h3>
+                    <ul>
+                      <li>
+                        <span class="icon-home3"></span>
+                        <label>Bogotá-Colombia | Cra 95A No. 138 58 </label>
+                      </li>
+                      <li><span class="icon-phone"></span>
+                        <label>314-318-87-15</label>
+                      </li>
+                      <li>
+                        <span class="icon-drawer"></span>
+                         <label>sitidob@gmail.com</label>
+                      </li>
+                      <li class="socialNetworks">
+                         <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-twitter"></span>
+                      </li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="row justify-content-center container-copyright">
+              <div class="col-6 col-sm-5 col-lg-3">
+                  © 2019 Copyright all rights reserved | <a href="">SITIDOB</a>
+              </div>
+              <div class="col-6 col-sm-5 col-lg-3">
+                <a href="">Terms and conditions</a> | <a href="">Política de tratamiento de datos</a>
+              </div>
+            </div>
+
+
+    </footer>
 
 
 

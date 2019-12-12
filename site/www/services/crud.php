@@ -224,11 +224,6 @@ class Person
                tipo_persona = 'estudiante'
                ORDER BY apellido1 ASC";
 
-               // concat(nombre1,nombre2) as nombres
-               //
-               // nombres like
-
-       $con->query($sql);
        $result = $con->query($sql);
        $numRows = $result->num_rows;
        $error = $con->error;
@@ -367,8 +362,48 @@ class Person
       }
     }
 
+    public function searhPayments($con){
+      $id         = (!empty($_POST['idStudent']))          ?  "'".$_POST['idStudent']."'"          : "NULL" ;
+      $año         = (!empty($_POST['year']))              ?  "'".$_POST['year']."'"               : "NULL" ;
+      $mes         = (!empty($_POST['month']))             ?  "'".$_POST['month']."'"              : "NULL" ;
+
+      $sql = "SELECT pagos.id, pagos.consecutivo, pagos.fecha_pago, pagos.periodo_inicial, pagos.periodo_final, pagos.valor_cancelado, pagos.rector, pagos.id_cuota
+              from personas
+              inner join matriculas
+              ON personas.id = matriculas.id_persona
+              inner join cuotas
+              ON matriculas.id =  cuotas.id_matricula
+              inner join pagos
+              ON cuotas.id =  pagos.id_cuota
+              where personas.id = $id and matriculas.periodo = $año and cuotas.mes = $mes";
 
 
 
+
+      $result = $con->query($sql);
+      $numRows = $result->num_rows;
+      $error = $con->error;
+
+      if($numRows > 0) {
+        while( $row = $result->fetch_assoc()){
+           $students[] = $row;
+        }
+
+        echo json_encode($students);
+
+
+      } else if($numRows == 0){
+        echo json_encode(array('success' => "Don't exists"));
+      } else {
+        echo json_encode(array('success' => "error",
+                               'desc'=> $error));
+      }
+
+
+
+
+
+
+}
 }
 ?>

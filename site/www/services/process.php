@@ -36,6 +36,10 @@ switch ($tipoForm) {
    $person->insertMatricula($con);
  break;
 
+ case 'searhPayments':
+   $person->searhPayments($con);
+ break;
+
 
 
 

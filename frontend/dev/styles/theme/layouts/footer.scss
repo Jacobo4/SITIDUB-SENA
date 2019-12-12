@@ -1,1 +1,59 @@
-// .......................................................................... { footer main } #
+footer {
+  background: $cp9;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  div.container-info{
+    padding: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    @include sm() {
+      text-align: left;
+    }
+    h3 {
+      font-size: 14px;
+      max-width: 250px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    p,ul{
+      max-width: 250px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    ul{
+      list-style: none;
+      padding: 0;
+      li{
+        span{
+          padding: 0 2px;
+        }
+      }
+      li.socialNetworks{
+        span{
+          cursor: pointer;
+          padding: 0 4px;
+        }
+
+
+      }
+    }
+  }
+
+  div.container-copyright{
+    background: $cp10;
+    padding: 10px;
+    color: #C7C7C7;
+    a{
+      text-decoration: none;
+      color: white;
+
+    }
+  }
+
+
+}

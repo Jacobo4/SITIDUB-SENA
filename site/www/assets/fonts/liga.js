@@ -28,6 +28,19 @@
             'money': '&#xe93b;',
             'coin-dollar': '&#xe93b;',
             '': '&#xea0a;',
+            '': '&#xea0a;',
+            'home3': '&#xe903;',
+            'house3': '&#xe903;',
+            'phone': '&#xe942;',
+            'telephone': '&#xe942;',
+            'drawer': '&#xe95c;',
+            'box': '&#xe95c;',
+            'facebook': '&#xea90;',
+            'brand10': '&#xea90;',
+            'instagram': '&#xea92;',
+            'brand12': '&#xea92;',
+            'twitter': '&#xea96;',
+            'brand16': '&#xea96;',
           '0': 0
         };
         delete icons['0'];
