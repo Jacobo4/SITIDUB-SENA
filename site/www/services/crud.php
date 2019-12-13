@@ -284,7 +284,7 @@ class Person
 
 
       $sql = " insert into personas (id, ndoc, tdoc_persona, tipo_persona, nombre1, nombre2, apellido1, apellido2, lugar_expedicion, lugar_nacimiento, fecha_nacimiento, direccion, email, id_observacion, tel1, tel2, tel3, ocupacion, profesion, rh, estrato, eps) VALUES
-      (null,".$numIdent.", ".$tipoIdent.", 'estudiante', '$nombre[0]', '$nombre[1]', '$apellido[0]', '$apellido[1]', null, null, null, ".$direccion.", ".$email.", null, ".$telResi.", ".$celular.", null, ".$ocupacion.", ".$profesion.", null, null, null) ";
+      (null,".$numIdent.", ".$tipoIdent.", 'responsable', '$nombre[0]', '$nombre[1]', '$apellido[0]', '$apellido[1]', null, null, null, ".$direccion.", ".$email.", null, ".$telResi.", ".$celular.", null, ".$ocupacion.", ".$profesion.", null, null, null) ";
 
 
 
@@ -362,6 +362,82 @@ class Person
       }
     }
 
+    public function getMonth($con){
+
+      $id         = (!empty($_POST['idStudent']))          ?  "'".$_POST['idStudent']."'"          : "NULL" ;
+      $año         = (!empty($_POST['year']))              ?  "'".$_POST['year']."'"               : "NULL" ;
+      $mes         = (!empty($_POST['month']))             ?  "'".$_POST['month']."'"              : "NULL" ;
+
+      $sql = "SELECT cuotas.id
+              from personas
+              inner join matriculas
+              ON personas.id = matriculas.id_persona
+              inner join cuotas
+              ON matriculas.id =  cuotas.id_matricula
+              where personas.id = $id and matriculas.periodo = $año and cuotas.mes = $mes";
+
+
+
+
+      $result = $con->query($sql);
+      $numRows = $result->num_rows;
+      $error = $con->error;
+
+      if($numRows > 0) {
+        while( $row = $result->fetch_assoc()){
+           $month[] = $row;
+        }
+
+        echo json_encode($month);
+
+
+      } else if($numRows == 0){
+        echo json_encode(array('success' => "Don't exists"));
+      } else {
+        echo json_encode(array('success' => "error",
+                               'desc'=> $error));
+      }
+
+    }
+
+    public function addPayment($con){
+
+      $cuota           = (!empty($_POST['cuota']))                ?  "'".$_POST['cuota']."'"                 : "NULL" ;
+      $consecutivo     = (!empty($_POST['consecutivo']))          ?  "'".$_POST['consecutivo']."'"           : "NULL" ;
+      $fecha_pago      = (!empty($_POST['fecha_pago']))           ?  "'".$_POST['fecha_pago']."'"            : "NULL" ;
+      $periodo_inicial = (!empty($_POST['periodo_inicial']))      ?  "'".$_POST['periodo_inicial']."'"       : "NULL" ;
+      $periodo_final   = (!empty($_POST['periodo_final']))        ?  "'".$_POST['periodo_final']."'"         : "NULL" ;
+      $valor_cancelado = (!empty($_POST['valor_cancelado']))      ?  "'".$_POST['valor_cancelado']."'"       : "NULL" ;
+      $rector   = (!empty($_POST['rector']))                      ?  "'".$_POST['rector']."'"                : "NULL" ;
+
+
+
+
+
+      $sql = "insert into pagos (id, consecutivo, fecha_pago, periodo_inicial, periodo_final, valor_cancelado, rector, id_cuota) VALUES
+      (null, ".$consecutivo.", ".$fecha_pago.", ".$periodo_inicial.", ".$periodo_final.", ".$valor_cancelado.", ".$rector.", ".$cuota."); ";
+
+      $con->query($sql);
+      $rowsAfectadas = $con->affected_rows;
+
+      if ($rowsAfectadas > 0) {
+        echo json_encode(array('success' => 'Cool',
+                                'cumple' => $rowsAfectadas));
+      } else {
+        $error = $con->error;
+        if( strstr($error, 'Duplicate entry')){
+          echo json_encode(array('success' => 'Entry duplicate',
+                                  'error' => $error,
+                                  'Rows afectadas' => $rowsAfectadas));
+        }else{
+          echo json_encode(array('success' => 'Error',
+                                  'error' => $error,
+                                  'Rows afectadas' => $rowsAfectadas));
+        }
+      }
+
+    }
+
     public function searhPayments($con){
       $id         = (!empty($_POST['idStudent']))          ?  "'".$_POST['idStudent']."'"          : "NULL" ;
       $año         = (!empty($_POST['year']))              ?  "'".$_POST['year']."'"               : "NULL" ;
@@ -386,10 +462,10 @@ class Person
 
       if($numRows > 0) {
         while( $row = $result->fetch_assoc()){
-           $students[] = $row;
+           $payments[] = $row;
         }
 
-        echo json_encode($students);
+        echo json_encode($payments);
 
 
       } else if($numRows == 0){

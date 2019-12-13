@@ -15,7 +15,7 @@ function pintarStilos(elem, tipo) {
 }
 
 //////////// Muestra alerta de los formularios
-function showAlert(type, timeIn, timeOut) {
+function showAlert(type, timeIn, timeOut, message) {
 
   const divAlert = $('div.alert-container');
   const contentAlert = 'div.alert-content';
@@ -34,10 +34,10 @@ function showAlert(type, timeIn, timeOut) {
     divAlert.addClass('alert-server').find(contentAlert).text('Maybe the server is down :(');
 
   } else if (type === "entryDuplicate") {
-    divAlert.addClass('alert-duplicate').find(contentAlert).text('This user already exists');
+    divAlert.addClass('alert-duplicate').find(contentAlert).text(message);
 
   } else if (type === "dontExists") {
-    divAlert.addClass('alert-dontExists').find(contentAlert).text("This user don't exists");
+    divAlert.addClass('alert-dontExists').find(contentAlert).text("We couldn't find it :(");
   }
 
   divAlert.fadeIn(timeIn, "linear", function() {
@@ -223,11 +223,13 @@ buttonSearch.keypress(function() {
 $('span.icon-search').click(function() {
   let buttonValue = buttonSearch.val();
   if (buttonValue.length > 0) {
+
     searchStudent(buttonSearch);
   }
 });
 
 function searchStudent(button) {
+
 
   let value = button.val();
   let input = button;
@@ -235,7 +237,7 @@ function searchStudent(button) {
 
   clearTimeout(peticion);
   peticion = setTimeout(function() {
-    let data = 'idForm=searchStudent&' + input.serialize();
+    let data = 'typeForm=searchStudent&' + input.serialize();
 
     console.log(data);
     $.post("services/process.php", data, function(response) {
@@ -248,7 +250,7 @@ function searchStudent(button) {
         showAlert("dontExists", 1000, 3000);
       } else {
 
-
+        $('table#students').fadeIn(500);
         showStudents(students);
       }
     });
@@ -268,6 +270,9 @@ function showStudents(students) {
       break;
     case 'Coordinador':
       roleOptions = `<span class="icon-eye"></span>`;
+      break;
+    case 'Tesorero':
+      roleOptions = `<span class="icon-eye"></span><span class="icon-coin-dollar"></span>`;
       break;
     default:
 
@@ -313,18 +318,20 @@ function optionsStudents() {
     let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
 
 
+
     modalPayments.fadeIn().css({
       "display": "flex"
     });
 
+
     $('div.month span.icon-IconArrowPurple').click(function() {
-      console.log('asd');
+
 
       let purpleArrow = $(this);
       let paymentContainer = purpleArrow.closest('li').find('div.container-payment');
       let month = purpleArrow.parent().attr('data-month');
       let year = purpleArrow.closest('.modal').find('#searchPayments').val();
-      let data = `idForm=searhPayments&idStudent=${idStudent}&year=${year}&month=${month}`;
+      let data = `typeForm=searhPayments&idStudent=${idStudent}&year=${year}&month=${month}`;
       console.log(data);
 
       $.post("services/process.php", data, function(response) {
@@ -369,31 +376,76 @@ function optionsStudents() {
 
     });
     $('div.month span.icon-plus').click(function() {
-      console.log('asd');
-      $(this).closest('li').find('.container-addPayment').slideToggle();
+      let plusButton = $(this);
+      let month = plusButton.parent().attr('data-month');
+      let year = plusButton.closest('.modal').find('#searchPayments').val();
 
-      // let purpleArrow = $(this);
-      // let paymentContainer = purpleArrow.closest('li').find('div.container-payment');
-      // let month = purpleArrow.parent().attr('data-month');
-      // let year = purpleArrow.closest('.modal').find('#searchPayments').val();
-      // let data = `idForm=searhPayments&idStudent=${idStudent}&year=${year}&month=${month}`;
-      // console.log(data);
-      //
-      // $.post("services/process.php", data, function(response) {
-      //
-      //   var payments = JSON.parse(response);
-      //   console.table(payments);
-      //
-      //   if (payments.success == "Error") {
-      //     showAlert("error", 1000, 3000);
-      //   } else if (payments.success == "Don't exists") {
-      //     showAlert("dontExists", 1000, 3000);
-      //   } else {
-      //
-      //     showPayments(payments,paymentContainer);
-      //     paymentContainer.toggle();
-      //   }
-      // });
+
+
+
+      let data = `typeForm=getMonth&idStudent=${idStudent}&year=${year}&month=${month}`;
+      console.log(data);
+
+
+      $.post("services/process.php", data, function(response) {
+
+        var cuota = JSON.parse(response);
+        console.log(cuota[0].id);
+
+
+        if (cuota.success == "Error") {
+          showAlert("error", 1000, 3000);
+        } else {
+          plusButton.closest('li').find('div.month').attr('data-cuota', cuota[0].id);
+          plusButton.closest('li').find('.container-addPayment').slideToggle();
+        }
+      });
+
+      var locki = false;
+
+      $('form.addPayment').submit(function(event) {
+
+
+        let form = this;
+        let typeForm = $(form).attr('class');
+        let cuota = $(form).closest('li').find('div.month').attr('data-cuota');
+
+        if (!locki) {
+          if (validateForm(this)) {
+
+            let data = `typeForm=${typeForm}&cuota=${cuota}&${$(form).serialize()}`;
+
+            console.log(data);
+            $.ajax({
+              data: data,
+              beforeSend: function() {
+                $(form).parent().find('.loading').show();
+              },
+              success: function(response) {
+                locki = true;
+
+                $(form).parent().find('.loading').fadeOut(1000);
+                var jsonData = JSON.parse(response);
+
+                if (jsonData.success == "Cool") {
+
+                  emptyClass(form);
+                  showAlert("nice", 1000, 3000);
+
+                } else if (jsonData.success == "Error") {
+                  showAlert("error", 1000, 3000);
+
+                } else if (jsonData.success == "Entry duplicate") {
+
+                  showAlert("entryDuplicate", 1000, 3000, 'This relative already exists');
+                }
+              },
+            });
+          }
+        }
+
+
+      });
 
     });
 
@@ -420,7 +472,7 @@ function optionsStudents() {
       event.preventDefault();
       let form = this;
       let modal = $(this).closest('.modal');
-      let idForm = $(this).attr('id');
+      let typeForm = $(this).attr('id');
       let input = $(this).find('input');
       let trStudent = $('#showStudents').find(`td[data-student="${idStudent}"]`).closest('tr');
 
@@ -431,7 +483,7 @@ function optionsStudents() {
 
         pintarStilos($(input), 'valido');
 
-        let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+        let data = `typeForm=${typeForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
         console.log(data);
         $.ajax({
@@ -470,7 +522,7 @@ function optionsStudents() {
     let modalShow = $('#modalEditShow');
     let idStudent = $(this).closest('tr').find('td[data-student]').attr('data-student');
 
-    let data = `idForm=showStudentInfo&idStudent=${idStudent}`;
+    let data = `typeForm=showStudentInfo&idStudent=${idStudent}`;
 
     // console.log('lo que envio ', data);
     $.post("services/process.php", data, function(response) {
@@ -557,11 +609,11 @@ function optionsStudents() {
       event.preventDefault();
       let form = this;
       let modal = $(this).closest('.modal');
-      let idForm = $(this).attr('id');
+      let typeForm = $(this).attr('id');
 
 
       if (validateForm(this)) {
-        let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+        let data = `typeForm=${typeForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
         console.log(data);
         $.ajax({
@@ -579,7 +631,7 @@ function optionsStudents() {
             } else if (jsonData.success == "Error") {
               showAlert("error", 1000, 3000);
             } else if (jsonData.success == "Entry duplicate") {
-              showAlert("entryDuplicate", 1000, 3000);
+              showAlert("entryDuplicate", 1000, 3000, 'This student already exists');
             }
 
           },
@@ -596,7 +648,7 @@ function optionsStudents() {
 $('form.edit').submit(function(event) {
   let form = this;
   let modal = $(form).closest('.modal');
-  let idForm = $(form).attr('id');
+  let typeForm = $(form).attr('id');
   let idStudent = $('#personName').attr('data-student');
   let inputs = $(form).find('input');
   let selects = $(form).find('select');
@@ -605,7 +657,7 @@ $('form.edit').submit(function(event) {
 
   if (validateForm(form)) {
 
-    let data = `idForm=${idForm}&idStudent=${idStudent}&${$(form).serialize()}`;
+    let data = `typeForm=${typeForm}&idStudent=${idStudent}&${$(form).serialize()}`;
 
     console.log(data);
     $.ajax({
@@ -664,43 +716,52 @@ $('#addRelative').click(function() {
     "display": "flex",
   });
 
+  var lock = false;
   $('form#insertRelative').submit(function(event) {
     let form = $(this);
-    let idForm = form.attr('id');
+    let typeForm = form.attr('id');
+    let button = form.find('button[type="submit"]');
 
 
     if (validateForm(form)) {
+      if (!lock) {
+        let data = `typeForm=${typeForm}&idStudent=${idStudent}&${form.serialize()}`;
+        console.log(data);
 
-      let data = `idForm=${idForm}&idStudent=${idStudent}&${form.serialize()}`;
-      console.log(data);
+        $.ajax({
+          data: data,
+          beforeSend: function() {
+            form.parent().find('.loading').show();
 
-      $.ajax({
-        data: data,
-        beforeSend: function() {
-          form.parent().find('.loading').show();
-        },
-        success: function(response) {
-          form.parent().find('.loading').fadeOut(1000);
-          var jsonData = JSON.parse(response);
-          if (jsonData.success == "Cool") {
+          },
+          success: function(response) {
+            lock = true;
+            form.parent().find('.loading').fadeOut(1000);
+            var jsonData = JSON.parse(response);
+
+            if (jsonData.success == "Cool") {
 
 
-            form.closest('.modal').fadeOut();
 
-            emptyClass(form);
-            showAlert("nice", 1000, 3000);
+              form.closest('.modal').fadeOut();
 
-          } else if (jsonData.success == "Error") {
-            showAlert("error", 1000, 3000);
+              emptyClass(form);
+              showAlert("nice", 1000, 3000);
 
-          } else if (jsonData.success == "Entry duplicate") {
+            } else if (jsonData.success == "Error") {
+              showAlert("error", 1000, 3000);
 
-            showAlert("entryDuplicate", 1000, 3000);
-          }
-        },
-      });
+            } else if (jsonData.success == "Entry duplicate") {
+
+              showAlert("entryDuplicate", 1000, 3000, 'This relative already exists');
+            }
+          },
+        });
+      }
+
     }
   });
+
 
 
 });
@@ -710,12 +771,12 @@ $('#addRelative').click(function() {
 
 function insertPerson(form, closeModal = true) {
 
-  let idForm = $(form).attr('id');
+  let typeForm = $(form).attr('id');
 
 
   if (validateForm(form)) {
 
-    var data = `idForm=${idForm}&${$(form).serialize()}`;
+    var data = `typeForm=${typeForm}&${$(form).serialize()}`;
     console.log(data);
 
     $.ajax({
@@ -739,7 +800,7 @@ function insertPerson(form, closeModal = true) {
 
         } else if (jsonData.success == "Entry duplicate") {
 
-          showAlert("entryDuplicate", 1000, 3000);
+          showAlert("entryDuplicate", 1000, 3000, 'This student already exists');
         }
       },
     });

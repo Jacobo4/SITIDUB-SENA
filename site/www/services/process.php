@@ -4,7 +4,7 @@
   include 'session.php';
   include 'crud.php';
 
-  $tipoForm = $_POST['idForm'];
+  $tipoForm = $_POST['typeForm'];
 
   $cumple = 0;
 
@@ -34,6 +34,14 @@ switch ($tipoForm) {
 
  case 'insertMatricula':
    $person->insertMatricula($con);
+ break;
+
+ case 'getMonth':
+   $person->getMonth($con);
+ break;
+
+ case 'addPayment':
+   $person->addPayment($con);
  break;
 
  case 'searhPayments':
